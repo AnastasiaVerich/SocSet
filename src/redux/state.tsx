@@ -1,5 +1,8 @@
 import React from "react";
 import {appStateType} from "../App";
+import {ProfileReducer} from "./ProfileReducer";
+import {SideBar} from "./SideBarReducer";
+import {DialogReducerr} from "./DialogsReducer";
 
 let renderTree = () => {
     console.log("hello")
@@ -8,13 +11,10 @@ let renderTree = () => {
 
 type storeType = {
     _state: appStateType
-    _addPost: any
-    changeTextInTextArea: any
-    sendMessage: any
-    changeTextInTextAreaMessage: any
     subscribe: any
     getState: any
     dispatch: any
+
 }
 
 type ActionType={
@@ -86,7 +86,8 @@ let store: storeType = {
                     name: 'Dima'
                 }
             ]
-        }
+        },
+        sidebar: {}
     },
 
     getState() {
@@ -97,70 +98,11 @@ let store: storeType = {
         console.log("10")
     },
 
-    _addPost() {
-        this._state.profile.postsDataArray.push(
-            {
-                id: 4,
-                post: this._state.profile.textInTextArea,
-                likeCount: 10
-            }
-        )
-        this._state.profile.textInTextArea = ""
-        renderTree();
-    },
-    changeTextInTextArea(sms: string) {
-        this._state.profile.textInTextArea = sms;
-        renderTree();
-        console.log(2)
-    },
-
-    sendMessage() {
-        this._state.dialog.smsData.push(
-            {
-                id: 5,
-                sms: this._state.dialog.textInTextArea
-            }
-        )
-        this._state.dialog.textInTextArea = ""
-        renderTree();
-    },
-    changeTextInTextAreaMessage(s: string) {
-        this._state.dialog.textInTextArea = s;
-        renderTree();
-    },
-
     dispatch(action: ActionType) {
-        switch (action.type) {
-            case addPost:{
-                   this._addPost();
-            }; break;
-            case  "changeTextInTextArea":{
-
-                this._state.profile.textInTextArea = action.sms;
-                renderTree();
-                console.log(2)
-
-            }break;
-            case  "sendMessage":{
-
-                this._state.dialog.smsData.push(
-                    {
-                        id: 5,
-                        sms: this._state.dialog.textInTextArea
-                    }
-                )
-                this._state.dialog.textInTextArea = ""
-                renderTree();
-
-            }break;
-            case  "changeTextInTextAreaMessage":{
-
-                this._state.dialog.textInTextArea = action.sms;
-                renderTree();
-            }break;
-
-
-        }
+        this._state.profile= ProfileReducer(this._state.profile, action)
+        this._state.dialog= DialogReducerr(this._state.dialog, action)
+        this._state.sidebar= SideBar(this._state.profile, action)
+        renderTree()
 
     }
 }

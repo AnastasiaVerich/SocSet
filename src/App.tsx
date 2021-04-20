@@ -30,10 +30,12 @@ export type appStateType = {
             name: string;
         }[];
     };
+    sidebar: any
 }
 export type AppType = {
     appState: appStateType
     dispatch: any
+
 
 }
 

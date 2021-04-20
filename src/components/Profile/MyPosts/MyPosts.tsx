@@ -14,10 +14,10 @@ type MyPostType = {
 export const MyPosts = (props: MyPostType) => {
 
     let onClick_AddPost_Callback = () => {
-        props.dispatch(addPostAction())
+        props.dispatch({type:"Add-post"})
     }
     let onChange_ChangeTextIntextForNewPostInState_CallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeTextInTextAreaAction(e.currentTarget.value))
+        props.dispatch({type: "changeTextInTextArea", sms:e.currentTarget.value})
     }
     debugger;
     let postArrayDefoult = props.state.profile.postsDataArray.map( (element: any) =>
