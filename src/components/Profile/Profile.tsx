@@ -5,7 +5,8 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
 type ProfileType = {
-   store: any
+   state: any
+    dispatch: any
 }
 
 
@@ -14,7 +15,8 @@ export const Profile = (props: ProfileType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts store={props.store}
+            <MyPosts state={props.state}
+                     dispatch={props.dispatch}
             />
         </div>
 

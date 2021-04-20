@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/state";
+
 let renederTree = () => {
     ReactDOM.render(<App appState={store.getState()} // get state from store
-                        store={store}
+                         dispatch={store.dispatch.bind(store)}
+
         />, document.getElementById('root')
     );
 }

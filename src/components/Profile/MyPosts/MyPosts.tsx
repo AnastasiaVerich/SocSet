@@ -1,23 +1,26 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {addPostAction, changeTextInTextAreaAction} from "../../../redux/state";
 
 
 type MyPostType = {
-    store: any
+    state: any
+    dispatch: any
 }
+
 
 
 export const MyPosts = (props: MyPostType) => {
 
     let onClick_AddPost_Callback = () => {
-        props.store.addPost();
+        props.dispatch(addPostAction())
     }
     let onChange_ChangeTextIntextForNewPostInState_CallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.store.changeTextInTextArea(e.currentTarget.value)
+        props.dispatch(changeTextInTextAreaAction(e.currentTarget.value))
     }
     debugger;
-    let postArrayDefoult = props.store.state.profile.postsDataArray.map( (element: any) =>
+    let postArrayDefoult = props.state.profile.postsDataArray.map( (element: any) =>
         <div key={element.id}><Post onePostElement={element.post} likeCount={element.likeCount}/>
         </div>
     )
@@ -28,7 +31,7 @@ export const MyPosts = (props: MyPostType) => {
                 My post
                 <div>
                     <div className={s.area}>
-                        <textarea value={props.store.state.profile.textInTextArea}
+                        <textarea value={props.state.profile.textInTextArea}
                                   onChange={onChange_ChangeTextIntextForNewPostInState_CallBack}
                         />
                     </div>

@@ -33,7 +33,7 @@ export type appStateType = {
 }
 export type AppType = {
     appState: appStateType
-    store: any
+    dispatch: any
 
 }
 
@@ -47,11 +47,14 @@ function App(props: AppType) {
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile'
-                           render={() => <Profile store={props.store}
+                           render={() => <Profile state={props.appState}
+                                                  dispatch={props.dispatch}
                            />}
                     />
                     <Route path='/dialogs'
-                           render={() => <Dialogs store={props.store}
+                           render={() => <Dialogs state={props.appState}
+                                                  dispatch={props.dispatch}
+
                            />}
                     />
                     <Route path='/news'

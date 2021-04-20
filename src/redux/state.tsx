@@ -5,18 +5,25 @@ let renderTree = () => {
     console.log("hello")
 }
 
+
 type storeType = {
-    state: appStateType
-    addPost: any
+    _state: appStateType
+    _addPost: any
     changeTextInTextArea: any
     sendMessage: any
     changeTextInTextAreaMessage: any
     subscribe: any
     getState: any
+    dispatch: any
+}
+
+type ActionType={
+    type:string
+    sms?: any
 }
 
 let store: storeType = {
-    state: {
+    _state: {
         profile: {
             textInTextArea: "hh",
             postsDataArray: [
@@ -81,44 +88,95 @@ let store: storeType = {
             ]
         }
     },
-    addPost(){
-        this.state.profile.postsDataArray.push(
+
+    getState() {
+        return this._state
+    },
+    subscribe(observer: any) {
+        renderTree = observer
+        console.log("10")
+    },
+
+    _addPost() {
+        this._state.profile.postsDataArray.push(
             {
                 id: 4,
-                post: this.state.profile.textInTextArea,
+                post: this._state.profile.textInTextArea,
                 likeCount: 10
             }
         )
-        this.state.profile.textInTextArea = ""
+        this._state.profile.textInTextArea = ""
         renderTree();
     },
-    changeTextInTextArea (sms: string){
-        this.state.profile.textInTextArea = sms;
+    changeTextInTextArea(sms: string) {
+        this._state.profile.textInTextArea = sms;
         renderTree();
         console.log(2)
     },
-    sendMessage () {
-        this.state.dialog.smsData.push(
+
+    sendMessage() {
+        this._state.dialog.smsData.push(
             {
                 id: 5,
-                sms: this.state.dialog.textInTextArea
+                sms: this._state.dialog.textInTextArea
             }
         )
-        this.state.dialog.textInTextArea = ""
+        this._state.dialog.textInTextArea = ""
         renderTree();
     },
-    changeTextInTextAreaMessage (s: string) {
-        this.state.dialog.textInTextArea = s;
+    changeTextInTextAreaMessage(s: string) {
+        this._state.dialog.textInTextArea = s;
         renderTree();
-        console.log(1)
     },
-    subscribe (observer: any) {
-        renderTree = observer
-    },
-    getState(){
-        return this.state
-    }
 
+    dispatch(action: ActionType) {
+        switch (action.type) {
+            case addPost:{
+                   this._addPost();
+            }; break;
+            case  "changeTextInTextArea":{
+
+                this._state.profile.textInTextArea = action.sms;
+                renderTree();
+                console.log(2)
+
+            }break;
+            case  "sendMessage":{
+
+                this._state.dialog.smsData.push(
+                    {
+                        id: 5,
+                        sms: this._state.dialog.textInTextArea
+                    }
+                )
+                this._state.dialog.textInTextArea = ""
+                renderTree();
+
+            }break;
+            case  "changeTextInTextAreaMessage":{
+
+                this._state.dialog.textInTextArea = action.sms;
+                renderTree();
+            }break;
+
+
+        }
+
+    }
+}
+const addPost="Add-post"
+export  const addPostAction=()=>{
+
+    return{
+        type: addPost
+    }
+}
+
+export const changeTextInTextAreaAction=(text: any)=>{
+    return{
+        type:"changeTextInTextArea",
+        sms: text
+    }
 }
 
 export default store
