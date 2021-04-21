@@ -1,7 +1,7 @@
 
+let initionState={}
 
-
-export const SideBar =(state: any, action:any)=>{
+export const SideBar =(state= initionState, action:any)=>{
 
 
     return state

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/state";
+import {store} from "./redux/StoreRedux";
 
 let renederTree = () => {
     ReactDOM.render(<App appState={store.getState()} // get state from store
