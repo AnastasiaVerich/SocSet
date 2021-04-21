@@ -5,27 +5,28 @@ import {OneMessage} from "./OneMessage/OneMessage";
 
 
 type DialogType = {
-   state: any
-    dispatch: any
+    state: any
+    sendMessage: any
+    NewMessageText: any
 }
 
 
 export const Dialogs = (props: DialogType) => {
 
     let onClick_SendMessage_Callback = () => {
-        props.dispatch({type: "sendMessage"});
+        props.sendMessage()
     }
 
     let onChange_ChangeTextIntextForNewMessageInState_CallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type:"changeTextInTextAreaMessage", sms: e.currentTarget.value})
+        props.NewMessageText(e.currentTarget.value)
     }
 
-    let newDialogData = props.state.dialog.dialogUsersArray.map((element: any) =>
+    let newDialogData = props.state.dialogUsersArray.map((element: any) =>
         <div key={element.idLink}>
             <UsersDialogs name={element.name} idLink={element.idLink}/>
         </div>)
 
-    let newSmsData = props.state.dialog.smsData.map((element: any) =>
+    let newSmsData = props.state.smsData.map((element: any) =>
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>
         </div>)
@@ -43,7 +44,7 @@ export const Dialogs = (props: DialogType) => {
             </div>
             <div>
                 <textarea placeholder="Enter sms"
-                          value={props.state.dialog.textInTextArea}
+                          value={props.state.textInTextArea}
                           onChange={onChange_ChangeTextIntextForNewMessageInState_CallBack}
                 />
                 <button onClick={onClick_SendMessage_Callback}>

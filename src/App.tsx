@@ -3,11 +3,11 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Nav} from "./components/Nav/Nav";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialog/Dialog";
 import {BrowserRouter, Route} from "react-router-dom"
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Setting} from "./components/Setting/Setting";
+import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
 
 
 export type appStateType = {
@@ -35,8 +35,7 @@ export type appStateType = {
 export type AppType = {
     appState: appStateType
     dispatch: any
-
-
+    store: any
 }
 
 
@@ -49,15 +48,11 @@ function App(props: AppType) {
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile'
-                           render={() => <Profile state={props.appState}
-                                                  dispatch={props.dispatch}
+                           render={() => <Profile store={props.store}
                            />}
                     />
                     <Route path='/dialogs'
-                           render={() => <Dialogs state={props.appState}
-                                                  dispatch={props.dispatch}
-
-                           />}
+                           render={() => <DialogsConteiner store={props.store}/>}
                     />
                     <Route path='/news'
                            render={() => <News/>}

@@ -2,22 +2,20 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {MyPostsConteiner} from "./MyPosts/MyPostsCONTEINER";
 
 
 type ProfileType = {
-   state: any
-    dispatch: any
+    store: any
 }
 
 
 export const Profile = (props: ProfileType) => {
-
+debugger
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts state={props.state}
-                     dispatch={props.dispatch}
-            />
+            <MyPostsConteiner  store={props.store}    />
         </div>
 
     )
