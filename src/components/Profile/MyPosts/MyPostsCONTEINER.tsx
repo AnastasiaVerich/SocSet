@@ -1,29 +1,23 @@
 import React, {ChangeEvent} from 'react';
 import {MyPosts} from "./MyPosts";
+import {connect} from "react-redux";
 
 
-type MyPostType = {
+let mapSttateToprops=(state:any)=>{
+    return{
+        posts: state.profile.postsDataArray,
+        newPostText: state.profile.textInTextArea
 
-    store: any
+    }
 }
 
+let mapDispatchToToprops=(dispatch: any)=>{
+    return{
+        addpost: ()=>{dispatch({type:"Add-post"})},
+        updateNewPostText: (text:any)=>{dispatch({type: "changeTextInTextArea", sms: text})}
 
-
-export const MyPostsConteiner = (props: MyPostType) => {
-let state=props.store.getState()
-    let addpost = () => {
-       // props.addpost();
-       props.store.dispatch({type:"Add-post"})
     }
-    let updateNewPostText = (text:string) => {
-       // props.updateNewPostText(e.currentTarget.value)
-       props.store.dispatch({type: "changeTextInTextArea", sms: text})
-    }
-debugger
-    return (
-        <MyPosts updateNewPostText={updateNewPostText}
-                 addpost={addpost}
-                 posts={state.profile.postsDataArray}
-                 newPostText={state.profile.textInTextArea} />
-    )
 }
+
+export const MyPostsConteiner = connect(mapSttateToprops, mapDispatchToToprops )(MyPosts);
+

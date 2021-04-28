@@ -1,23 +1,20 @@
 import React from "react";
 import {Dialogs} from "./Dialog";
+import {connect} from "react-redux";
 
 
-type DialogType = {
-    store: any
+let mapSttateToprops=(state:any)=>{
+    return{
+        state: state.dialog
+
+    }
+}
+let mapDispatchToToprops=(dispatch: any)=>{
+    return{
+        sendMessage: ()=>{dispatch({type: "sendMessage"});},
+        NewMessageText: (text:any)=>{dispatch({type: "changeTextInTextAreaMessage", sms:text})}
+
+    }
 }
 
-
-export const DialogsConteiner = (props: DialogType) => {
-let state= props.store.getState().dialog
-    let sendMessage = () => {
-        props.store.dispatch({type: "sendMessage"});
-    }
-
-    let NewMessageText = (text: string) => {
-        props.store.dispatch({type: "changeTextInTextAreaMessage", sms:text})
-    }
-
-    return (
-        <Dialogs state={state} sendMessage={sendMessage} NewMessageText={NewMessageText}/>
-    )
-}
+export const DialogsConteiner = connect(mapSttateToprops, mapDispatchToToprops)(Dialogs);

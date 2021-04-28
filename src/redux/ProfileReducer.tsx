@@ -1,7 +1,9 @@
+import state from "./state";
+
 const addPost = "Add-post"
 const textInTextArea = "changeTextInTextArea"
 
-let initionState={
+let initionState = {
     textInTextArea: "hh",
     postsDataArray: [
         {
@@ -22,26 +24,21 @@ let initionState={
     ]
 }
 
-export const ProfileReducer = (state=initionState, action:any) => {
+export const ProfileReducer = (state = initionState, action: any) => {
 
-
+    let copy = {...state, postsDataArray: [...state.postsDataArray]}
     switch (action.type) {
-        case addPost: {
-            state.postsDataArray.push(
-                {
-                    id: 4,
-                    post: state.textInTextArea,
-                    likeCount: 10
-                }
-            )
-            state.textInTextArea = ""
-        }
-            break;
-        case textInTextArea: {
-            state.textInTextArea = action.sms;
-        }
-            break;
+        case addPost:
+            let text = state.textInTextArea
+            return {
+                ...state,
+                textInTextArea: "",
+                postsDataArray: [...state.postsDataArray, {id: 4, post: text, likeCount: 10}]
+            }
 
+        case textInTextArea:
+            return {...state, textInTextArea: action.sms}
+        default:
+            return copy
     }
-    return state
 }

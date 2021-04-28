@@ -33,8 +33,6 @@ export type appStateType = {
     sidebar: any
 }
 export type AppType = {
-    appState: appStateType
-    dispatch: any
     store: any
 }
 
@@ -52,7 +50,7 @@ function App(props: AppType) {
                            />}
                     />
                     <Route path='/dialogs'
-                           render={() => <DialogsConteiner store={props.store}/>}
+                           render={() => <DialogsConteiner />}
                     />
                     <Route path='/news'
                            render={() => <News/>}

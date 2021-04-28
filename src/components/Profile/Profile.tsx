@@ -15,7 +15,7 @@ debugger
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsConteiner  store={props.store}    />
+            <MyPostsConteiner    />
         </div>
 
     )

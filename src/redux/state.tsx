@@ -89,7 +89,6 @@ let store: storeType = {
         },
         sidebar: {}
     },
-
     getState() {
         return this._state
     },
@@ -97,7 +96,6 @@ let store: storeType = {
         renderTree = observer
         console.log("10")
     },
-
     dispatch(action: ActionType) {
         this._state.profile= ProfileReducer(this._state.profile, action)
         this._state.dialog= DialogReducerr(this._state.dialog, action)
