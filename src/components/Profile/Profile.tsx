@@ -5,13 +5,10 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsConteiner} from "./MyPosts/MyPostsCONTEINER";
 
 
-type ProfileType = {
-    store: any
-}
 
 
-export const Profile = (props: ProfileType) => {
-debugger
+
+export const Profile = () => {
     return (
         <div>
             <ProfileInfo/>

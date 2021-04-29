@@ -4,10 +4,7 @@ let initionState = {
     textInTextArea: "123",
     smsData: [
         {id: 1, sms: "Hi"},
-        {
-            id: 2,
-            sms: "How are u?"
-        },
+        {id: 2, sms: "How are u?"},
         {id: 3, sms: "GOOOOODDD!"},
         {id: 4, sms: "lol!"}
     ],
@@ -23,16 +20,16 @@ let initionState = {
 export const DialogReducerr = (state = initionState, action: any) => {
     switch (action.type) {
         case textInTextArea:
-            return  {
+            return {
                 ...state,
-                textInTextArea: action.text
+                textInTextArea: action.sms
             };
         case sendMessage:
             let text = state.textInTextArea;
             return {
                 ...state,
-                textInTextArea: '',
-                smsData: [...state.smsData, {id: 6, sms: text}]
+                textInTextArea: "",
+                smsData: [{id: 5, sms: text},...state.smsData]
             };
         default:
             return state;

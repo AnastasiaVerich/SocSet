@@ -19,6 +19,9 @@ export const Nav = () => {
                 <NavLink to="/music" activeClassName={c.act}>Music</NavLink>
             </div>
             <div className={c.item}>
+                <NavLink to="/findUsers" activeClassName={c.act}>Find Users</NavLink>
+            </div>
+            <div className={c.item}>
                 <NavLink to="/setting" activeClassName={c.act}>Settings</NavLink>
             </div>
         </div>

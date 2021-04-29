@@ -12,6 +12,7 @@ let mapSttateToprops=(state:any)=>{
 }
 
 let mapDispatchToToprops=(dispatch: any)=>{
+    debugger
     return{
         addpost: ()=>{dispatch({type:"Add-post"})},
         updateNewPostText: (text:any)=>{dispatch({type: "changeTextInTextArea", sms: text})}

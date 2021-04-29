@@ -25,7 +25,7 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.idLink}>
             <UsersDialogs name={element.name} idLink={element.idLink}/>
         </div>)
-
+debugger
     let newSmsData = props.state.smsData.map((element: any) =>
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>

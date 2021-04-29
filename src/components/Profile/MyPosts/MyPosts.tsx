@@ -20,11 +20,11 @@ export const MyPosts = (props: MyPostType) => {
     let onChange_ChangeTextIntextForNewPostInState_CallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewPostText(e.currentTarget.value)
     }
+    debugger
     let postArrayDefoult = props.posts.map( (element: any) =>
         <div key={element.id}><Post onePostElement={element.post} likeCount={element.likeCount}/>
         </div>
     )
-debugger
     return (
         <div>
             <div className={s.post}>

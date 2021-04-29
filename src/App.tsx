@@ -5,9 +5,11 @@ import {Nav} from "./components/Nav/Nav";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom"
 import {News} from "./components/News/News";
-import {Music} from "./components/Music/Music";
+import {Users} from "./components/Users/Users";
 import {Setting} from "./components/Setting/Setting";
 import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
+import {Music} from "./components/Music/Music";
+import {UsersContainer} from "./components/Users/UsersConteiner";
 
 
 export type appStateType = {
@@ -20,7 +22,7 @@ export type appStateType = {
         }[];
     };
     dialog: {
-        textInTextArea: string
+        textInTextArea: any
         smsData: {
             id: number;
             sms: string;
@@ -32,12 +34,8 @@ export type appStateType = {
     };
     sidebar: any
 }
-export type AppType = {
-    store: any
-}
 
-
-function App(props: AppType) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -46,8 +44,7 @@ function App(props: AppType) {
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile'
-                           render={() => <Profile store={props.store}
-                           />}
+                           render={() => <Profile                          />}
                     />
                     <Route path='/dialogs'
                            render={() => <DialogsConteiner />}
@@ -57,6 +54,9 @@ function App(props: AppType) {
                     />
                     <Route path='/music'
                            render={() => <Music/>}
+                    />
+                    <Route path='/findUsers'
+                           render={() => <UsersContainer/>}
                     />
                     <Route path='/setting'
                            render={() => <Setting/>}
