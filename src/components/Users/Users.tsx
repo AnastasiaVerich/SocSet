@@ -1,67 +1,59 @@
 import React from 'react';
 import c from './Users.module.css'
+import axios from "axios";
+import nullAvatar from '../../assets/img/nullAvatar.jpg'
 
 
-type usersType = {
-    users: any,
-    follower: any,
-    unfollow: any,
-    setUsers: any
-}
+ export class Users extends React.Component<any, any>{
+   
+    componentDidMount() {
+        alert("10")
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                debugger
+                this.props.setUsers(response.data.items)
+            })
 
-export const Users = (props: usersType) => {
-if(props.users.length===1){
-    props.setUsers([
-        {
-            id: 1,
-            follow: true,
-            fillName: "Anastasia",
-            status: "I am Bitch",
-            location: {city: "Minsk", country: "Belarus"}
-        },
-        {
-            id: 2,
-            follow: false,
-            fillName: "Ruslan",
-            status: "I am man",
-            location: {city: "Molodechno", country: "Belarus"}
-        },
-        {id: 3, follow: false, fillName: "Misha", status: "HI EVERYONE", location: {city: "Moskow", country: "Russia"}},
-        {id: 4, follow: true, fillName: "Heiter", status: "Die all", location: {city: "Kiev", country: "Ukraine"}}])
-}
-    return <div>
-        {props.users.map((u: any) =>
-            <div key={u.id}>
+    }
+
+
+     render() {
+        return <div>
+            {this.props.users.map((u: any) =>
+                <div key={u.id}>
                     <span>
                         <div>
-                          <img width={"50px"} height={"50px"}
-                               src='https://klike.net/uploads/posts/2019-06/1560329641_2.jpg'/>
+                            <img width={"50px"} height={"50px"}
+                                 src={u.photos.small != null ? u.photos.small : nullAvatar}/>
                         </div>
 
-                        <div> {u.follow ?
+                        <div> {u.followed ?
                             <button onClick={() => {
-                                props.unfollow(u.id)
+                                this.props.unfollow(u.id)
                             }}>Unfollow</button> :
                             <button onClick={() => {
-                                props.follower(u.id)
+                                this.props.follower(u.id)
                             }}>Follow</button>}
                         </div>
                     </span>
 
-                <span>
+                    <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
 
                         </span>
                     </span>
-            </div>
-        )
-        }
-    </div>
+                </div>
+            )
+            }
+        </div>
+    }
+
+
 
 }

@@ -4,10 +4,11 @@ const SetUsers = "SetUsers"
 
 type UsersType={
     id: number,
-    follow: boolean,
-    fillName: string,
+    followed: boolean,
+    name: string,
     status: string,
-    location: any
+    photos: any
+    uniqueUrlName: any
 }
 
 
@@ -15,25 +16,18 @@ type UsersTypeAll={
     usersData: Array<UsersType>
 }
 let initionState: UsersTypeAll  = {
-    usersData: [
-        {
-            id: 1,
-            follow: true,
-            fillName: "Anastasia",
-            status: "I am Bitch",
-            location: {city: "Minsk", country: "Belarus"}
-        }
-    ]
+    usersData: [ ]
 }
 
 export const UsersReducer = (state = initionState, action: any) => {
+    if(state)
     switch (action.type) {
         case Follow:
             return {
                 ...state,
                 usersData: state.usersData.map((x) =>{
                     if(x.id === action.userId){
-                        return {...x, follow: true}
+                        return {...x, followed: true}
                     }
                     else return x})}
 
@@ -44,7 +38,7 @@ export const UsersReducer = (state = initionState, action: any) => {
                 ...state,
                 usersData: state.usersData.map((x) =>{
                     if(x.id === action.userId){
-                        return {...x, follow: false}
+                        return {...x, followed: false}
                     }
                     else return x})}
 
