@@ -6,7 +6,7 @@ import {UsersReducer} from "./UsersReducer";
 
 
 
-let reduses =combineReducers(
+export const reduses =combineReducers(
 
     {
         profile: ProfileReducer,
@@ -15,6 +15,8 @@ let reduses =combineReducers(
         usersPage: UsersReducer
     }
 )
+
+export type StoreStateType= ReturnType<typeof reduses>
 
 export let store=createStore(reduses);
 

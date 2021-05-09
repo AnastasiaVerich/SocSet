@@ -2,14 +2,21 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
+export type StateTypePosts = {
+    posts: {
+        id: number;
+        post: string;
+        likeCount: number;
+    }[];
+    newPostText: string
+}
+export type DispatchTypePosts = {
 
-type MyPostType = {
-    posts: any
-    newPostText: any
-    addpost: any
-    updateNewPostText: any
+    addpost: () => void
+    updateNewPostText: (e: string) => void
 }
 
+type MyPostType = StateTypePosts & DispatchTypePosts
 
 
 export const MyPosts = (props: MyPostType) => {
@@ -21,7 +28,7 @@ export const MyPosts = (props: MyPostType) => {
         props.updateNewPostText(e.currentTarget.value)
     }
     debugger
-    let postArrayDefoult = props.posts.map( (element: any) =>
+    let postArrayDefoult = props.posts.map((element: any) =>
         <div key={element.id}><Post onePostElement={element.post} likeCount={element.likeCount}/>
         </div>
     )
@@ -31,8 +38,10 @@ export const MyPosts = (props: MyPostType) => {
                 My post
                 <div>
                     <div className={s.area}>
-                        <textarea value={props.newPostText}
-                                  onChange={onChange_ChangeTextIntextForNewPostInState_CallBack}
+                        <textarea
+                            placeholder="Enter sms"
+                            value={props.newPostText}
+                            onChange={onChange_ChangeTextIntextForNewPostInState_CallBack}
                         />
                     </div>
                     <div className={s.add}>

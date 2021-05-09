@@ -2,13 +2,17 @@ import React, {ChangeEvent} from "react";
 import S from './Dialog.module.css'
 import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
+import {StateDialogReducesType} from "../../redux/DialogsReducer";
 
-
-type DialogType = {
-    state: any
-    sendMessage: any
-    NewMessageText: any
+export type StateTypeDialog={
+    state:StateDialogReducesType
 }
+export type DispatchTypeDialog={
+    sendMessage: ()=> void
+    NewMessageText: (text: string)=>void
+}
+
+type DialogType = StateTypeDialog & DispatchTypeDialog
 
 
 export const Dialogs = (props: DialogType) => {
@@ -25,7 +29,7 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.idLink}>
             <UsersDialogs name={element.name} idLink={element.idLink}/>
         </div>)
-debugger
+
     let newSmsData = props.state.smsData.map((element: any) =>
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>

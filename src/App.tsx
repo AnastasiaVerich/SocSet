@@ -3,16 +3,15 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Nav} from "./components/Nav/Nav";
 import {Profile} from "./components/Profile/Profile";
-import {BrowserRouter, Route} from "react-router-dom"
+import {Route} from "react-router-dom"
 import {News} from "./components/News/News";
-import {Users} from "./components/Users/Users";
 import {Setting} from "./components/Setting/Setting";
 import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
 import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
 
 
-export type appStateType = {
+/*export type appStateType = {
     profile: {
         textInTextArea: string,
         postsDataArray: {
@@ -22,7 +21,7 @@ export type appStateType = {
         }[];
     };
     dialog: {
-        textInTextArea: any
+        textInTextArea: string
         smsData: {
             id: number;
             sms: string;
@@ -33,18 +32,17 @@ export type appStateType = {
         }[];
     };
     sidebar: any
-}
+}*/
 
 function App() {
 
     return (
-        <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile'
-                           render={() => <Profile                          />}
+                           render={() => <Profile   />}
                     />
                     <Route path='/dialogs'
                            render={() => <DialogsConteiner />}
@@ -63,7 +61,6 @@ function App() {
                     />
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 

@@ -4,21 +4,37 @@ import axios from "axios";
 import nullAvatar from '../../assets/img/nullAvatar.jpg'
 
 
- export class Users extends React.Component<any, any>{
-   
+export class Users extends React.Component<any, any> {
+
     componentDidMount() {
-        alert("10")
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPages}&count=${this.props.pagesize}`)
             .then(response => {
-                debugger
+
+
                 this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
             })
 
     }
+onPageChanget =(pageNumber:number)=>{
+        this.props.SetCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesize}`)
+        .then(response => {
 
+            this.props.setUsers(response.data.items)
+        })
+    }
 
-     render() {
+    render() {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pagesize)
+        let pages = []
+
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
         return <div>
+            {pages.map(x => <span className={this.props.currentPages === x ? c.selectPage : c.notselectPage}
+                                  onClick={(e)=>{this.onPageChanget(x)}}>{x}</span>)}
             {this.props.users.map((u: any) =>
                 <div key={u.id}>
                     <span>
@@ -53,7 +69,6 @@ import nullAvatar from '../../assets/img/nullAvatar.jpg'
             }
         </div>
     }
-
 
 
 }

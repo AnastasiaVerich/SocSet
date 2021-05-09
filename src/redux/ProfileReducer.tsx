@@ -1,6 +1,29 @@
 const addPost = "Add-post"
 const textInTextArea = "changeTextInTextArea"
-let initionState = {
+
+
+/// Type for Reduces
+type TextInTextAreaType ={
+    type: "changeTextInTextArea"
+    text: string
+}
+type AddPostType={
+    type: "Add-post"
+}
+
+//// type for Action
+export type ActionType=TextInTextAreaType|AddPostType
+
+////   Initial State
+export type StatePropfilaType ={
+    textInTextArea: string,
+    postsDataArray: {
+        id: number;
+        post: string;
+        likeCount: number;
+    }[];
+}
+let initialState: StatePropfilaType = {
     textInTextArea: "hh",
     postsDataArray: [
         {
@@ -21,12 +44,15 @@ let initionState = {
     ]
 }
 
-export const ProfileReducer = (state = initionState, action: any) => {
+
+export const ProfileReducer = (state:StatePropfilaType = initialState, action: ActionType):StatePropfilaType => {
 
 
     switch (action.type) {
         case textInTextArea:
-            return {...state, textInTextArea: action.sms}
+            return {
+                ...state,
+                textInTextArea: action.text}
         case addPost:
             let text = state.textInTextArea
             return {
@@ -40,3 +66,6 @@ export const ProfileReducer = (state = initionState, action: any) => {
             return state
     }
 }
+
+export const textInTextAreaAC=(text: string):TextInTextAreaType=> ({type: textInTextArea, text})
+export const addPostAC=():AddPostType=> ({type: addPost})
