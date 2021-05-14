@@ -3,6 +3,7 @@ const UnFollow = "UnFollow"
 const SetUsers = "SetUsers"
 const SetCurrentPage = "SetCurrentPage"
 const setTotalUsersCount = "setTotalUsersCount"
+const ToogleIsFatching = "IsFetching"
 
 /////type for Reduces
 type FollowType={
@@ -25,9 +26,13 @@ type SetTotalUsersCountACType={
     type:"setTotalUsersCount"
     totalCounter: number
 }
+type SetIsFetchingType={
+    type:"IsFetching"
+    isFetching: boolean
+}
 
 ///////type for Action
-type ActionType=FollowType| UNfollowType|SetUsersType|SetCurrentPageType| SetTotalUsersCountACType
+type ActionType=FollowType| UNfollowType|SetUsersType|SetCurrentPageType| SetTotalUsersCountACType |SetIsFetchingType
 /////initial State
 export type UsersType = {
     id: number,
@@ -42,12 +47,14 @@ type UsersTypeAll = {
     pagesize: number
     totalUsersCount: number
     currentPages: number
+    isFetching: boolean
 }
 let initionState: UsersTypeAll = {
     usersData: [],
     pagesize: 5,
     totalUsersCount: 0,
-    currentPages: 4
+    currentPages: 4,
+    isFetching: true
 }
 
 export const UsersReducer = (state:UsersTypeAll = initionState, action: ActionType):UsersTypeAll => {
@@ -80,6 +87,8 @@ export const UsersReducer = (state:UsersTypeAll = initionState, action: ActionTy
                 return {...state, currentPages: action.currentPages}
             case setTotalUsersCount:
                 return {...state, totalUsersCount: action.totalCounter}
+            case ToogleIsFatching:
+                return {...state, isFetching: action.isFetching}
 
 
             default:
@@ -93,3 +102,4 @@ export const UNfollowAC = (userId: number):UNfollowType => ({type: UnFollow, use
 export const setUsersAC = (users: []):SetUsersType => ({type: SetUsers, users})
 export const setCurrentPageAC = (currentPages: number):SetCurrentPageType => ({type: SetCurrentPage, currentPages})
 export const setTotalUsersCountAC = (total: number):SetTotalUsersCountACType => ({type: setTotalUsersCount, totalCounter:total})
+export const setIsFetchingAC = (isFetching: boolean):SetIsFetchingType => ({type: ToogleIsFatching, isFetching: isFetching})
