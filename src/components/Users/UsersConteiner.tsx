@@ -71,7 +71,9 @@ let mapDispatchToprops = (dispatch: Dispatch): MapDispatchTopropsType => {
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPages}&count=${this.props.pagesize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPages}&count=${this.props.pagesize}`,{
+            withCredentials: true
+        })
             .then(response => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -82,7 +84,9 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     onPageChanget = (pageNumber: number) => {
         this.props.toogleIsFetching(true)
         this.props.SetCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesize}`,{
+            withCredentials: true
+        })
             .then(response => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(response.data.items)
