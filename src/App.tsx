@@ -42,7 +42,7 @@ function App() {
                 <Header/>
                 <Nav/>
                 <div className='app-wrap-cont'>
-                    <Route path='/profile'
+                    <Route path='/profile/:userID?'
                            render={() => <ProfileConteinerConnect   />}
                     />
                     <Route path='/dialogs'
