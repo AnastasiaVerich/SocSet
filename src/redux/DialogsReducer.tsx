@@ -54,9 +54,9 @@ export const DialogReducerr = (state: StateDialogReducesType = initionState, act
                 ...state,
                 textInTextArea: action.sms
             };
+
         case sendMessage:
             let text = state.textInTextArea;
-            debugger
             return {
                 ...state,
                 textInTextArea: "",

@@ -67,5 +67,6 @@ export const ProfileReducer = (state:StatePropfilaType = initialState, action: A
     }
 }
 
-export const textInTextAreaAC=(text: string):TextInTextAreaType=> ({type: textInTextArea, text})
+export const textInTextAreaAC=(text: string):TextInTextAreaType=>
+    ({type: textInTextArea, text})
 export const addPostAC=():AddPostType=> ({type: addPost})

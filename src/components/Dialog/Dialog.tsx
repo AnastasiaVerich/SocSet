@@ -34,7 +34,6 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>
         </div>)
-
     return (
 
         <div className={S.dialogs}>
