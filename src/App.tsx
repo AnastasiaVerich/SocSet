@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header/Header";
 import {Nav} from "./components/Nav/Nav";
-import {Profile} from "./components/Profile/Profile";
 import {Route} from "react-router-dom"
 import {News} from "./components/News/News";
 import {Setting} from "./components/Setting/Setting";
@@ -10,6 +8,7 @@ import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
 import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
 import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
+import {HeaderConteiner} from "./components/Header/HeaderConteiner";
 
 
 /*export type appStateType = {
@@ -39,7 +38,7 @@ function App() {
 
     return (
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderConteiner/>
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile/:userID?'

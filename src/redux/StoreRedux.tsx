@@ -3,6 +3,7 @@ import {ProfileReducer} from "./ProfileReducer";
 import {DialogReducerr} from "./DialogsReducer";
 import {SideBar} from "./SideBarReducer";
 import {UsersReducer} from "./UsersReducer";
+import {AuthReducer} from "./auth-reducer";
 
 
 
@@ -12,7 +13,8 @@ export const reduses =combineReducers(
         profile: ProfileReducer,
         dialog: DialogReducerr,
         sidebar: SideBar,
-        usersPage: UsersReducer
+        usersPage: UsersReducer,
+        auth: AuthReducer
     }
 )
 
