@@ -20,5 +20,8 @@ export type StoreStateType= ReturnType<typeof reduses>
 
 export let store=createStore(reduses);
 
+// @ts-ignore
+window.store=store
+
 
 

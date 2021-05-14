@@ -8,11 +8,11 @@ import {MyPostsConteiner} from "./MyPosts/MyPostsCONTEINER";
 
 
 
-export const Profile = () => {
+export const Profile = (props:any) => {
     return (
         <div>
-            <ProfileInfo/>
-            <MyPostsConteiner    />
+            <ProfileInfo profile={props.profile}/>
+            <MyPostsConteiner  />
         </div>
 
     )

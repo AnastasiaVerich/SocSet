@@ -3,15 +3,16 @@ import c from './Users.module.css'
 import axios from "axios";
 import nullAvatar from '../../assets/img/nullAvatar.jpg'
 import {UsersType} from "../../redux/UsersReducer";
+import { NavLink } from 'react-router-dom';
 
-type UsersComponentType={
-       users: UsersType[]
-       pagesize: number
-       totalUsersCount: number
-       currentPages: number
-    follower:(id:number)=>void
-    unfollow:(id:number)=>void
-    onPageChanget:(x:any)=> void
+type UsersComponentType = {
+    users: UsersType[]
+    pagesize: number
+    totalUsersCount: number
+    currentPages: number
+    follower: (id: number) => void
+    unfollow: (id: number) => void
+    onPageChanget: (x: any) => void
 }
 
 export let Users = (props: UsersComponentType) => {
@@ -28,12 +29,13 @@ export let Users = (props: UsersComponentType) => {
                               onClick={(e) => {
                                   props.onPageChanget(x)
                               }}>{x}</span>)}
-        {props.users.map((u:UsersType) =>
+        {props.users.map((u: UsersType) =>
             <div key={u.id}>
                     <span>
                         <div>
-                            <img width={"50px"} height={"50px"}
-                                 src={u.photos.small != null ? u.photos.small : nullAvatar}/>
+                          <NavLink to={'/profile/'+u.id}>  <img width={"50px"} height={"50px"}
+                                          src={u.photos.small != null ? u.photos.small : nullAvatar}/>
+                          </NavLink>
                         </div>
 
                         <div> {u.followed ?

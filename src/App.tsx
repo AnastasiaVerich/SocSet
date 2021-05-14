@@ -9,6 +9,7 @@ import {Setting} from "./components/Setting/Setting";
 import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
 import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
+import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
 
 
 /*export type appStateType = {
@@ -42,7 +43,7 @@ function App() {
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile'
-                           render={() => <Profile   />}
+                           render={() => <ProfileConteinerConnect   />}
                     />
                     <Route path='/dialogs'
                            render={() => <DialogsConteiner />}
