@@ -8,7 +8,8 @@ import {sendMessageAC, textInTextAreaAC} from "../../redux/DialogsReducer";
 
 let mapSttateToprops=(state:StoreStateType): StateTypeDialog=>{
     return{
-        state: state.dialog
+        state: state.dialog,
+        isAuth: state.auth.isAuth
 
     }
 }

@@ -1,10 +1,8 @@
 import React from 'react';
 import c from './Users.module.css'
-import axios from "axios";
 import nullAvatar from '../../assets/img/nullAvatar.jpg'
-import {setIsFollowingProgressAC, UsersType} from "../../redux/UsersReducer";
+import { UsersType} from "../../redux/UsersReducer";
 import {NavLink} from 'react-router-dom';
-import {follow, unFollow} from "../DAL/api";
 
 type UsersComponentType = {
     users: UsersType[]
@@ -14,7 +12,7 @@ type UsersComponentType = {
     follower: (id: number) => void
     unfollow: (id: number) => void
     onPageChanget: (x: any) => void
-    setIsFollowingProgress: (x: any, id:any) => void
+    setIsFollowingProgress: (x: any, id: any) => void
     IsFollowingProgress: any
 }
 
@@ -41,28 +39,19 @@ export let Users = (props: UsersComponentType) => {
                           </NavLink>
                         </div>
 
-                        <div> {u.followed ?
-                            <button disabled={props.IsFollowingProgress.some((id:any)=>id===u.id)} onClick={() => {
-                                props.setIsFollowingProgress(true, u.id)
-                                unFollow(u.id).then(response => {
+                        <div> {u.followed
+                            ?
+                            <button disabled={props.IsFollowingProgress.some((id: any) => id === u.id)} onClick={() => {
 
-                                        if (response.resultCode == 0) {
                                             props.unfollow(u.id)
-                                        }
-                                        props.setIsFollowingProgress(false, u.id)
-                                    }
-                                )
+
                             }
-                            }>Unfollow</button> :
-                            <button disabled={props.IsFollowingProgress.some((id:any)=>id===u.id)}onClick={() => {
-                                props.setIsFollowingProgress(true, u.id)
-                                follow(u.id).then(response => {
-                                        if (response.resultCode == 0) {
+                            }>Unfollow</button>
+                            :
+                            <button disabled={props.IsFollowingProgress.some((id: any) => id === u.id)} onClick={() => {
+
                                             props.follower(u.id)
-                                        }
-                                        props.setIsFollowingProgress(false, u.id)
-                                    }
-                                )
+
                             }
                             }>Follow</button>}
                         </div>

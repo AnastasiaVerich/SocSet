@@ -3,9 +3,11 @@ import S from './Dialog.module.css'
 import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
 import {StateDialogReducesType} from "../../redux/DialogsReducer";
+import { Redirect } from "react-router-dom";
 
 export type StateTypeDialog={
     state:StateDialogReducesType
+    isAuth: any
 }
 export type DispatchTypeDialog={
     sendMessage: ()=> void
@@ -34,6 +36,8 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>
         </div>)
+
+    if(props.isAuth===false) return <Redirect to={"/login"}/>
     return (
 
         <div className={S.dialogs}>

@@ -9,6 +9,7 @@ import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
 import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
 import {HeaderConteiner} from "./components/Header/HeaderConteiner";
+import { Login } from './components/login/login';
 
 
 /*export type appStateType = {
@@ -58,6 +59,9 @@ function App() {
                     />
                     <Route path='/setting'
                            render={() => <Setting/>}
+                    />
+                    <Route path='/login'
+                           render={() => <Login/>}
                     />
                 </div>
             </div>

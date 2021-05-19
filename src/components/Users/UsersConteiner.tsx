@@ -1,17 +1,16 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followAC,
+    followAC, followThunkCreater, getUsersThunkCreater,
     setCurrentPageAC, setIsFetchingAC, setIsFollowingProgressAC,
     setTotalUsersCountAC,
     setUsersAC,
-    UNfollowAC,
+    UNfollowAC, UNfollowThunkCreater,
     UsersType
 } from "../../redux/UsersReducer";
 import {StoreStateType} from "../../redux/StoreRedux";
 import {Users} from "./Users";
 import {Preloader} from "../COMMON/Preloader/Preloader";
-import { usersAPI} from "../DAL/api";
 
 
 export type MapStateToPropsType = {
@@ -30,6 +29,7 @@ export type MapDispatchTopropsType = {
     setTotalUsersCount: (x: number) => void
     toogleIsFetching: (x: boolean) => void
     setIsFollowingProgress: any
+    getUsersThunk: any
 }
 let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
     return {
@@ -47,21 +47,16 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
 ///////////////////////////////////////////////////
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
-        this.props.toogleIsFetching(true)
-        usersAPI.getUsers(this.props.currentPages, this.props.pagesize ).then(response => {
-                this.props.toogleIsFetching(false)
-                this.props.setUsers(response.items)
-                this.props.setTotalUsersCount(response.totalCount)
-            })
+
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize)
+
     }
 
     onPageChanget = (pageNumber: number) => {
-        this.props.toogleIsFetching(true)
+        this.props.getUsersThunk(pageNumber, this.props.pagesize)
+
         this.props.SetCurrentPage(pageNumber);
-        usersAPI.getUsers(pageNumber, this.props.pagesize ).then(response => {
-                this.props.toogleIsFetching(false)
-                this.props.setUsers(response.items)
-            })
+
     }
 
     render() {
@@ -84,13 +79,14 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
 //
 
 export const UsersContainer = connect(mapStateToProps, {
-    follower:followAC,
-    unfollow: UNfollowAC,
+    follower:followThunkCreater,
+    unfollow: UNfollowThunkCreater,
     setUsers:setUsersAC,
     SetCurrentPage:setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     setIsFollowingProgress: setIsFollowingProgressAC,
-    toogleIsFetching:setIsFetchingAC
+    toogleIsFetching:setIsFetchingAC,
+    getUsersThunk: getUsersThunkCreater
 })(UsersAPI);
 
 

@@ -1,3 +1,6 @@
+import {getUsersThunkCreater} from "./UsersReducer";
+import {usersAPI} from "../components/DAL/api";
+
 const addPost = "Add-post"
 const textInTextArea = "changeTextInTextArea"
 const setUserProfile = "setOneProfile"
@@ -83,3 +86,11 @@ export const textInTextAreaAC = (text: string): TextInTextAreaType =>
     ({type: textInTextArea, text})
 export const addPostAC = (): AddPostType => ({type: addPost})
 export const setOneProfileAC = (profile:any): OneProfileType => ({type: setUserProfile, profile})
+export const getOneProfileThunkCreater = (id:any) => {
+    return(dispatch: any)=>{
+        usersAPI.profileGet(id)
+            .then(response => {
+               dispatch( setOneProfileAC(response.data))
+            })
+    }
+}

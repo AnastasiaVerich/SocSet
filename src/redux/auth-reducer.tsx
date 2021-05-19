@@ -1,3 +1,5 @@
+import {authAPI} from "../components/DAL/api";
+
 const SetUsreData = "SetUsreData"
 
 /////type for Reduces
@@ -44,3 +46,15 @@ export const AuthReducer = (state:AuthStateType = initionState, action: ActionTy
 }
 
 export const dataSetUserAC = (userId: any, email: any, login: any): DataSetUserType => ({type: SetUsreData, data:{userId, email, login}})
+export const loginThunkCreater = ()=> {
+
+    return(dispath: any)=>{
+        authAPI.me().then(response => {
+
+            if (response.resultCode === 0) {
+                let {id, email, login} = response.data
+                dispath(dataSetUserAC(id, email, login))
+            }
+        })
+    }
+}

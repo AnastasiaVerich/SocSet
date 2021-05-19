@@ -1,3 +1,5 @@
+import { usersAPI} from "../components/DAL/api";
+
 const Follow = "Follow"
 const UnFollow = "UnFollow"
 const SetUsers = "SetUsers"
@@ -99,7 +101,7 @@ export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionT
             case SetCurrentPage:
                 return {...state, currentPages: action.currentPages}
             case setTotalUsersCount:
-                return {...state, totalUsersCount: action.totalCounter}
+                return {...state, totalUsersCount: 50/* action.totalCounter*/}
             case ToogleIsFatching:
                 return {...state, isFetching: action.isFetching}
             case ToogleIsFollowingProgress:
@@ -132,3 +134,43 @@ export const setIsFollowingProgressAC = (IsFollowingProgress: boolean, userId:an
     IsFollowingProgress: IsFollowingProgress,
     userId
 })
+
+////////////////////////////////////////
+/////////////////
+//////////////////
+//////////////
+export const getUsersThunkCreater= (currentPages: number, pagesize:number )=> {
+   return  (dispatch: any) => {
+        dispatch(setIsFetchingAC(true))
+        usersAPI.getUsers(currentPages, pagesize).then(response => {
+            dispatch(setIsFetchingAC(false))
+            dispatch(setUsersAC(response.items))
+            dispatch(setTotalUsersCountAC(50/*response.totalCount*/))
+        })
+    }
+}
+export const followThunkCreater= (id:any )=> {
+   return  (dispatch: any) => {
+       dispatch(setIsFollowingProgressAC(true, id))
+       usersAPI.follow(id).then(response => {
+               if (response.resultCode == 0) {
+                  dispatch(followAC(id))
+               }
+               dispatch(setIsFollowingProgressAC(false, id))
+           }
+       )
+    }
+}
+
+export const UNfollowThunkCreater= (id:any )=> {
+   return  (dispatch: any) => {
+       dispatch(setIsFollowingProgressAC(true, id))
+       usersAPI.follow(id).then(response => {
+               if (response.resultCode == 0) {
+                  dispatch(UNfollowAC(id))
+               }
+               dispatch(setIsFollowingProgressAC(false, id))
+           }
+       )
+    }
+}
