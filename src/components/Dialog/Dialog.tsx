@@ -7,7 +7,6 @@ import { Redirect } from "react-router-dom";
 
 export type StateTypeDialog={
     state:StateDialogReducesType
-    isAuth: any
 }
 export type DispatchTypeDialog={
     sendMessage: ()=> void
@@ -37,7 +36,7 @@ export const Dialogs = (props: DialogType) => {
             <OneMessage massageText={element.sms}/>
         </div>)
 
-    if(props.isAuth===false) return <Redirect to={"/login"}/>
+
     return (
 
         <div className={S.dialogs}>

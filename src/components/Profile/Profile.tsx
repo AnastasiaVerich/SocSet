@@ -6,15 +6,14 @@ import {MyPostsConteiner} from "./MyPosts/MyPostsCONTEINER";
 import {Redirect} from "react-router-dom";
 
 
+export const Profile = (props: any) => {
 
-
-
-export const Profile = (props:any) => {
-    if(props.isAuth===false) return <Redirect to={"/login"}/>
     return (
         <div>
-            <ProfileInfo profile={props.profile}/>
-            <MyPostsConteiner  />
+            <ProfileInfo profile={props.profile}
+                         status={props.status}
+                         updateStatus={props.updateStatus}/>
+            <MyPostsConteiner/>
         </div>
 
     )

@@ -25,9 +25,7 @@ export const usersAPI={
         )
     },
     profileGet( id:any){
-        return (
-            instanse.get(`profile/${id}`)
-        )
+        return profileAPI.profileGet(id)
     },
     unFollow( id:any){
         return (
@@ -36,6 +34,24 @@ export const usersAPI={
         )
     }
 
+}
+
+export const profileAPI={
+    profileGet( id:any){
+        return (
+            instanse.get(`profile/${id}`)
+        )
+    },
+    getStatus(userID:any){
+        return(
+            instanse.get(`/profile/status/${userID}`)
+        )
+    },
+    updateStatus(statusText:string){
+        return(
+            instanse.put(`/profile/status`,{status: statusText})
+        )
+    }
 }
 export const authAPI={
     me( ){

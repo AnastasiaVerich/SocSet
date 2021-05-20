@@ -4,36 +4,15 @@ import {Nav} from "./components/Nav/Nav";
 import {Route} from "react-router-dom"
 import {News} from "./components/News/News";
 import {Setting} from "./components/Setting/Setting";
-import {DialogsConteiner} from "./components/Dialog/DialogCONTEINER";
 import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
 import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
 import {HeaderConteiner} from "./components/Header/HeaderConteiner";
 import { Login } from './components/login/login';
+import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
 
 
-/*export type appStateType = {
-    profile: {
-        textInTextArea: string,
-        postsDataArray: {
-            id: number;
-            post: string;
-            likeCount: number;
-        }[];
-    };
-    dialog: {
-        textInTextArea: string
-        smsData: {
-            id: number;
-            sms: string;
-        }[];
-        dialogUsersArray: {
-            idLink: number;
-            name: string;
-        }[];
-    };
-    sidebar: any
-}*/
+
 
 function App() {
 

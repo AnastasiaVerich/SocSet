@@ -165,7 +165,7 @@ export const followThunkCreater= (id:any )=> {
 export const UNfollowThunkCreater= (id:any )=> {
    return  (dispatch: any) => {
        dispatch(setIsFollowingProgressAC(true, id))
-       usersAPI.follow(id).then(response => {
+       usersAPI.unFollow(id).then(response => {
                if (response.resultCode == 0) {
                   dispatch(UNfollowAC(id))
                }

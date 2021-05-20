@@ -1,9 +1,12 @@
 import {getUsersThunkCreater} from "./UsersReducer";
-import {usersAPI} from "../components/DAL/api";
+import {profileAPI, usersAPI} from "../components/DAL/api";
 
 const addPost = "Add-post"
 const textInTextArea = "changeTextInTextArea"
 const setUserProfile = "setOneProfile"
+const setStatus = "setStatus"
+const upateStatus = "upateStatus"
+
 
 /// Type for Reduces
 type TextInTextAreaType = {
@@ -17,9 +20,17 @@ type OneProfileType = {
     type: "setOneProfile"
     profile:any
 }
+type SetStatusType = {
+    type: "setStatus"
+    status:any
+}
+type UpdateStatusType = {
+    type: "upateStatus"
+    status:any
+}
 
 //// type for Action
-export type ActionType = TextInTextAreaType | AddPostType |OneProfileType
+export type ActionType = TextInTextAreaType | AddPostType |OneProfileType| SetStatusType| UpdateStatusType
 
 ////   Initial State
 export type StatePropfilaType = {
@@ -30,6 +41,7 @@ export type StatePropfilaType = {
         post: string;
         likeCount: number;
     }[];
+    status:string
 }
 let initialState: StatePropfilaType = {
     profile:null,
@@ -50,7 +62,8 @@ let initialState: StatePropfilaType = {
             post: "Это мой первый пост!",
             likeCount: 1200
         }
-    ]
+    ],
+    status:""
 }
 
 
@@ -75,6 +88,12 @@ export const ProfileReducer = (state: StatePropfilaType = initialState, action: 
                 ...state,
                profile : action.profile
             }
+            case setStatus:
+            return {
+                ...state,
+               status : action.status
+            }
+
 
 
         default:
@@ -92,5 +111,30 @@ export const getOneProfileThunkCreater = (id:any) => {
             .then(response => {
                dispatch( setOneProfileAC(response.data))
             })
+    }
+}
+
+export const setStatusAC = (status: string): SetStatusType => ({type: setStatus, status})
+
+export const getStatusThunkCreater=(id:any)=>{
+    return(dispatch:any)=>{
+        profileAPI.getStatus(id)
+
+            .then (response=>{
+                dispatch(setStatusAC(response.data))
+
+            }
+        )
+    }
+}
+export const updateStatusThunkCreater=(status:string)=>{
+    return(dispatch:any)=>{
+        profileAPI.updateStatus(status)
+            .then (response=>{
+                if(response.data.resultCode===0){
+                    dispatch(setStatusAC(status))
+                }
+            }
+        )
     }
 }

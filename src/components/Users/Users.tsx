@@ -38,8 +38,7 @@ export let Users = (props: UsersComponentType) => {
                                                                   src={u.photos.small != null ? u.photos.small : nullAvatar}/>
                           </NavLink>
                         </div>
-
-                        <div> {u.followed
+                        <div>{u.followed
                             ?
                             <button disabled={props.IsFollowingProgress.some((id: any) => id === u.id)} onClick={() => {
 
