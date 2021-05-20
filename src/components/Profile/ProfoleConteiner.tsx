@@ -14,7 +14,7 @@ import {compose} from "redux";
          let userID =this.props.match.params.userID
          if (!userID){ userID=16763}
          this.props.getOneProfileThunk(userID)
-         setTimeout(()=>{this.props.getStatusThunk(userID)},2000)
+         this.props.getStatusThunk(userID)
 
      }
 
