@@ -14,14 +14,14 @@ const instanse = axios.create({
 export const usersAPI={
     getUsers(currentPages:any,pagesize: any ){
         return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}`,{
-            }).then(response=>response.data)
+            instanse.get(`users?page=${currentPages}&count=${pagesize}`,{})
+                .then(response=>response.data)
         )
     },
     follow( id:any){
         return (
-            instanse.post(`follow/${id}`, {}, {
-            }).then(response=>response.data)
+            instanse.post(`follow/${id}`, {}, {})
+                .then(response=>response.data)
         )
     },
     profileGet( id:any){
@@ -29,8 +29,8 @@ export const usersAPI={
     },
     unFollow( id:any){
         return (
-            instanse.delete(`follow/${id}`, {
-            }).then(response=>response.data)
+            instanse.delete(`follow/${id}`, {})
+                .then(response=>response.data)
         )
     }
 
@@ -56,8 +56,24 @@ export const profileAPI={
 export const authAPI={
     me( ){
         return (
-            instanse.get(`auth/me`, {
-            }).then(response=>response.data)
+            instanse.get(`auth/me`, {})
+                .then(response=>response.data)
         )
     }
+}
+
+export const loginAPI={
+    send( ){
+        return (
+            instanse.post(`auth/login`, {}, {})
+                .then(response=>response.data)
+        )
+    },
+    delete( ){
+        return (
+            instanse.delete(`auth/login`, {})
+                .then(response=>response.data)
+        )
+    },
+
 }

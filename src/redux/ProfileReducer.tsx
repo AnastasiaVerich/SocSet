@@ -2,19 +2,16 @@ import {getUsersThunkCreater} from "./UsersReducer";
 import {profileAPI, usersAPI} from "../components/DAL/api";
 
 const addPost = "Add-post"
-const textInTextArea = "changeTextInTextArea"
 const setUserProfile = "setOneProfile"
 const setStatus = "setStatus"
 const upateStatus = "upateStatus"
 
 
 /// Type for Reduces
-type TextInTextAreaType = {
-    type: "changeTextInTextArea"
-    text: string
-}
+
 type AddPostType = {
     type: "Add-post"
+    massages: string
 }
 type OneProfileType = {
     type: "setOneProfile"
@@ -30,12 +27,11 @@ type UpdateStatusType = {
 }
 
 //// type for Action
-export type ActionType = TextInTextAreaType | AddPostType |OneProfileType| SetStatusType| UpdateStatusType
+export type ActionType =  AddPostType |OneProfileType| SetStatusType| UpdateStatusType
 
 ////   Initial State
 export type StatePropfilaType = {
     profile:any
-    textInTextArea: string,
     postsDataArray: {
         id: number;
         post: string;
@@ -45,7 +41,6 @@ export type StatePropfilaType = {
 }
 let initialState: StatePropfilaType = {
     profile:null,
-    textInTextArea: "hh",
     postsDataArray: [
         {
             id: 1,
@@ -71,16 +66,11 @@ export const ProfileReducer = (state: StatePropfilaType = initialState, action: 
 
 
     switch (action.type) {
-        case textInTextArea:
-            return {
-                ...state,
-                textInTextArea: action.text
-            }
+
         case addPost:
-            let text = state.textInTextArea
+            let text = action.massages
             return {
                 ...state,
-                textInTextArea: "",
                 postsDataArray: [{id: 4, post: text, likeCount: 10}, ...state.postsDataArray]
             }
         case setUserProfile:
@@ -101,9 +91,8 @@ export const ProfileReducer = (state: StatePropfilaType = initialState, action: 
     }
 }
 
-export const textInTextAreaAC = (text: string): TextInTextAreaType =>
-    ({type: textInTextArea, text})
-export const addPostAC = (): AddPostType => ({type: addPost})
+
+export const addPostAC = (massages: string): AddPostType => ({type: addPost, massages})
 export const setOneProfileAC = (profile:any): OneProfileType => ({type: setUserProfile, profile})
 export const getOneProfileThunkCreater = (id:any) => {
     return(dispatch: any)=>{

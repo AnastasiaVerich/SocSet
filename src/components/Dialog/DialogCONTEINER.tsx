@@ -3,7 +3,7 @@ import {Dialogs, DispatchTypeDialog, StateTypeDialog} from "./Dialog";
 import {connect} from "react-redux";
 import {StoreStateType} from "../../redux/StoreRedux";
 import {compose, Dispatch} from "redux";
-import {sendMessageAC, textInTextAreaAC} from "../../redux/DialogsReducer";
+import {sendMessageAC} from "../../redux/DialogsReducer";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 
@@ -15,8 +15,7 @@ let mapSttateToprops=(state:StoreStateType): StateTypeDialog=>{
 
 let mapDispatchToToprops=(dispatch: Dispatch): DispatchTypeDialog=>{
     return{
-        sendMessage: ()=>{dispatch(sendMessageAC())},
-        NewMessageText: (text:any)=>{dispatch(textInTextAreaAC(text))}
+        sendMessage: (massages: string)=>{dispatch(sendMessageAC(massages))}
     }
 }
 

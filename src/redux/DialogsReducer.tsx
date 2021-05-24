@@ -1,24 +1,18 @@
 const sendMessage = "sendMessage"
-const textInTextArea = "changeTextInTextAreaMessage"
 
-/// Type for Reduces
-type TextInTextAreaType = {
-    type: "changeTextInTextAreaMessage"
-    sms: string
-}
 type SendMessageType = {
     type: "sendMessage"
+    massages: string
 }
 
 
 //// type for Action
-type ActionType = TextInTextAreaType | SendMessageType
+type ActionType = SendMessageType
 
 
 ////   Initial State
 export type StateDialogReducesType = {
 
-    textInTextArea: string
     smsData: {
         id: number;
         sms: string;
@@ -30,7 +24,6 @@ export type StateDialogReducesType = {
 
 }
 let initionState: StateDialogReducesType = {
-    textInTextArea: "123",
     smsData: [
         {id: 1, sms: "Hi"},
         {id: 2, sms: "How are u?"},
@@ -49,17 +42,11 @@ let initionState: StateDialogReducesType = {
 
 export const DialogReducerr = (state: StateDialogReducesType = initionState, action: ActionType): StateDialogReducesType => {
     switch (action.type) {
-        case textInTextArea:
-            return {
-                ...state,
-                textInTextArea: action.sms
-            };
 
         case sendMessage:
-            let text = state.textInTextArea;
+            let text = action.massages;
             return {
                 ...state,
-                textInTextArea: "",
                 smsData: [{id: 5, sms: text}, ...state.smsData]
             };
         default:
@@ -68,9 +55,7 @@ export const DialogReducerr = (state: StateDialogReducesType = initionState, act
 }
 
 
-export const textInTextAreaAC = (text: string): TextInTextAreaType => {
-    return {type: textInTextArea, sms: text}
-}
-export const sendMessageAC = (): SendMessageType => {
-    return {type: sendMessage}
+
+export const sendMessageAC = (massages: string): SendMessageType => {
+    return {type: sendMessage, massages}
 }

@@ -3,29 +3,19 @@ import S from './Dialog.module.css'
 import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
 import {StateDialogReducesType} from "../../redux/DialogsReducer";
-import { Redirect } from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
-export type StateTypeDialog={
-    state:StateDialogReducesType
+export type StateTypeDialog = {
+    state: StateDialogReducesType
 }
-export type DispatchTypeDialog={
-    sendMessage: ()=> void
-    NewMessageText: (text: string)=>void
+export type DispatchTypeDialog = {
+    sendMessage: (massages: string) => void
 }
 
 type DialogType = StateTypeDialog & DispatchTypeDialog
 
 
 export const Dialogs = (props: DialogType) => {
-
-    let onClick_SendMessage_Callback = () => {
-        props.sendMessage()
-    }
-
-    let onChange_ChangeTextIntextForNewMessageInState_CallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.NewMessageText(e.currentTarget.value)
-    }
-
     let newDialogData = props.state.dialogUsersArray.map((element: any) =>
         <div key={element.idLink}>
             <UsersDialogs name={element.name} idLink={element.idLink}/>
@@ -35,8 +25,10 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>
         </div>)
-
-
+    let addNewMessages = (values: any)=>{
+        //massages, потому что такое значение name у field, которое нам надо
+        props.sendMessage(values.massages)
+    }
     return (
 
         <div className={S.dialogs}>
@@ -49,14 +41,25 @@ export const Dialogs = (props: DialogType) => {
                 {newSmsData}
             </div>
             <div>
-                <textarea placeholder="Enter sms"
-                          value={props.state.textInTextArea}
-                          onChange={onChange_ChangeTextIntextForNewMessageInState_CallBack}
-                />
-                <button onClick={onClick_SendMessage_Callback}>
-                    send sms
-                </button>
+                <AddMessagesReduxForm onSubmit={addNewMessages}/>
             </div>
+
         </div>
     )
 }
+
+const AddMessagesForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field placeholder="Enter sms"
+                   component={"textarea"}
+                   name={"massages"}
+            />
+            <button >send sms</button>
+        </form>
+    )
+}
+
+const AddMessagesReduxForm = reduxForm({
+    form: "dialog"
+})(AddMessagesForm)
