@@ -9,3 +9,9 @@
 .formControl.error span{
     color: red;
 }
+
+.formSunneryError{
+    border: solid red 5px;;
+    padding: 5px;
+    color: darkblue;
+}

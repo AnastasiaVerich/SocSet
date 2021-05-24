@@ -63,7 +63,7 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPages={this.props.currentPages}
@@ -80,7 +80,7 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
 //
 //
 
-export const UsersContainer:any = compose(WithAuthRedirect,connect(mapStateToProps, {
+export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
     follower:followThunkCreater,
     unfollow: UNfollowThunkCreater,
     setUsers:setUsersAC,

@@ -1,59 +1,54 @@
 import {authAPI} from "../components/DAL/api";
-import {stopSubmit} from "redux-form";
+import {InitializeAction, stopSubmit} from "redux-form";
+import {getAuthThunkCreater} from "./auth-reducer";
 
-const SetUsreData = "SetUsreData"
+const SET_INITIALIXED = "SET_INITIALIXED"
 
 /////type for Reduces
-type DataSetUserType = {
-    type: "SetUsreData"
-    payload: any
+type InitializedType = {
+    type: "SET_INITIALIXED"
 }
 
 
 ///////type for Action
-type ActionType = DataSetUserType
+type ActionType = InitializedType
 
 /////initial State
 type AuthStateType = {
-    userId: number | null
-    email: string | null
-    login: boolean | null
-    isAuth: boolean | null
+    initialized: boolean
 }
 let initionState: AuthStateType = {
-    userId: null,
-    email: null,
-    login: null,
-    isAuth: false
+    initialized: false
 }
 
-export const AuthReducer = (state: AuthStateType = initionState, action: ActionType): AuthStateType => {
+export const AppReducer = (state: AuthStateType = initionState, action: ActionType): AuthStateType => {
     if (state) {
         switch (action.type) {
-            case SetUsreData:
+            case SET_INITIALIXED:{
                 return {
                     ...state,
-                    ...action.payload
+                    initialized: true
                 }
+            }
+
             default:
                 return state;
         }
     } else return state
 }
 
-export const dataSetUserAC = (userId: any, email: any, login: any, isAuth: boolean): DataSetUserType => ({
-    type: SetUsreData,
-    payload: {userId, email, login, isAuth}
-})
-export const getAuthThunkCreater = () => (dispath: any) => {
-    return authAPI.me()
-        .then(response => {
-        if (response.data.resultCode === 0) {
-            let {id, email, login} = response.data.data
-            dispath(dataSetUserAC(id, email, login, true))
-        }
+export const initializedSuccessAC = (): InitializedType => ({type: SET_INITIALIXED})
+
+export const initializeTC = () => (dispath: any) => {
+   let promisse= dispath(getAuthThunkCreater());
+
+    Promise.all([promisse]).then(()=>{
+        dispath(initializedSuccessAC());
     })
+
+
 }
+/*
 
 export const loginThunkCreater = (email: any, password: any, rememberMe: any) => (dispath: any) => {
 
@@ -78,5 +73,5 @@ export const logoutThunkCreater = (email: any, password: any, rememberMe: any) =
                 dispath(dataSetUserAC(null, null, null, false))
             }
         })
-}
+}*/
 

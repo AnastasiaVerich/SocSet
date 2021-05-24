@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import  {AppNew} from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./redux/StoreRedux";
 import {Provider} from "react-redux";
@@ -11,7 +11,7 @@ import {BrowserRouter} from "react-router-dom";
     ReactDOM.render(
 <Provider store={store}>
     <BrowserRouter>
-        <App/>
+        <AppNew/>
     </BrowserRouter>
 </Provider>,
         document.getElementById('root')

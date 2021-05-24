@@ -6,12 +6,13 @@ import {connect} from "react-redux";
 import {loginThunkCreater} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {StoreStateType} from "../../redux/StoreRedux";
+import style from "../COMMON/FormsControl/forms.module.css"
 
 export const Login = (props: any) => {
     const onSumbit = (formData: any) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-    if(props.isAuth) return <Redirect to={"/profile"}/>
+    if (props.isAuth) return <Redirect to={"/profile"}/>
     return <div>
         <h1>LOGIN</h1>
         <LoginReduxForm onSubmit={onSumbit}/>
@@ -41,6 +42,9 @@ const LoginForm = (props: any) => {
                        name={"rememberMe"}
                        validate={[requiredField, maxLenghtCreater]}/> remember me
             </div>
+            {props.error && <div className={style.formSunneryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Lodin</button>
             </div>
@@ -53,7 +57,7 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 
 
-const mapStateToProps=(state:StoreStateType)=>({
+const mapStateToProps = (state: StoreStateType) => ({
     isAuth: state.auth.isAuth
 })
 export const LoginConteiner = connect(

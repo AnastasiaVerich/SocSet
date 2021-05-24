@@ -11,15 +11,21 @@ import {compose} from "redux";
  class ProfileConteiner extends React.Component<any, any>{
 
      componentDidMount() {
+
          let userID =this.props.match.params.userID
-         if (!userID){ userID=16763}
+         if (!userID){
+             debugger
+             userID=this.props.authorazedUserId
+             if(!userID){
+                 this.props.history.push("/login")
+             }
+         }
          this.props.getOneProfileThunk(userID)
          this.props.getStatusThunk(userID)
 
      }
 
      render(){
-         if(this.props.isAuth===false) return <Redirect to={"/login"}/>
         return(
             <Profile {...this.props} profile={this.props.profile}
                      status={this.props.status}
@@ -29,10 +35,13 @@ import {compose} from "redux";
 }
 
 
+
 let mapStateToprops=(state:StoreStateType):any=>{
     return{
         profile: state.profile.profile,
-        status: state.profile.status
+        status: state.profile.status,
+        authorazedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 }
 

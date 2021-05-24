@@ -7,9 +7,6 @@ import {authAPI} from "../DAL/api";
 
 class HeaderConteinerConnect extends React.Component<any, any> {
 
-    componentDidMount() {
-        this.props.loginThunk()
-    }
 
     render() {
         return (
@@ -24,7 +21,4 @@ const mapStateToProps = (state: StoreStateType) => ({
 
 
 })
-export const HeaderConteiner = connect(mapStateToProps,
-    {loginThunk: getAuthThunkCreater,
-        logOut: logoutThunkCreater})
-(HeaderConteinerConnect)
+export const HeaderConteiner = connect(mapStateToProps, {logOut: logoutThunkCreater})(HeaderConteinerConnect)
