@@ -4,6 +4,8 @@ import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
 import {StateDialogReducesType} from "../../redux/DialogsReducer";
 import {Field, reduxForm} from "redux-form";
+import {maxLenght, requiredField} from "../../utils/validators/validators";
+import {Textarea} from "../COMMON/FormsControl/FormsControl";
 
 export type StateTypeDialog = {
     state: StateDialogReducesType
@@ -47,13 +49,14 @@ export const Dialogs = (props: DialogType) => {
         </div>
     )
 }
-
+const maxLenghtCreater=maxLenght(10)
 const AddMessagesForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <Field placeholder="Enter sms"
-                   component={"textarea"}
+                   component={Textarea}
                    name={"massages"}
+                   validate={[requiredField, maxLenghtCreater]}
             />
             <button >send sms</button>
         </form>

@@ -1,7 +1,9 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
+import {maxLenght, requiredField} from '../../../utils/validators/validators';
+import {Textarea} from "../../COMMON/FormsControl/FormsControl";
 
 export type StateTypePosts = {
     posts: {
@@ -45,14 +47,17 @@ export const MyPosts = (props: MyPostType) => {
         </div>
     )
 }
-
+const maxLenghtCreater=maxLenght(10)
 const postForm = (props: any) => {
+
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={"massages"}
-                       component={"textarea"}
+                       component={Textarea}
                        name={"massages"}
+                       validate={[requiredField, maxLenghtCreater]}
                 />
             </div>
             <button>
