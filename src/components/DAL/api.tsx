@@ -10,70 +10,64 @@ const instanse = axios.create({
 })
 
 
-
-export const usersAPI={
-    getUsers(currentPages:any,pagesize: any ){
+export const usersAPI = {
+    getUsers(currentPages: any, pagesize: any) {
         return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}`,{})
-                .then(response=>response.data)
+            instanse.get(`users?page=${currentPages}&count=${pagesize}`, {})
+                .then(response => response.data)
         )
     },
-    follow( id:any){
+    follow(id: any) {
         return (
             instanse.post(`follow/${id}`, {}, {})
-                .then(response=>response.data)
+                .then(response => response.data)
         )
     },
-    profileGet( id:any){
+    profileGet(id: any) {
         return profileAPI.profileGet(id)
     },
-    unFollow( id:any){
+    unFollow(id: any) {
         return (
             instanse.delete(`follow/${id}`, {})
-                .then(response=>response.data)
+                .then(response => response.data)
         )
     }
 
 }
 
-export const profileAPI={
-    profileGet( id:any){
+export const profileAPI = {
+    profileGet(id: any) {
         return (
             instanse.get(`profile/${id}`)
         )
     },
-    getStatus(userID:any){
-        return(
+    getStatus(userID: any) {
+        return (
             instanse.get(`/profile/status/${userID}`)
         )
     },
-    updateStatus(statusText:string){
-        return(
-            instanse.put(`/profile/status`,{status: statusText})
+    updateStatus(statusText: string) {
+        return (
+            instanse.put(`/profile/status`, {status: statusText})
         )
     }
 }
-export const authAPI={
-    me( ){
+export const authAPI = {
+    me() {
         return (
             instanse.get(`auth/me`, {})
-                .then(response=>response.data)
+        )
+    }
+    , login(email: string, password: string, rememberMe: boolean = false) {
+        return (
+            instanse.post(`auth/login`, {email, password, rememberMe}, {})
+
+        )
+    },
+    logout() {
+        return (
+            instanse.delete(`auth/login`, {})
         )
     }
 }
 
-export const loginAPI={
-    send( ){
-        return (
-            instanse.post(`auth/login`, {}, {})
-                .then(response=>response.data)
-        )
-    },
-    delete( ){
-        return (
-            instanse.delete(`auth/login`, {})
-                .then(response=>response.data)
-        )
-    },
-
-}

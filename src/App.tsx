@@ -8,7 +8,7 @@ import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
 import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
 import {HeaderConteiner} from "./components/Header/HeaderConteiner";
-import { Login } from './components/login/login';
+import {Login, LoginConteiner} from './components/login/login';
 import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
 
 
@@ -40,7 +40,7 @@ function App() {
                            render={() => <Setting/>}
                     />
                     <Route path='/login'
-                           render={() => <Login/>}
+                           render={() => <LoginConteiner/>}
                     />
                 </div>
             </div>
