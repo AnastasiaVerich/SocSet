@@ -1,8 +1,12 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 
 export const ProfileStatusHOC = (props: any) => {
     let[editMode, setEditMode]=useState(false)
     let[status, setStatus]=useState(props.status)
+
+    useEffect(()=>{
+        setStatus(props.status)
+    },[props.status])
 
 
     const activateMode=()=>{
