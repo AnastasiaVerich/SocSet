@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../COMMON/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
+import {ProfileStatusHOC} from "./ProfileStatusHOC";
 
 
 export const ProfileInfo = (props: any) => {
@@ -17,7 +18,7 @@ if(!props.profile){
             <div className={s.img}>
                 <img src={props.profile.photos.large}/>
                 ava+..
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>)
 }

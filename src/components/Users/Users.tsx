@@ -3,6 +3,7 @@ import c from './Users.module.css'
 import nullAvatar from '../../assets/img/nullAvatar.jpg'
 import { UsersType} from "../../redux/UsersReducer";
 import {NavLink} from 'react-router-dom';
+import {Preloader} from "../COMMON/Preloader/Preloader";
 
 type UsersComponentType = {
     users: UsersType[]
@@ -24,6 +25,7 @@ export let Users = (props: UsersComponentType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
 
     return <div>
         {pages.map(x => <span className={props.currentPages === x ? c.selectPage : c.notselectPage}

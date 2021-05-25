@@ -13,6 +13,14 @@ import {Users} from "./Users";
 import {Preloader} from "../COMMON/Preloader/Preloader";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {
+    getCurrentPages,
+    getIsFetching,
+    getIsFollowingProgress,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers, getUsersCreateSelector
+} from "../../redux/users-selectors";
 
 
 export type MapStateToPropsType = {
@@ -33,7 +41,7 @@ export type MapDispatchTopropsType = {
     setIsFollowingProgress: any
     getUsersThunk: any
 }
-let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
+/*let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
     return {
         users: state.usersPage.usersData,
         pagesize: state.usersPage.pagesize,
@@ -41,6 +49,17 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
         currentPages: state.usersPage.currentPages,
         isFetching: state.usersPage.isFetching,
         IsFollowingProgress: state.usersPage.followingInProgress
+    }
+}*/
+let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
+    console.log("111")
+    return {
+        users: getUsersCreateSelector(state),
+        pagesize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPages: getCurrentPages(state),
+        isFetching: getIsFetching(state),
+        IsFollowingProgress: getIsFollowingProgress(state)
     }
 }
 
@@ -62,7 +81,9 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     }
 
     render() {
+        console.log("render")
         return <>
+            {this.props.isFetching ? <Preloader/> : null}
 
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}

@@ -14,7 +14,7 @@ import {compose} from "redux";
 
          let userID =this.props.match.params.userID
          if (!userID){
-             debugger
+
              userID=this.props.authorazedUserId
              if(!userID){
                  this.props.history.push("/login")
@@ -26,6 +26,7 @@ import {compose} from "redux";
      }
 
      render(){
+         console.log("RENDER PROFILE")
         return(
             <Profile {...this.props} profile={this.props.profile}
                      status={this.props.status}
@@ -37,6 +38,7 @@ import {compose} from "redux";
 
 
 let mapStateToprops=(state:StoreStateType):any=>{
+     console.log("map state PROFILE")
     return{
         profile: state.profile.profile,
         status: state.profile.status,
