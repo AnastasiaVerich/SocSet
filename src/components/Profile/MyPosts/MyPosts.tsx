@@ -20,8 +20,9 @@ export type DispatchTypePosts = {
 type MyPostType = StateTypePosts & DispatchTypePosts
 
 
-export const MyPosts = (props: MyPostType) => {
-
+export const MyPosts=React.memo((props: MyPostType)=> {
+    console.log("render");
+    console.log(props)
 
 
     let postArrayDefoult = props.posts.map((element: any) =>
@@ -29,7 +30,7 @@ export const MyPosts = (props: MyPostType) => {
         </div>
     )
 
-    let onSumbit=(value: any)=>{
+    let onSumbit = (value: any) => {
         props.addpost(value.massages);
     }
     return (
@@ -46,12 +47,15 @@ export const MyPosts = (props: MyPostType) => {
             {postArrayDefoult}
         </div>
     )
-}
+})
+
 const maxLenghtCreater=maxLenght(10)
 const postForm = (props: any) => {
 
 
+
     return (
+
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={"massages"}

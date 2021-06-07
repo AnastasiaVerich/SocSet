@@ -7,7 +7,6 @@ import {Redirect} from "react-router-dom";
 
 
 export const Profile = (props: any) => {
-
     return (
         <div>
             <ProfileInfo profile={props.profile}
