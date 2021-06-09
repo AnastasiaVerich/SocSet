@@ -48,7 +48,7 @@ let mapStateToprops=(state:StoreStateType):any=>{
 }
 
 
-export const ProfileConteinerConnect:any= compose(
+ const ProfileConteinerConnect:any= compose(
     connect (mapStateToprops,{
         getOneProfileThunk:getOneProfileThunkCreater,
         getStatusThunk:getStatusThunkCreater,
@@ -57,3 +57,4 @@ export const ProfileConteinerConnect:any= compose(
     ,withRouter
     ,WithAuthRedirect
 )(ProfileConteiner)
+export default ProfileConteinerConnect

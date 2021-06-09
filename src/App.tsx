@@ -6,15 +6,19 @@ import {News} from "./components/News/News";
 import {Setting} from "./components/Setting/Setting";
 import {Music} from "./components/Music/Music";
 import {UsersContainer} from "./components/Users/UsersConteiner";
-import { ProfileConteinerConnect} from "./components/Profile/ProfoleConteiner";
 import {HeaderConteiner} from "./components/Header/HeaderConteiner";
-import { LoginConteiner} from './components/login/login';
-import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
+import {LoginConteiner} from './components/login/login';
+//import  ProfileConteinerConnect from "./components/Profile/ProfoleConteiner";
+//import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeTC} from "./redux/AppReducer";
 import {StoreStateType} from "./redux/StoreRedux";
 import {Preloader} from "./components/COMMON/Preloader/Preloader";
+import {WithSuspenseHOC} from "./HOC/WithSuspense";
+
+const DialogsConteiner = React.lazy(() => import('./components/Dialog/DialogCONTEINER'));
+const ProfileConteinerConnect = React.lazy(() => import('./components/Profile/ProfoleConteiner'));
 
 
 class App extends React.Component<any, any> {
@@ -22,8 +26,9 @@ class App extends React.Component<any, any> {
     componentDidMount() {
         this.props.loginThunk()
     }
+
     render() {
-        if(!this.props.initialized){
+        if (!this.props.initialized) {
             return <Preloader/>
         }
 
@@ -33,11 +38,9 @@ class App extends React.Component<any, any> {
                 <Nav/>
                 <div className='app-wrap-cont'>
                     <Route path='/profile/:userID?'
-                           render={() => <ProfileConteinerConnect/>}
-                    />
+                           render={WithSuspenseHOC(ProfileConteinerConnect)}/>
                     <Route path='/dialogs'
-                           render={() => <DialogsConteiner/>}
-                    />
+                           render={WithSuspenseHOC(DialogsConteiner)}/>
                     <Route path='/news'
                            render={() => <News/>}
                     />
@@ -58,11 +61,12 @@ class App extends React.Component<any, any> {
         );
     }
 }
-const mapStateToProps=(state: StoreStateType)=>({
+
+const mapStateToProps = (state: StoreStateType) => ({
     initialized: state.app.initialized
 })
 
 
-export const AppNew:any= compose (
+export const AppNew: any = compose(
     withRouter,
     connect(mapStateToProps, {loginThunk: initializeTC}))(App)
