@@ -16,8 +16,10 @@ if(!props.profile){
                  src='http://fotorelax.ru/wp-content/uploads/2016/03/Beautiful-photos-and-pictures-on-various-subjects-01.jpg'
             />*/}
             <div className={s.img}>
-                <img src={props.profile.photos.large}/>
-                ava+..
+                {props.profile.photos
+                    ? <img src={props.profile.photos.large}/>
+                    :<div>NO PHOTO</div>}
+                Статус:
                 <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>)

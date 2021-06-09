@@ -1,25 +1,24 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followAC, followThunkCreater, getUsersThunkCreater,
+     followThunkCreater, getUsersThunkCreater,
     setCurrentPageAC, setIsFetchingAC, setIsFollowingProgressAC,
     setTotalUsersCountAC,
     setUsersAC,
-    UNfollowAC, UNfollowThunkCreater,
+     UNfollowThunkCreater,
     UsersType
 } from "../../redux/UsersReducer";
 import {StoreStateType} from "../../redux/StoreRedux";
 import {Users} from "./Users";
 import {Preloader} from "../COMMON/Preloader/Preloader";
 import {compose} from "redux";
-import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {
     getCurrentPages,
     getIsFetching,
     getIsFollowingProgress,
     getPageSize,
     getTotalUsersCount,
-    getUsers, getUsersCreateSelector
+     getUsersCreateSelector
 } from "../../redux/users-selectors";
 
 
@@ -41,18 +40,9 @@ export type MapDispatchTopropsType = {
     setIsFollowingProgress: any
     getUsersThunk: any
 }
-/*let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
-    return {
-        users: state.usersPage.usersData,
-        pagesize: state.usersPage.pagesize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPages: state.usersPage.currentPages,
-        isFetching: state.usersPage.isFetching,
-        IsFollowingProgress: state.usersPage.followingInProgress
-    }
-}*/
+
 let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
-    console.log("111")
+
     return {
         users: getUsersCreateSelector(state),
         pagesize: getPageSize(state),
@@ -63,9 +53,6 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
     }
 }
 
-//
-//
-///////////////////////////////////////////////////
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
 
@@ -97,9 +84,6 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
         </>
     }
 }
-//////////////////////////////////////////
-//
-//
 
 export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
     follower:followThunkCreater,

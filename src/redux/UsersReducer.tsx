@@ -8,7 +8,7 @@ const setTotalUsersCount = "setTotalUsersCount"
 const ToogleIsFatching = "IsFetching"
 const ToogleIsFollowingProgress = "IsFollowingProgress"
 
-/////type for Reduces
+//type for Reduces
 type FollowType = {
     type: "Follow"
     userId: number
@@ -38,10 +38,8 @@ type SetFollowingProgressType = {
     IsFollowingProgress: boolean
     userId: any
 }
-type Fake={
-    type: "FAKE"
-}
-///////type for Action
+
+//type for Action
 type ActionType =
     FollowType
     | UNfollowType
@@ -50,8 +48,7 @@ type ActionType =
     | SetTotalUsersCountACType
     | SetIsFetchingType
     | SetFollowingProgressType
-    | Fake
-/////initial State
+//initial State type
 export type UsersType = {
     id: number,
     followed: boolean,
@@ -82,8 +79,7 @@ let initionState: UsersTypeAll = {
 export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionType): UsersTypeAll => {
     if (state) {
         switch (action.type) {
-            case "FAKE":
-                return {...state, fake: state.fake + 1}
+
             case Follow:
                 return {
                     ...state,
@@ -141,43 +137,36 @@ export const setIsFollowingProgressAC = (IsFollowingProgress: boolean, userId: a
     IsFollowingProgress: IsFollowingProgress,
     userId
 })
-
-////////////////////////////////////////
-/////////////////
-//////////////////
-//////////////
 export const getUsersThunkCreater = (currentPages: number, pagesize: number) => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(setIsFetchingAC(true))
-        usersAPI.getUsers(currentPages, pagesize).then(response => {
-            dispatch(setIsFetchingAC(false))
-            dispatch(setUsersAC(response.items))
-            dispatch(setTotalUsersCountAC(50/*response.totalCount*/))
-        })
-    }
-}
-export const followThunkCreater = (id: any) => {
-    return (dispatch: any) => {
-        dispatch(setIsFollowingProgressAC(true, id))
-        usersAPI.follow(id).then(response => {
-                if (response.resultCode == 0) {
-                    dispatch(followAC(id))
-                }
-                dispatch(setIsFollowingProgressAC(false, id))
-            }
-        )
+        let response = await usersAPI.getUsers(currentPages, pagesize)
+        dispatch(setIsFetchingAC(false))
+        dispatch(setUsersAC(response.items))
+        dispatch(setTotalUsersCountAC(50/*response.totalCount*/))
+
     }
 }
 
-export const UNfollowThunkCreater = (id: any) => {
-    return (dispatch: any) => {
+export const followThunkCreater = (id: any) => {
+    return async (dispatch: any) => {
         dispatch(setIsFollowingProgressAC(true, id))
-        usersAPI.unFollow(id).then(response => {
-                if (response.resultCode == 0) {
-                    dispatch(UNfollowAC(id))
-                }
-                dispatch(setIsFollowingProgressAC(false, id))
-            }
-        )
+        let response = await usersAPI.follow(id)
+        if (response.resultCode === 0) {
+            dispatch(followAC(id))
+        }
+        dispatch(setIsFollowingProgressAC(false, id))
+
+    }
+}
+export const UNfollowThunkCreater = (id: any) => {
+    return async (dispatch: any) => {
+        dispatch(setIsFollowingProgressAC(true, id))
+        let response = await usersAPI.unFollow(id)
+        if (response.resultCode === 0) {
+            dispatch(UNfollowAC(id))
+        }
+        dispatch(setIsFollowingProgressAC(false, id))
+
     }
 }
