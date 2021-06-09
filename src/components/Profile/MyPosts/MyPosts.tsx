@@ -13,20 +13,22 @@ export type StateTypePosts = {
     }[];
 }
 export type DispatchTypePosts = {
-
     addpost: (massages: string) => void
+    deletePost: (id:number)=>void
 }
 
 type MyPostType = StateTypePosts & DispatchTypePosts
 
 
 export const MyPosts=React.memo((props: MyPostType)=> {
-    console.log("render");
-    console.log(props)
 
 
-    let postArrayDefoult = props.posts.map((element: any) =>
-        <div key={element.id}><Post onePostElement={element.post} likeCount={element.likeCount}/>
+    let postArrayDefoult = [...props.posts]
+
+        .reverse()
+        .map((element: any) =>
+        <div key={element.id}><Post onePostElement={element.post} likeCount={element.likeCount} />
+            <button onClick={()=>{props.deletePost(element.id)}}>x</button>
         </div>
     )
 
@@ -51,9 +53,6 @@ export const MyPosts=React.memo((props: MyPostType)=> {
 
 const maxLenghtCreater=maxLenght(10)
 const postForm = (props: any) => {
-
-
-
     return (
 
         <form onSubmit={props.handleSubmit}>
