@@ -64,7 +64,6 @@ type UsersTypeAll = {
     currentPages: number
     isFetching: boolean
     followingInProgress: any
-    fake: number
 }
 let initionState: UsersTypeAll = {
     usersData: [],
@@ -72,8 +71,7 @@ let initionState: UsersTypeAll = {
     totalUsersCount: 0,
     currentPages: 4,
     isFetching: true,
-    followingInProgress: [],
-    fake: 10
+    followingInProgress: []
 }
 
 export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionType): UsersTypeAll => {
@@ -104,7 +102,7 @@ export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionT
             case SetCurrentPage:
                 return {...state, currentPages: action.currentPages}
             case setTotalUsersCount:
-                return {...state, totalUsersCount: 50/* action.totalCounter*/}
+                return {...state, totalUsersCount: /*50*/ action.totalCounter}
             case ToogleIsFatching:
                 return {...state, isFetching: action.isFetching}
             case ToogleIsFollowingProgress:
@@ -143,7 +141,7 @@ export const getUsersThunkCreater = (currentPages: number, pagesize: number) => 
         let response = await usersAPI.getUsers(currentPages, pagesize)
         dispatch(setIsFetchingAC(false))
         dispatch(setUsersAC(response.items))
-        dispatch(setTotalUsersCountAC(50/*response.totalCount*/))
+        dispatch(setTotalUsersCountAC(/*50*/ response.totalCount))
 
     }
 }
