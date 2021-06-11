@@ -1,18 +1,23 @@
-import {authAPI} from "../DAL/api";
+import {authAPI, securityAPI} from "../DAL/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
 
 const SetUserData = "SetUserData"
+const getCaptchaURlSucsecc = "captchaURl"
 
 /////type for Reduces
 type DataSetUserType = {
     type: "SetUserData"
     payload: any
 }
+type getCaptchaURlSucseccType = {
+    type: "captchaURl"
+    captchaURl: any
+}
 
 
 ///////type for Action
-type ActionType = DataSetUserType
+type ActionType = DataSetUserType | getCaptchaURlSucseccType
 
 /////initial State
 type AuthStateType = {
@@ -20,22 +25,30 @@ type AuthStateType = {
     email: string | null
     login: boolean | null
     isAuth: boolean | null
+    captchaURl: any
 }
 
 let initialState: AuthStateType = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaURl: null
 }
 
 export const AuthReducer = (state: AuthStateType = initialState, action: ActionType): AuthStateType => {
     if (state) {
         switch (action.type) {
+
             case SetUserData:
                 return {
                     ...state,
                     ...action.payload
+                }
+                case getCaptchaURlSucsecc:
+                return {
+                    ...state,
+                    captchaURl: action.captchaURl
                 }
             default:
                 return state;
@@ -43,12 +56,13 @@ export const AuthReducer = (state: AuthStateType = initialState, action: ActionT
     } else return state
 }
 
-export const dataSetUserAC = (userId: number | null
-    , email: string | null
-    , login: string | null
-    , isAuth: boolean | null): DataSetUserType => ({
+export const dataSetUserAC = (userId: number | null, email: string | null, login: string | null, isAuth: boolean | null): DataSetUserType => ({
     type: SetUserData,
     payload: {userId, email, login, isAuth}
+})
+export const getCaptchaURlSucseccAC = (captchaURl: any): getCaptchaURlSucseccType => ({
+    type: getCaptchaURlSucsecc,
+    captchaURl: captchaURl
 })
 export const getAuthThunkCreater = () => async (dispath: Dispatch) => {
     let response = await authAPI.me()
@@ -58,13 +72,16 @@ export const getAuthThunkCreater = () => async (dispath: Dispatch) => {
     }
 }
 
-export const loginThunkCreater = (email: string, password: string, rememberMe: boolean) => async (dispath: any) => {
+export const loginThunkCreater = (email: string, password: string, rememberMe: boolean, captcha: any) => async (dispath: any) => {
 
-    let response = await authAPI.login(email, password, rememberMe)
+    let response = await authAPI.login(email, password, rememberMe, captcha)
     if (response.data.resultCode === 0) {
         dispath(getAuthThunkCreater())
-    } else {
-        debugger
+    }
+    else {
+        if (response.data.resultCode === 10){
+            dispath(getCaptchaUrlThunkCreater())
+        }
         let errorMessages = response.data.messages.length > 0
             ? response.data.messages[0]
             : "some error"
@@ -77,5 +94,11 @@ export const logoutThunkCreater = (email: string, password: string, rememberMe: 
     if (response.data.resultCode === 0) {
         dispath(dataSetUserAC(null, null, null, false))
     }
+}
+export const getCaptchaUrlThunkCreater = () => async (dispath: Dispatch) => {
+    let response = await securityAPI.getCaptchaUrl()
+    let captchaUrl = response.data.url
+debugger
+    dispath(getCaptchaURlSucseccAC(captchaUrl))
 }
 

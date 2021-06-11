@@ -5,6 +5,7 @@ import {reduxForm} from "redux-form";
 import style from "../../Common/FormsControl/forms.module.css";
 
 export const ProfileDataSetting=({handleSubmit, profile, error}: any)=>{
+    console.log(profile)
     return(
         <form onSubmit={handleSubmit}>
 
