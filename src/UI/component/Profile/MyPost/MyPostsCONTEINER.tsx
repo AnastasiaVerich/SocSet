@@ -1,8 +1,8 @@
 import React from 'react';
 import {DispatchTypePosts, MyPosts, StateTypePosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {addPostAC, deletePostAC} from "../../../redux/ProfileReducer";
-import {StoreStateType} from "../../../redux/StoreRedux";
+import {addPostAC, deletePostAC} from "../../../../BLL/ProfileReducer";
+import {StoreStateType} from "../../../../BLL/StoreRedux";
 import {Dispatch} from "redux";
 
 

@@ -1,5 +1,5 @@
 import {getUsersThunkCreater} from "./UsersReducer";
-import {profileAPI, usersAPI} from "../components/DAL/api";
+import {profileAPI, usersAPI} from "../DAL/api";
 import {stopSubmit} from "redux-form";
 
 const addPost = "Add-post"

@@ -1,12 +1,12 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form'
-import {Input} from "../COMMON/FormsControl/FormsControl";
+import {Input} from "../Common/FormsControl/FormsControl";
 import {maxLenght, requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {loginThunkCreater} from "../../redux/auth-reducer";
+import {loginThunkCreater} from "../../../BLL/auth-reducer";
 import {Redirect} from "react-router-dom";
-import {StoreStateType} from "../../redux/StoreRedux";
-import style from "../COMMON/FormsControl/forms.module.css"
+import {StoreStateType} from "../../../BLL/StoreRedux";
+import style from "../Common/FormsControl/forms.module.css"
 
 export const Login = (props: any) => {
     const onSumbit = (formData: any) => {

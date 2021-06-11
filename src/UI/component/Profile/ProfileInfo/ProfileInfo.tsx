@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './ProfileInfo.module.css'
-import {Preloader} from "../../COMMON/Preloader/Preloader";
+import {Preloader} from "../../Common/Preloader/Preloader";
 import {ProfileStatusHOC} from "./ProfileStatusHOC";
-import no_image from "./../../../assets/img/no_image.png"
+import no_image from "../../../assets/img/no_image.png"
 import {ProfileDataSetting, ProfileRditeForm} from "./ProfileEdit";
 
 export const ProfileInfo = (props: any) => {

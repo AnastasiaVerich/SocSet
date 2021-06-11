@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Profile.module.css'
-import {MyPosts} from "./MyPosts/MyPosts";
+import {MyPosts} from "./MyPost/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostsConteiner} from "./MyPosts/MyPostsCONTEINER";
+import {MyPostsConteiner} from "./MyPost/MyPostsCONTEINER";
 import {Redirect} from "react-router-dom";
 
 

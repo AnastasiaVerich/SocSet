@@ -1,9 +1,9 @@
 import React from "react";
 import {Dialogs, DispatchTypeDialog, StateTypeDialog} from "./Dialog";
 import {connect} from "react-redux";
-import {StoreStateType} from "../../redux/StoreRedux";
+import {StoreStateType} from "../../../BLL/StoreRedux";
 import {compose, Dispatch} from "redux";
-import {sendMessageAC} from "../../redux/DialogsReducer";
+import {sendMessageAC} from "../../../BLL/DialogsReducer";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 

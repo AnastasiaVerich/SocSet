@@ -1,4 +1,4 @@
-import {authAPI} from "../components/DAL/api";
+import {authAPI} from "../DAL/api";
 import {InitializeAction, stopSubmit} from "redux-form";
 import {getAuthThunkCreater} from "./auth-reducer";
 

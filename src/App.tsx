@@ -1,24 +1,24 @@
 import React from 'react';
 import './App.css';
-import {Nav} from "./components/Nav/Nav";
+import {Nav} from "./UI/component/Nav/Nav";
 import {Route, withRouter} from "react-router-dom"
-import {News} from "./components/News/News";
-import {Setting} from "./components/Setting/Setting";
-import {Music} from "./components/Music/Music";
-import {UsersContainer} from "./components/Users/UsersConteiner";
-import {HeaderConteiner} from "./components/Header/HeaderConteiner";
-import {LoginConteiner} from './components/login/login';
+import {News} from "./UI/component/News/News";
+import {Setting} from "./UI/component/Setting/Setting";
+import {Music} from "./UI/component/Music/Music";
+import {UsersContainer} from "./UI/component/Users/UsersConteiner";
+import {HeaderConteiner} from "./UI/component/Header/HeaderConteiner";
+import {LoginConteiner} from './UI/component/login/login';
 //import  ProfileConteinerConnect from "./components/Profile/ProfoleConteiner";
 //import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeTC} from "./redux/AppReducer";
-import {StoreStateType} from "./redux/StoreRedux";
-import {Preloader} from "./components/COMMON/Preloader/Preloader";
-import {WithSuspenseHOC} from "./HOC/WithSuspense";
+import {initializeTC} from "./BLL/AppReducer";
+import {StoreStateType} from "./BLL/StoreRedux";
+import {Preloader} from "./UI/component/Common/Preloader/Preloader";
+import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
 
-const DialogsConteiner = React.lazy(() => import('./components/Dialog/DialogCONTEINER'));
-const ProfileConteinerConnect = React.lazy(() => import('./components/Profile/ProfoleConteiner'));
+const DialogsConteiner = React.lazy(() => import('./UI/component/Dialog/DialogCONTEINER'));
+const ProfileConteinerConnect = React.lazy(() => import('./UI/component/Profile/ProfoleConteiner'));
 
 
 class App extends React.Component<any, any> {

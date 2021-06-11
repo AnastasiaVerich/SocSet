@@ -6,8 +6,8 @@ import {
     getStatusThunkCreater,
     savePhotoThunkCreater, saveProfileThunkCreater,
     updateStatusThunkCreater
-} from "../../redux/ProfileReducer";
-import {StoreStateType} from "../../redux/StoreRedux";
+} from "../../../BLL/ProfileReducer";
+import {StoreStateType} from "../../../BLL/StoreRedux";
 import {Redirect, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {dataSetUserAC, getAuthThunkCreater, logoutThunkCreater} from "../../redux/auth-reducer";
-import {StoreStateType} from "../../redux/StoreRedux";
-import {authAPI} from "../DAL/api";
+import {dataSetUserAC, getAuthThunkCreater, logoutThunkCreater} from "../../../BLL/auth-reducer";
+import {StoreStateType} from "../../../BLL/StoreRedux";
+import {authAPI} from "../../../DAL/api";
 
 class HeaderConteinerConnect extends React.Component<any, any> {
 

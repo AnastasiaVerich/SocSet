@@ -7,10 +7,10 @@ import {
     setUsersAC,
      UNfollowThunkCreater,
     UsersType
-} from "../../redux/UsersReducer";
-import {StoreStateType} from "../../redux/StoreRedux";
+} from "../../../BLL/UsersReducer";
+import {StoreStateType} from "../../../BLL/StoreRedux";
 import {Users} from "./Users";
-import {Preloader} from "../COMMON/Preloader/Preloader";
+import {Preloader} from "../Common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPages,
@@ -19,7 +19,7 @@ import {
     getPageSize,
     getTotalUsersCount,
      getUsersCreateSelector
-} from "../../redux/users-selectors";
+} from "../../../BLL/users-selectors";
 
 
 export type MapStateToPropsType = {

@@ -2,10 +2,10 @@ import React, {ChangeEvent} from "react";
 import S from './Dialog.module.css'
 import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
-import {StateDialogReducesType} from "../../redux/DialogsReducer";
+import {StateDialogReducesType} from "../../../BLL/DialogsReducer";
 import {Field, reduxForm} from "redux-form";
 import {maxLenght, requiredField} from "../../utils/validators/validators";
-import {Textarea} from "../COMMON/FormsControl/FormsControl";
+import {Textarea} from "../Common/FormsControl/FormsControl";
 
 export type StateTypeDialog = {
     state: StateDialogReducesType

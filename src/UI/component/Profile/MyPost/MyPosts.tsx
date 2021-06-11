@@ -3,7 +3,7 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {maxLenght, requiredField} from '../../../utils/validators/validators';
-import {Textarea} from "../../COMMON/FormsControl/FormsControl";
+import {Textarea} from "../../Common/FormsControl/FormsControl";
 
 export type StateTypePosts = {
     posts: {

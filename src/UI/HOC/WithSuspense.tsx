@@ -1,5 +1,5 @@
 import React from "react";
-import {Preloader} from "../components/COMMON/Preloader/Preloader";
+import {Preloader} from "../component/Common/Preloader/Preloader";
 
 
 export const WithSuspenseHOC=(Component:any)=>{

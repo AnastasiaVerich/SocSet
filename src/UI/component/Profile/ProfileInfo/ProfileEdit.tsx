@@ -1,8 +1,8 @@
 import React from "react";
 import {Contact} from "./ProfileInfo";
-import {createFormField, Input, Textarea} from "../../COMMON/FormsControl/FormsControl";
+import {createFormField, Input, Textarea} from "../../Common/FormsControl/FormsControl";
 import {reduxForm} from "redux-form";
-import style from "../../COMMON/FormsControl/forms.module.css";
+import style from "../../Common/FormsControl/forms.module.css";
 
 export const ProfileDataSetting=({handleSubmit, profile, error}: any)=>{
     return(
