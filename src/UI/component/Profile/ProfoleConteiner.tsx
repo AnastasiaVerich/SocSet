@@ -14,7 +14,7 @@ import {compose} from "redux";
 
 
  class ProfileConteiner extends React.Component<any, any>{
-
+// match из  withRouter  взялся
      refreshProfile(){
          let userID =this.props.match.params.userID
          if (!userID){
@@ -71,6 +71,5 @@ let mapStateToprops=(state:StoreStateType):any=>{
         saveProfileThunk: saveProfileThunkCreater
     })
     ,withRouter
-    ,WithAuthRedirect
 )(ProfileConteiner)
 export default ProfileConteinerConnect

@@ -1,61 +1,77 @@
 import React from 'react';
 import './App.css';
 import {Nav} from "./UI/component/Nav/Nav";
-import {Route, withRouter} from "react-router-dom"
+import {Redirect, Route, Switch, withRouter} from "react-router-dom"
 import {News} from "./UI/component/News/News";
 import {Setting} from "./UI/component/Setting/Setting";
 import {Music} from "./UI/component/Music/Music";
 import {UsersContainer} from "./UI/component/Users/UsersConteiner";
 import {HeaderConteiner} from "./UI/component/Header/HeaderConteiner";
 import {LoginConteiner} from './UI/component/login/login';
-//import  ProfileConteinerConnect from "./components/Profile/ProfoleConteiner";
-//import DialogsConteiner from "./components/Dialog/DialogCONTEINER";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeTC} from "./BLL/AppReducer";
 import {StoreStateType} from "./BLL/StoreRedux";
 import {Preloader} from "./UI/component/Common/Preloader/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
-
+// лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
 const DialogsConteiner = React.lazy(() => import('./UI/component/Dialog/DialogCONTEINER'));
 const ProfileConteinerConnect = React.lazy(() => import('./UI/component/Profile/ProfoleConteiner'));
 
 
 class App extends React.Component<any, any> {
-
+// componentDidMount срабатывает один раз, когда К. вмонтируется
+catchAllUnhandleError=(promiseRejectEvent:PromiseRejectionEvent)=>{
+        alert(promiseRejectEvent)
+}
     componentDidMount() {
-        this.props.loginThunk()
+        this.props.initializeApp()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandleError)
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandleError)
+
     }
 
     render() {
+        // при первой загрузке у на нет данных, показываем поэтому крутилку
         if (!this.props.initialized) {
             return <Preloader/>
         }
-
+// задача К. вернуть jsx(tsx) в зависимости от пропсов либо личного локального стейта
+        // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
+        // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (
             <div className='app-wrapper'>
                 <HeaderConteiner/>
                 <Nav/>
                 <div className='app-wrap-cont'>
-                    <Route path='/profile/:userID?'
-                           render={WithSuspenseHOC(ProfileConteinerConnect)}/>
-                    <Route path='/dialogs'
-                           render={WithSuspenseHOC(DialogsConteiner)}/>
-                    <Route path='/news'
-                           render={() => <News/>}
-                    />
-                    <Route path='/music'
-                           render={() => <Music/>}
-                    />
-                    <Route path='/findUsers'
-                           render={() => <UsersContainer/>}
-                    />
-                    <Route path='/setting'
-                           render={() => <Setting/>}
-                    />
-                    <Route path='/login'
-                           render={() => <LoginConteiner/>}
-                    />
+                    <Switch>
+                        <Route exact path='/'
+                               render={()=><Redirect to={'/profile'}/>}/>
+                        <Route path='/profile/:userID?'
+                               render={WithSuspenseHOC(ProfileConteinerConnect)}/>
+                        <Route path='/dialogs'
+                               render={WithSuspenseHOC(DialogsConteiner)}/>
+                        <Route exact path='/news'
+                               render={() => <News/>}
+                        />
+                        <Route path='/music'
+                               render={() => <Music/>}
+                        />
+                        <Route path='/findUsers'
+                               render={() => <UsersContainer/>}
+                        />
+                        <Route path='/setting'
+                               render={() => <Setting/>}
+                        />
+                        <Route path='/login'
+                               render={() => <LoginConteiner/>}
+                        />
+                        <Route path='*'
+                               render={() => <div>404 not found</div>}
+                        />
+                    </Switch>
                 </div>
             </div>
         );
@@ -65,8 +81,14 @@ class App extends React.Component<any, any> {
 const mapStateToProps = (state: StoreStateType) => ({
     initialized: state.app.initialized
 })
+// compose создает контейнернкю компанету, применяя один за одним HOCи=>
+// (компанента высшего порядка-это функция, которая принимает одну компаненту и возвращает другую компаненту.
+// Это нужно для того, что бы наша компанента получила какие-то данные)
 
-
-export const AppNew: any = compose(
+// connect  дает данные из Store с помощью mapStateToProps и mapDispatchToProps
+// withRouter дает компоненте данные из url
+export const AppContainer: any = compose(
     withRouter,
-    connect(mapStateToProps, {loginThunk: initializeTC}))(App)
+    connect(mapStateToProps, {initializeApp: initializeTC}))(App)
+
+
