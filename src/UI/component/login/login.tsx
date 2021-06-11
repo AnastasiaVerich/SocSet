@@ -35,7 +35,7 @@ const LoginForm = ({handleSubmit, error, x }: any) => {
             </div>
             {x && <img src={x}/>}
 
-            {/*{x && createFormField("captcha URl","", [require], Input, {})}*/}
+            {x && createFormField("captcha URl","captcha", [], Input, {})}
 
             {error && <div className={style.formSunneryError}>
                 {error}
