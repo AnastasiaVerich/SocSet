@@ -1,5 +1,5 @@
 import React from 'react';
-import nullAvatar from '../../assets/img/nullAvatar.jpg'
+import no_image from '../../assets/img/no_image.png'
 import {NavLink} from 'react-router-dom';
 
 type UsersComponentType = {
@@ -17,7 +17,7 @@ let user = props.user
                     <span>
                         <div>
                           <NavLink to={'/profile/' + user.id}>  <img width={"50px"} height={"50px"}
-                                                                  src={user.photos.small != null ? user.photos.small : nullAvatar}/>
+                                                                  src={user.photos.small != null ? user.photos.small : no_image}/>
                           </NavLink>
                         </div>
                         <div>{user.followed

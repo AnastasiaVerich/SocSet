@@ -6,6 +6,7 @@ const deletePost = "deletePost"
 const setUserProfile = "setOneProfile"
 const setStatus = "setStatus"
 const upateStatus = "upateStatus"
+const savePhoto="savePhoto"
 
 
 /// Type for Reduces
@@ -30,9 +31,13 @@ type UpdateStatusType = {
     type: "upateStatus"
     status: any
 }
+type savePhotoType = {
+    type: "savePhoto"
+    photos: any
+}
 
 //// type for Action
-export type ActionType = AddPostType | OneProfileType | SetStatusType | UpdateStatusType | DeletePostType
+export type ActionType = AddPostType | OneProfileType | SetStatusType | UpdateStatusType | DeletePostType | savePhotoType
 
 ////   Initial State
 export type StatePropfilaType = {
@@ -78,6 +83,11 @@ export const ProfileReducer = (state: StatePropfilaType = initialState, action: 
                 ...state,
                 status: action.status
             }
+            case savePhoto:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
         default:
             return state
     }
@@ -94,6 +104,7 @@ export const getOneProfileThunkCreater = (id: any) => {
     }
 }
 export const setStatusAC = (status: string): SetStatusType => ({type: setStatus, status})
+export const savePhotoSucsessAC = (photos: any): savePhotoType => ({type: savePhoto, photos})
 export const getStatusThunkCreater = (id: any) => {
     return async (dispatch: any) => {
         let response = await profileAPI.getStatus(id)
@@ -107,4 +118,22 @@ export const updateStatusThunkCreater = (status: string) => {
             dispatch(setStatusAC(status))
         }
     }
+}
+export const savePhotoThunkCreater = (file: any) => {
+
+    return async (dispatch: any) => {
+        let response = await profileAPI.savePhoto(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSucsessAC(response.data.data.photos))
+        }
+    }
+}
+export const saveProfileThunkCreater = (profile: any) => async (dispatch: any, getState: any) => {
+
+        const userId = getState().auth.userId
+        let response = await profileAPI.saveProfile(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(getOneProfileThunkCreater(userId))
+        }
+
 }
