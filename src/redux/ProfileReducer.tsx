@@ -1,5 +1,6 @@
 import {getUsersThunkCreater} from "./UsersReducer";
 import {profileAPI, usersAPI} from "../components/DAL/api";
+import {stopSubmit} from "redux-form";
 
 const addPost = "Add-post"
 const deletePost = "deletePost"
@@ -134,6 +135,9 @@ export const saveProfileThunkCreater = (profile: any) => async (dispatch: any, g
         let response = await profileAPI.saveProfile(profile)
         if (response.data.resultCode === 0) {
             dispatch(getOneProfileThunkCreater(userId))
+        } else {
+            dispatch(stopSubmit("editProfile", {_error: response.data.messages[0]}))
+            return Promise.reject()
         }
 
 }

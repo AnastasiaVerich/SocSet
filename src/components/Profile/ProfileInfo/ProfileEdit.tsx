@@ -2,11 +2,16 @@ import React from "react";
 import {Contact} from "./ProfileInfo";
 import {createFormField, Input, Textarea} from "../../COMMON/FormsControl/FormsControl";
 import {reduxForm} from "redux-form";
+import style from "../../COMMON/FormsControl/forms.module.css";
 
-export const ProfileDataSetting=({handleSubmit, profile}: any)=>{
+export const ProfileDataSetting=({handleSubmit, profile, error}: any)=>{
     return(
         <form onSubmit={handleSubmit}>
+
             <button>save</button>
+            {error && <div className={style.formSunneryError}>
+                {error}
+            </div>}
             <div>
                 <b>FullName: </b> {createFormField("Full name", "fullName", [], Input)}
             </div>
@@ -24,10 +29,18 @@ export const ProfileDataSetting=({handleSubmit, profile}: any)=>{
                 {createFormField("About me", "aboutMe", [], Textarea)}
 
             </div>
+            <div>
+                <b>Contacts: {Object.keys(profile.contacts).map(key=>{
+                    return <div key={key}>
+                        <b>{key}: {createFormField(key, "contacts."+key, [], Input)}</b>
+                    </div>
+                    }
+                )}</b>
+            </div>
         </form>
     )
 }
 
-export const ProfileRditeForm = reduxForm({ form: 'editProfile'})(ProfileDataSetting)
+export const ProfileRditeForm: any = reduxForm({ form: 'editProfile'})(ProfileDataSetting)
 
 

@@ -19,9 +19,11 @@ export const ProfileInfo = (props: any) => {
         }
     }
 
-    const onSumbit = (formData: any)=>{
+    const onSumbit =  (formData: any)=>{
        props.saveProfile(formData)
-       setEditMode(false)
+           .then(()=>{
+               setEditMode(false);
+           })
     }
 
     return (
@@ -36,7 +38,7 @@ export const ProfileInfo = (props: any) => {
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
                 </div>
                 {editMode
-                    ? <ProfileRditeForm onSubmit={onSumbit} initialValues={props.profile} />
+                    ? <ProfileRditeForm onSubmit={onSumbit} initialValues={props.profile} profile={props.profile} />
                     :<ProfileData profile={props.profile} isOwner={props.isOwner} goToEditeMode={()=>{setEditMode(true)}}/>
                 }
             </div>
