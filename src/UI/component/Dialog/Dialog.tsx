@@ -9,9 +9,11 @@ import {Textarea} from "../Common/FormsControl/FormsControl";
 
 export type StateTypeDialog = {
     state: StateDialogReducesType
+    stateServe: any
 }
 export type DispatchTypeDialog = {
     sendMessage: (massages: string) => void
+    itemsOneDialog:any
 }
 
 type DialogType = StateTypeDialog & DispatchTypeDialog
@@ -27,6 +29,14 @@ export const Dialogs = (props: DialogType) => {
         <div key={element.id}>
             <OneMessage massageText={element.sms}/>
         </div>)
+    props.itemsOneDialog(17475)
+
+    if (props.stateServe!==null){
+     let ServerSmsData = props.stateServe.map((element: any) =>
+        <div key={element.id}>
+           <OneMessage massageText={element.items}/>
+        </div>)}
+        else {<div>null(((</div>}
     let addNewMessages = (values: any)=>{
         //massages, потому что такое значение name у field, которое нам надо
         props.sendMessage(values.massages)
@@ -45,6 +55,10 @@ export const Dialogs = (props: DialogType) => {
             <div>
                 <AddMessagesReduxForm onSubmit={addNewMessages}/>
             </div>
+            <b>северный диалог</b>
+            {/*<div>
+                { props.stateServe!==null&& {ServerSmsData}}
+            </div>*/}
 
         </div>
     )

@@ -69,7 +69,7 @@ let initionState: UsersTypeAll = {
     usersData: [],
     pagesize: 5,
     totalUsersCount: 0,
-    currentPages: 4,
+    currentPages: 1,
     isFetching: true,
     followingInProgress: []
 }
@@ -139,6 +139,16 @@ export const getUsersThunkCreater = (currentPages: number, pagesize: number) => 
     return async (dispatch: any) => {
         dispatch(setIsFetchingAC(true))
         let response = await usersAPI.getUsers(currentPages, pagesize)
+        dispatch(setIsFetchingAC(false))
+        dispatch(setUsersAC(response.items))
+        dispatch(setTotalUsersCountAC(/*50*/ response.totalCount))
+
+    }
+}
+export const getFriendsThunkCreater = (currentPages: number, pagesize: number) => {
+    return async (dispatch: any) => {
+        dispatch(setIsFetchingAC(true))
+        let response = await usersAPI.getFriendsUsers(currentPages, pagesize)
         dispatch(setIsFetchingAC(false))
         dispatch(setUsersAC(response.items))
         dispatch(setTotalUsersCountAC(/*50*/ response.totalCount))

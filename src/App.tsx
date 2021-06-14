@@ -14,6 +14,8 @@ import {initializeTC} from "./BLL/AppReducer";
 import {StoreStateType} from "./BLL/StoreRedux";
 import {Preloader} from "./UI/component/Common/Preloader/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
+import {Grid} from "@material-ui/core";
+import {FriendsConteiner} from "./UI/component/UsersFriends/UsersConteiner";
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
 const DialogsConteiner = React.lazy(() => import('./UI/component/Dialog/DialogCONTEINER'));
 const ProfileConteinerConnect = React.lazy(() => import('./UI/component/Profile/ProfoleConteiner'));
@@ -21,13 +23,15 @@ const ProfileConteinerConnect = React.lazy(() => import('./UI/component/Profile/
 
 class App extends React.Component<any, any> {
 // componentDidMount срабатывает один раз, когда К. вмонтируется
-catchAllUnhandleError=(promiseRejectEvent:PromiseRejectionEvent)=>{
+    catchAllUnhandleError = (promiseRejectEvent: PromiseRejectionEvent) => {
         alert(promiseRejectEvent)
-}
+    }
+
     componentDidMount() {
         this.props.initializeApp()
         window.addEventListener("unhandledrejection", this.catchAllUnhandleError)
     }
+
     componentWillUnmount() {
         window.removeEventListener("unhandledrejection", this.catchAllUnhandleError)
 
@@ -42,37 +46,43 @@ catchAllUnhandleError=(promiseRejectEvent:PromiseRejectionEvent)=>{
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (
-            <div className='app-wrapper'>
-                <HeaderConteiner/>
-                <Nav/>
-                <div className='app-wrap-cont'>
-                    <Switch>
-                        <Route exact path='/'
-                               render={()=><Redirect to={'/profile'}/>}/>
-                        <Route path='/profile/:userID?'
-                               render={WithSuspenseHOC(ProfileConteinerConnect)}/>
-                        <Route path='/dialogs'
-                               render={WithSuspenseHOC(DialogsConteiner)}/>
-                        <Route exact path='/news'
-                               render={() => <News/>}
-                        />
-                        <Route path='/music'
-                               render={() => <Music/>}
-                        />
-                        <Route path='/findUsers'
-                               render={() => <UsersContainer/>}
-                        />
-                        <Route path='/setting'
-                               render={() => <Setting/>}
-                        />
-                        <Route path='/login'
-                               render={() => <LoginConteiner/>}
-                        />
-                        <Route path='*'
-                               render={() => <div>404 not found</div>}
-                        />
-                    </Switch>
-                </div>
+            <div>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} >
+                        <HeaderConteiner/>
+                    </Grid>
+                    <Grid xs={12} sm={2}>
+                        <Nav/>
+                    </Grid>
+                    <Grid item xs={12} sm={10}>
+                        <Switch>
+                            <Route exact path='/'
+                                   render={() => <Redirect to={'/profile'}/>}/>
+                            <Route path='/profile/:userID?'
+                                   render={WithSuspenseHOC(ProfileConteinerConnect)}/>
+                            <Route path='/dialogs'
+                                   render={WithSuspenseHOC(DialogsConteiner)}/>
+                            <Route exact path='/news'
+                                   render={() => <News/>}
+                            />
+                            <Route path='/music'
+                                   render={() => <FriendsConteiner/>}
+                            />
+                            <Route path='/findUsers'
+                                   render={() => <UsersContainer/>}
+                            />
+                            <Route path='/setting'
+                                   render={() => <Setting/>}
+                            />
+                            <Route path='/login'
+                                   render={() => <LoginConteiner/>}
+                            />
+                            <Route path='*'
+                                   render={() => <div>404 not found</div>}
+                            />
+                        </Switch>
+                    </Grid>
+                </Grid>
             </div>
         );
     }

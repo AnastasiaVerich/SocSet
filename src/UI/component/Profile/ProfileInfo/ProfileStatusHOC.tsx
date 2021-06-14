@@ -22,18 +22,19 @@ export const ProfileStatusHOC = (props: any) => {
     }
 
     return <>
+        <b>Статус: </b>
         {!editMode &&
-        <div>
+
             <span onDoubleClick={activateMode}>{props.status || "-----"}</span>
-        </div>
+
         }
         {editMode &&
-        <div>
+
             <input autoFocus={true}
                    onBlur={offEditMode}
                    onChange={onStatusChange}
             value={status}/>
-        </div>
+
         }
 
     </>

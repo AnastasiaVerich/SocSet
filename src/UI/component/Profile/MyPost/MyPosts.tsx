@@ -4,6 +4,7 @@ import {Post} from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {maxLenght, requiredField} from '../../../utils/validators/validators';
 import {Textarea} from "../../Common/FormsControl/FormsControl";
+import {Button} from "@material-ui/core";
 
 export type StateTypePosts = {
     posts: {
@@ -63,9 +64,9 @@ const postForm = (props: any) => {
                        validate={[requiredField, maxLenghtCreater]}
                 />
             </div>
-            <button>
+            <Button type="submit" variant="contained" color="primary">
                 Add
-            </button>
+            </Button>
         </form>
     )
 }

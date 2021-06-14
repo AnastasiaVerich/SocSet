@@ -7,12 +7,14 @@ import {AuthReducer} from "./auth-reducer";
 import thunkMiddlewere from "redux-thunk";//thunk as thunkMiddleWere
 import reducer, {reducer as formReducer} from 'redux-form'
 import {AppReducer} from "./AppReducer";
+import {dial2Reducer} from "./dialogs-reducer";
 
 
 export const reducers = combineReducers(
     {
         profile: ProfileReducer,
         dialog: DialogReducerr,
+        dialog2: dial2Reducer,
         sidebar: SideBar,
         usersPage: UsersReducer,
         auth: AuthReducer,
@@ -24,7 +26,7 @@ export const reducers = combineReducers(
 export type StoreStateType = ReturnType<typeof reducers>
 
 const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-export const store = createStore(reducers,composeEnhancers(applyMiddleware(thunkMiddlewere)));
+export const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddlewere)));
 
 //export let store = createStore(reduses, applyMiddleware(thunkMiddlewere));
 

@@ -32,10 +32,15 @@ export const usersAPI = {
             instanse.delete(`follow/${id}`, {})
                 .then(response => response.data)
         )
+    },
+    getFriendsUsers(currentPages: any, pagesize: any) {
+        return (
+            instanse.get(`users?page=${currentPages}&count=${pagesize}&friend=true`, {})
+                .then(response => response.data)
+        )
     }
 
 }
-
 export const profileAPI = {
     profileGet(id: any) {
         return (
@@ -91,4 +96,33 @@ export const securityAPI = {
         )
     }
 }
+export const messagesAPI = {
+    getListMessagesWithUser(userId: any) {
+        return (
+            instanse.get(`dialogs/17475/messages`, {})
+                .then(response => response.data)
+        )
+    }/*,
+    follow(id: any) {
+        return (
+            instanse.post(`follow/${id}`, {}, {})
+                .then(response => response.data)
+        )
+    },
+    profileGet(id: any) {
+        return profileAPI.profileGet(id)
+    },
+    unFollow(id: any) {
+        return (
+            instanse.delete(`follow/${id}`, {})
+                .then(response => response.data)
+        )
+    },
+    getFriendsUsers(currentPages: any, pagesize: any) {
+        return (
+            instanse.get(`users?page=${currentPages}&count=${pagesize}&friend=true`, {})
+                .then(response => response.data)
+        )
+    }*/
 
+}

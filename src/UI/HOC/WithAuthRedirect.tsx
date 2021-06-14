@@ -10,7 +10,7 @@ let mapStateTopropsRedirect=(state:StoreStateType):any=>{
     }
 }
 
-
+// хуки для переиспользования кода.
 export const WithAuthRedirect=(Component:any)=>{
 
     const RedirectComponent=(props:any)=>{

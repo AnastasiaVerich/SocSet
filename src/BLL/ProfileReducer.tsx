@@ -113,11 +113,18 @@ export const getStatusThunkCreater = (id: any) => {
     }
 }
 export const updateStatusThunkCreater = (status: string) => {
+
     return async (dispatch: any) => {
-        let response = await profileAPI.updateStatus(status)
-        if (response.data.resultCode === 0) {
-            dispatch(setStatusAC(status))
+        try{
+            let response = await profileAPI.updateStatus(status)
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusAC(status))
+            }
+        } catch (error: any){
+            console.log("я перехватил ошибку ")
+            console.log(error)
         }
+
     }
 }
 export const savePhotoThunkCreater = (file: any) => {
