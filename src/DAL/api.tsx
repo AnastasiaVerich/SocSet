@@ -4,8 +4,8 @@ import axios from "axios";
 const instanse = axios.create({
     withCredentials: true,
     headers: {
-        "API-KEY": "603ef8c0-4933-4294-ab5f-b170d3ebe6d8"
-         //"API-KEY": "48cd781d-ab35-4a63-97ba-b184f71ed662"
+       "API-KEY": "603ef8c0-4933-4294-ab5f-b170d3ebe6d8"
+       //  "API-KEY": "48cd781d-ab35-4a63-97ba-b184f71ed662"
     },
     baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 })
@@ -99,30 +99,19 @@ export const securityAPI = {
 export const messagesAPI = {
     getListMessagesWithUser(userId: any) {
         return (
-            instanse.get(`dialogs/17475/messages`, {})
-                .then(response => response.data)
-        )
-    }/*,
-    follow(id: any) {
-        return (
-            instanse.post(`follow/${id}`, {}, {})
+            instanse.get(`dialogs/${userId}/messages`, {})
                 .then(response => response.data)
         )
     },
-    profileGet(id: any) {
-        return profileAPI.profileGet(id)
-    },
-    unFollow(id: any) {
+    senSms(userId: any, body: string) {
         return (
-            instanse.delete(`follow/${id}`, {})
+            instanse.post(`dialogs/${userId}/messages`, {body}, {})
+        )
+    },
+    getLUsersWHaveChat() {
+        return (
+            instanse.get(`dialogs`, {})
                 .then(response => response.data)
         )
     },
-    getFriendsUsers(currentPages: any, pagesize: any) {
-        return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}&friend=true`, {})
-                .then(response => response.data)
-        )
-    }*/
-
 }

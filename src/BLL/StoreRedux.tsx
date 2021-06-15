@@ -1,11 +1,10 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {ProfileReducer} from "./ProfileReducer";
-import {DialogReducerr} from "./DialogsReducer";
 import {SideBar} from "./SideBarReducer";
 import {UsersReducer} from "./UsersReducer";
 import {AuthReducer} from "./auth-reducer";
 import thunkMiddlewere from "redux-thunk";//thunk as thunkMiddleWere
-import reducer, {reducer as formReducer} from 'redux-form'
+import  {reducer as formReducer} from 'redux-form'
 import {AppReducer} from "./AppReducer";
 import {dial2Reducer} from "./dialogs-reducer";
 
@@ -13,8 +12,7 @@ import {dial2Reducer} from "./dialogs-reducer";
 export const reducers = combineReducers(
     {
         profile: ProfileReducer,
-        dialog: DialogReducerr,
-        dialog2: dial2Reducer,
+        dialog: dial2Reducer,
         sidebar: SideBar,
         usersPage: UsersReducer,
         auth: AuthReducer,

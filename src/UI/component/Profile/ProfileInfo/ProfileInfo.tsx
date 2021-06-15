@@ -5,6 +5,8 @@ import {ProfileStatusHOC} from "./ProfileStatusHOC";
 import no_image from "../../../assets/img/no_image.png"
 import {ProfileDataSetting, ProfileRditeForm} from "./ProfileEdit";
 import {Grid} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
+import c from "../../Nav/Nav.module.css";
 
 export const ProfileInfo = (props: any) => {
 
@@ -38,6 +40,8 @@ export const ProfileInfo = (props: any) => {
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
                 </Grid>
             </Grid>
+
+            <NavLink to={'/dialogs/'+ props.profile.userId} activeClassName={c.act}><button>START CHATING</button></NavLink>
             <Grid item xs={12} sm={7}>
                 {editMode
                     ? <ProfileRditeForm onSubmit={onSumbit} initialValues={props.profile} profile={props.profile}/>

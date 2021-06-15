@@ -9,7 +9,7 @@ type UsersComponentType = {
     IsFollowingProgress: any
 }
 
-export let User = (props: UsersComponentType) => {
+export let OneUser = (props: UsersComponentType) => {
 let user = props.user
 
     return <div>

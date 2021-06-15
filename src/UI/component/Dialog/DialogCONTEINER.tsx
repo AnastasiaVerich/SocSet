@@ -1,30 +1,29 @@
 import React from "react";
-import {Dialogs, DispatchTypeDialog, StateTypeDialog} from "./Dialog";
+import {Dialogs } from "./Dialog";
 import {connect} from "react-redux";
 import {StoreStateType} from "../../../BLL/StoreRedux";
-import {compose, Dispatch} from "redux";
-import {sendMessageAC} from "../../../BLL/DialogsReducer";
+import {compose} from "redux";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
-import {getMessagesWithOneUserThunkCreater} from "../../../BLL/dialogs-reducer";
+import {
+    getLUsersWHaveChatThunkCreater,
+    getMessagesWithOneUserThunkCreater,
+    sendSmsThunkCreater
+} from "../../../BLL/dialogs-reducer";
 
 
 let mapSttateToprops=(state:StoreStateType): any=>{
     return{
-        state: state.dialog,
-        stateServe: state.dialog2.messages
+        stateServe: state.dialog.messages,
+        authorazedUserId: state.auth.userId,
+        usersArray: state.dialog.users
     }
 }
 
-/*let mapDispatchToToprops=(dispatch: Dispatch): DispatchTypeDialog=>{
-    return{
-        sendMessage: (massages: string)=>{dispatch(sendMessageAC(massages))},
-        itemsOneDialog: (id:any)=>{dispatch(getMessagesWithOneUserThunkCreater(id))}
-    }
-}*/
-
  const DialogsConteiner: any =compose(connect(mapSttateToprops, {
-         sendMessage: sendMessageAC,
-         itemsOneDialog: getMessagesWithOneUserThunkCreater
+         itemsOneDialog: getMessagesWithOneUserThunkCreater,
+         sendSms: sendSmsThunkCreater,
+         getUsersArray: getLUsersWHaveChatThunkCreater,
+
 
      })
      , WithAuthRedirect)(Dialogs)

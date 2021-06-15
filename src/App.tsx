@@ -60,7 +60,7 @@ class App extends React.Component<any, any> {
                                    render={() => <Redirect to={'/profile'}/>}/>
                             <Route path='/profile/:userID?'
                                    render={WithSuspenseHOC(ProfileConteinerConnect)}/>
-                            <Route path='/dialogs'
+                            <Route path='/dialogs/:userID?'
                                    render={WithSuspenseHOC(DialogsConteiner)}/>
                             <Route exact path='/news'
                                    render={() => <News/>}

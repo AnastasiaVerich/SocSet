@@ -1,69 +1,107 @@
-import React, {ChangeEvent} from "react";
+import React, {useEffect} from "react";
 import S from './Dialog.module.css'
 import {UsersDialogs} from "./UsersDialogs/UsersDialogs";
 import {OneMessage} from "./OneMessage/OneMessage";
-import {StateDialogReducesType} from "../../../BLL/DialogsReducer";
 import {Field, reduxForm} from "redux-form";
 import {maxLenght, requiredField} from "../../utils/validators/validators";
 import {Textarea} from "../Common/FormsControl/FormsControl";
+import {NavLink} from "react-router-dom";
+import c from "../Nav/Nav.module.css";
+import {Preloader} from "../Common/Preloader/Preloader";
 
 export type StateTypeDialog = {
-    state: StateDialogReducesType
     stateServe: any
 }
 export type DispatchTypeDialog = {
-    sendMessage: (massages: string) => void
-    itemsOneDialog:any
+    itemsOneDialog: any
+    sendSms: (id: number, sms: string) => void
+    authorazedUserId: any
 }
 
 type DialogType = StateTypeDialog & DispatchTypeDialog
 
 
-export const Dialogs = (props: DialogType) => {
-    let newDialogData = props.state.dialogUsersArray.map((element: any) =>
-        <div key={element.idLink}>
-            <UsersDialogs name={element.name} idLink={element.idLink}/>
-        </div>)
+export const Dialogs = (props: any) => {
 
-    let newSmsData = props.state.smsData.map((element: any) =>
-        <div key={element.id}>
-            <OneMessage massageText={element.sms}/>
-        </div>)
-    props.itemsOneDialog(17475)
+    let respId = props.match.params.userID
 
-    if (props.stateServe!==null){
-     let ServerSmsData = props.stateServe.map((element: any) =>
-        <div key={element.id}>
-           <OneMessage massageText={element.items}/>
-        </div>)}
-        else {<div>null(((</div>}
-    let addNewMessages = (values: any)=>{
+    useEffect(() => {
+        if(respId){
+        props.itemsOneDialog(respId)}
+    }, [respId])
+    useEffect(() => {
+        props.getUsersArray()
+    }, [])
+
+    let sendSms = (values: any) => {
         //massages, потому что такое значение name у field, которое нам надо
-        props.sendMessage(values.massages)
+        props.sendSms(respId, values.massages)
     }
+
     return (
 
         <div className={S.dialogs}>
             <div className={S.dialogsItems}>
                 МОИ ДИАЛОГИ
-                {newDialogData}
+
+                <NavLink to={'/dialogs/' + respId} activeClassName={c.act}>
+                    <div onClick={() => props.getUsersArray()}>Обновить список диалогов</div>
+                </NavLink>
+                {props.usersArray != null
+                    ? <UsersArrayC usersArray={props.usersArray}/>
+                    : <div>нет диалогов</div>}
+
+
             </div>
             <div className={S.massages}>
                 СООБЩЕНИЯ В ДИАЛОГЕ:
-                {newSmsData}
+                {respId !== undefined
+                    ?
+                        props.stateServe != null
+                            ? <SmsServe stateServe={props.stateServe} authorazedUserId={props.authorazedUserId}/>
+                            : <Preloader/>
+
+                    : <div>Выбери диалог</div>}
             </div>
             <div>
-                <AddMessagesReduxForm onSubmit={addNewMessages}/>
+                <AddMessagesReduxForm onSubmit={sendSms}/>
             </div>
-            <b>северный диалог</b>
-            {/*<div>
-                { props.stateServe!==null&& {ServerSmsData}}
-            </div>*/}
+
 
         </div>
     )
 }
-const maxLenghtCreater=maxLenght(10)
+
+
+const SmsServe = (props: any) => {
+    return (<div>
+            {props.stateServe.map((element: any) =>
+                <div key={element.id}>
+                    <OneMessage massageText={element.body} authorazedUserId={props.authorazedUserId}
+                                senderId={element.senderId}/>
+                </div>)
+            }
+        </div>
+
+
+    )
+}
+const UsersArrayC = (props: any) => {
+
+    return (<div>
+            {props.usersArray.map((element: any) =>
+                <div key={element.id}>
+
+                    <NavLink to={'/dialogs/' + element.id} activeClassName={c.act}>
+                        <div> {element.userName}</div>
+                    </NavLink>
+
+                </div>)
+            }
+        </div>
+    )
+}
+const maxLenghtCreater = maxLenght(10)
 const AddMessagesForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
@@ -72,7 +110,7 @@ const AddMessagesForm = (props: any) => {
                    name={"massages"}
                    validate={[requiredField, maxLenghtCreater]}
             />
-            <button >send sms</button>
+            <button>send sms</button>
         </form>
     )
 }
