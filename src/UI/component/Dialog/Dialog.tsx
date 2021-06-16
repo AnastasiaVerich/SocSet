@@ -22,7 +22,6 @@ type DialogType = StateTypeDialog & DispatchTypeDialog
 
 
 export const Dialogs = (props: any) => {
-
     let respId = props.match.params.userID
 
     useEffect(() => {
@@ -37,7 +36,6 @@ export const Dialogs = (props: any) => {
         //massages, потому что такое значение name у field, которое нам надо
         props.sendSms(respId, values.massages)
     }
-
     return (
 
         <div className={S.dialogs}>
@@ -45,7 +43,9 @@ export const Dialogs = (props: any) => {
                 МОИ ДИАЛОГИ
 
                 <NavLink to={'/dialogs/' + respId} activeClassName={c.act}>
-                    <div onClick={() => props.getUsersArray()}>Обновить список диалогов</div>
+                    <div>
+                    <button onClick={() => props.getUsersArray()}>Обновить</button>
+                    </div>
                 </NavLink>
                 {props.usersArray != null
                     ? <UsersArrayC usersArray={props.usersArray}/>
@@ -60,14 +60,11 @@ export const Dialogs = (props: any) => {
                         props.stateServe != null
                             ? <SmsServe stateServe={props.stateServe} authorazedUserId={props.authorazedUserId}/>
                             : <Preloader/>
-
                     : <div>Выбери диалог</div>}
             </div>
             <div>
                 <AddMessagesReduxForm onSubmit={sendSms}/>
             </div>
-
-
         </div>
     )
 }

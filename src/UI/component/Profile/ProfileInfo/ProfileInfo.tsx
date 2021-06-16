@@ -35,13 +35,21 @@ export const ProfileInfo = (props: any) => {
                 {props.profile.photos.large === null
                     ? <img height={150} width={150} src={no_image}/>
                     : <img src={props.profile.photos.large}/>}
-                {props.isOwner && <input type={"file"} onChange={mainPhotoChange}/>}
+
                 <Grid>
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
                 </Grid>
+                    <Grid>
+                    {props.isOwner && <input type={"file"} onChange={mainPhotoChange}/>}
+                </Grid>
+                <Grid>
+                    {!props.isOwner &&
+                    <NavLink to={'/dialogs/'+ props.profile.userId} activeClassName={c.act}>
+                        <button>START CHATING</button>
+                    </NavLink>}
+                </Grid>
             </Grid>
 
-            <NavLink to={'/dialogs/'+ props.profile.userId} activeClassName={c.act}><button>START CHATING</button></NavLink>
             <Grid item xs={12} sm={7}>
                 {editMode
                     ? <ProfileRditeForm onSubmit={onSumbit} initialValues={props.profile} profile={props.profile}/>
@@ -64,16 +72,16 @@ const ProfileData = (props: any) => {
     return (
         <div>
             <div>
-                <b>FullName: </b>{props.profile.fullName}
+               <h2><b>FullName:  </b>{props.profile.fullName}</h2>
             </div>
 
-            <div>
+            {/*<div>
                 <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
             </div>
             {props.profile.lookingForAJobDescription &&
             <div>
                 <b>I can: </b>{props.profile.lookingForAJobDescription}
-            </div>}
+            </div>}*/}
             <div>
                 <b>About me: </b>{props.profile.aboutMe}
             </div>
