@@ -7,6 +7,7 @@ import {loginThunkCreater} from "../../../BLL/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {StoreStateType} from "../../../BLL/StoreRedux";
 import style from "../Common/FormsControl/forms.module.css"
+import {Button, Grid, IconButton, Typography} from "@material-ui/core";
 
 
 const maxLenghtCreater = maxLenght(50)
@@ -31,7 +32,7 @@ const LoginForm = ({handleSubmit, error, x }: any) => {
                 <Field type={"checkbox"}
                        component={Input}
                        name={"rememberMe"}
-                       validate={[requiredField, maxLenghtCreater]}/> remember me
+                       validate={[ maxLenghtCreater]}/> Remember me
             </div>
             {x && <img src={x}/>}
 
@@ -41,7 +42,7 @@ const LoginForm = ({handleSubmit, error, x }: any) => {
                 {error}
             </div>}
             <div>
-                <button>Lodin</button>
+                <IconButton   type='submit' color="primary">Login</IconButton>
             </div>
         </form>
     )
@@ -53,10 +54,17 @@ export const Login = (props: any) => {
 
     }
     if (props.isAuth) return <Redirect to={"/profile"}/>
-    return <div>
-        <h1>LOGIN</h1>
+    return <Grid
+    container
+    direction="column"
+    justify="center"
+    alignItems="center"
+        >
+        <Typography variant="h4">
+            Login
+        </Typography>
         <LoginReduxForm onSubmit={onSumbit}  x={props.captcha} />
-    </div>
+    </Grid>
 }
 
 

@@ -14,8 +14,9 @@ import {initializeTC} from "./BLL/AppReducer";
 import {StoreStateType} from "./BLL/StoreRedux";
 import {Preloader} from "./UI/component/Common/Preloader/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
-import {Grid} from "@material-ui/core";
 import {FriendsConteiner} from "./UI/component/UsersFriends/UsersConteiner";
+import {AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography} from "@material-ui/core";
+
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
 const DialogsConteiner = React.lazy(() => import('./UI/component/Dialog/DialogCONTEINER'));
 const ProfileConteinerConnect = React.lazy(() => import('./UI/component/Profile/ProfoleConteiner'));
@@ -47,11 +48,24 @@ class App extends React.Component<any, any> {
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (
             <div>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} >
+                <Grid container spacing={2} >
+                  <Grid item xs={12}>
+                <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <MenuItem/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        SocSet
+                    </Typography>
+                    <Typography variant="h6">
                         <HeaderConteiner/>
-                    </Grid>
-                    <Grid xs={12} sm={2}>
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+                  </Grid>
+
+                    <Grid item xs={10} sm={2}>
                         <Nav/>
                     </Grid>
                     <Grid item xs={12} sm={10}>

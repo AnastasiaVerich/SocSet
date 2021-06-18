@@ -8,6 +8,8 @@ import {Textarea} from "../Common/FormsControl/FormsControl";
 import {NavLink} from "react-router-dom";
 import c from "../Nav/Nav.module.css";
 import {Preloader} from "../Common/Preloader/Preloader";
+import {Button, Grid, IconButton} from "@material-ui/core";
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 export type StateTypeDialog = {
     stateServe: any
@@ -42,9 +44,9 @@ export const Dialogs = (props: any) => {
             <div className={S.dialogsItems}>
                 МОИ ДИАЛОГИ
 
-                <NavLink to={'/dialogs/' + respId} activeClassName={c.act}>
+                <NavLink to={'/dialogs/' + respId} >
                     <div>
-                    <button onClick={() => props.getUsersArray()}>Обновить</button>
+                    <IconButton onClick={() => props.getUsersArray()}><RefreshIcon/></IconButton>
                     </div>
                 </NavLink>
                 {props.usersArray != null
@@ -61,9 +63,10 @@ export const Dialogs = (props: any) => {
                             ? <SmsServe stateServe={props.stateServe} authorazedUserId={props.authorazedUserId}/>
                             : <Preloader/>
                     : <div>Выбери диалог</div>}
+                <AddMessagesReduxForm onSubmit={sendSms}/>
             </div>
             <div>
-                <AddMessagesReduxForm onSubmit={sendSms}/>
+
             </div>
         </div>
     )
@@ -73,10 +76,12 @@ export const Dialogs = (props: any) => {
 const SmsServe = (props: any) => {
     return (<div>
             {props.stateServe.map((element: any) =>
+                <Grid>
                 <div key={element.id}>
                     <OneMessage massageText={element.body} authorazedUserId={props.authorazedUserId}
                                 senderId={element.senderId}/>
-                </div>)
+                </div>
+                </Grid>)
             }
         </div>
 
@@ -87,10 +92,10 @@ const UsersArrayC = (props: any) => {
 
     return (<div>
             {props.usersArray.map((element: any) =>
-                <div key={element.id}>
+                <div key={element.id} className={c.item}>
 
                     <NavLink to={'/dialogs/' + element.id} activeClassName={c.act}>
-                        <div> {element.userName}</div>
+                        {element.userName}
                     </NavLink>
 
                 </div>)
@@ -107,7 +112,7 @@ const AddMessagesForm = (props: any) => {
                    name={"massages"}
                    validate={[requiredField, maxLenghtCreater]}
             />
-            <button>send sms</button>
+            <IconButton   type='submit' color="primary">Send message</IconButton>
         </form>
     )
 }

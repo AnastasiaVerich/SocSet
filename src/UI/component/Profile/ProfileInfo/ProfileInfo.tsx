@@ -4,7 +4,7 @@ import {Preloader} from "../../Common/Preloader/Preloader";
 import {ProfileStatusHOC} from "./ProfileStatusHOC";
 import no_image from "../../../assets/img/no_image.png"
 import {ProfileDataSetting, ProfileRditeForm} from "./ProfileEdit";
-import {Grid} from "@material-ui/core";
+import {Button, Grid, Input} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import c from "../../Nav/Nav.module.css";
 
@@ -40,12 +40,12 @@ export const ProfileInfo = (props: any) => {
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
                 </Grid>
                     <Grid>
-                    {props.isOwner && <input type={"file"} onChange={mainPhotoChange}/>}
+                    {props.isOwner && <Input color="primary" type={"file"} onChange={mainPhotoChange}/>}
                 </Grid>
                 <Grid>
                     {!props.isOwner &&
                     <NavLink to={'/dialogs/'+ props.profile.userId} activeClassName={c.act}>
-                        <button>START CHATING</button>
+                        <Button variant="contained" color="primary">START CHATING</Button>
                     </NavLink>}
                 </Grid>
             </Grid>
@@ -90,7 +90,7 @@ const ProfileData = (props: any) => {
                 return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
             })}
             </div>
-            {props.isOwner && <button onClick={props.goToEditeMode}>edit Data</button>}
+            {props.isOwner && <Button variant="contained" color="primary" onClick={props.goToEditeMode}>edit Data</Button>}
         </div>
     )
 }
