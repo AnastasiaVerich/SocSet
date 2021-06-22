@@ -24,8 +24,8 @@ export const usersAPI = {
                 .then(response => response.data)
         )
     },
-    profileGet(id: any) {
-        return profileAPI.profileGet(id)
+    getProfile(id: any) {
+        return profileAPI.getProfile(id)
     },
     unFollow(id: any) {
         return (
@@ -42,7 +42,7 @@ export const usersAPI = {
 
 }
 export const profileAPI = {
-    profileGet(id: any) {
+    getProfile(id: any) {
         return (
             instanse.get(`profile/${id}`)
         )
@@ -57,7 +57,7 @@ export const profileAPI = {
             instanse.put(`/profile/status`, {status: statusText})
         )
     },
-    savePhoto(file: any) {
+    updatePhoto(file: any) {
         let formData = new FormData();
         formData.append("image", file)
         return (instanse.put(`profile/photo`, formData, {
@@ -67,17 +67,17 @@ export const profileAPI = {
             })
         )
     },
-    saveProfile(profile: any) {
+    updateInfoProfile(profile: any) {
         return instanse.put(`/profile`, profile)
     }
 }
-export const authAPI = {
+export const authorizationAPI = {
     me() {
         return (
             instanse.get(`auth/me`, {})
         )
-    }
-    , login(email: string, password: string, rememberMe: boolean = false, captcha: any) {
+    },
+    login(email: string, password: string, rememberMe: boolean = false, captcha: any) {
         return (
             instanse.post(`auth/login`, {email, password, rememberMe, captcha}, {})
 
@@ -97,21 +97,21 @@ export const securityAPI = {
     }
 }
 export const messagesAPI = {
-    getListMessagesWithUser(userId: any) {
+    getSelectedDialog(userId: any) {
         return (
             instanse.get(`dialogs/${userId}/messages`, {})
                 .then(response => response.data)
         )
     },
-    senSms(userId: any, body: string) {
+    sendMessage(userId: any, body: string) {
         return (
             instanse.post(`dialogs/${userId}/messages`, {body}, {})
         )
     },
-    getLUsersWHaveChat() {
+    getUsersTalkedWith() {
         return (
             instanse.get(`dialogs`, {})
                 .then(response => response.data)
         )
-    },
+    }
 }

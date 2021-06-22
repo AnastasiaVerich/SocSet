@@ -1,30 +1,37 @@
 import React from "react";
-import {Dialogs } from "./Dialog";
+import {Dialogs, DispatchTypeDialog, StateTypeDialog} from "./Dialog";
 import {connect} from "react-redux";
-import {StoreStateType} from "../../../BLL/StoreRedux";
+import {StoreStateType} from "../../../BLL/store";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {
-    getLUsersWHaveChatThunkCreater,
-    getMessagesWithOneUserThunkCreater,
-    sendSmsThunkCreater
-} from "../../../BLL/dialogs-reducer";
+    getUsersTalkedWithTC,
+    getSelectedDialogTC,
+    senMessageTC
+} from "../../../BLL/Reducers/dialogs-reducer"
 
 
-let mapSttateToprops=(state:StoreStateType): any=>{
-    return{
-        stateServe: state.dialog.messages,
-        authorazedUserId: state.auth.userId,
-        usersArray: state.dialog.users
+let mapStateToProps = (state: StoreStateType): StateTypeDialog => {
+    return {
+        messages: state.dialog.messages,
+        authorizationUserId: state.auth.userId,
+        users: state.dialog.users
+
+    }
+}
+let mapDispatchToProps = (dispatch: any):DispatchTypeDialog  => {
+    return {
+        selectedDialogMessages: (id: number) => {
+            dispatch(getSelectedDialogTC(id))
+        },
+        sendMessage: (id: number, text: string) => {
+            dispatch(senMessageTC(id, text))
+        },
+        usersTalkedWith: () => {
+            dispatch(getUsersTalkedWithTC())
+        }
     }
 }
 
- const DialogsConteiner: any =compose(connect(mapSttateToprops, {
-         itemsOneDialog: getMessagesWithOneUserThunkCreater,
-         sendSms: sendSmsThunkCreater,
-         getUsersArray: getLUsersWHaveChatThunkCreater,
-
-
-     })
-     , WithAuthRedirect)(Dialogs)
-export default DialogsConteiner
+const DialogsContainer: any = compose(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs)
+export default DialogsContainer

@@ -8,7 +8,7 @@ export const ProfileDataSetting=({handleSubmit, profile, error}: any)=>{
     console.log(profile)
     return(
         <form onSubmit={handleSubmit}>
-            {error && <div className={style.formSunneryError}>
+            {error && <div className={style.formSunnierError}>
                 {error}
             </div>}
             <div>

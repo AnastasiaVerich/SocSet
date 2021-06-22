@@ -1,24 +1,26 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {dataSetUserAC, getAuthThunkCreater, logoutThunkCreater} from "../../../BLL/auth-reducer";
-import {StoreStateType} from "../../../BLL/StoreRedux";
-import {authAPI} from "../../../DAL/api";
+import {logoutTC} from "../../../BLL/Reducers/authorization-reducer";
+import {StoreStateType} from "../../../BLL/store";
 
 class HeaderConteinerConnect extends React.Component<any, any> {
-
-
     render() {
         return (
-            <Header login={this.props.login} isAuth={this.props.isAuth} logOut={this.props.logOut}/>
+            <Header login={this.props.login} isAuthorization={this.props.isAuthorization} logOut={this.props.logOut}/>
         )
     }
 }
 
 const mapStateToProps = (state: StoreStateType) => ({
-    isAuth: state.auth.isAuth,
+    isAuthorization: state.auth.isAuthorization,
     login: state.auth.login
-
-
 })
-export const HeaderConteiner = connect(mapStateToProps, {logOut: logoutThunkCreater})(HeaderConteinerConnect)
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        logOut: () => {
+            dispatch(logoutTC())
+        }
+    }
+}
+export const HeaderConteiner = connect(mapStateToProps, mapDispatchToProps)(HeaderConteinerConnect)

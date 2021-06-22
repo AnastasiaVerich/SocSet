@@ -1,10 +1,10 @@
 import React from 'react';
-import { UsersType} from "../../../BLL/UsersReducer";
+import { OneUsersType} from "../../../BLL/Reducers/users-reducer";
 import {Paginator} from "./Paginator";
 import {User} from "./oneUser";
 
 type UsersComponentType = {
-    users: UsersType[]
+    users: OneUsersType[]
     pagesize: number
     totalUsersCount: number
     currentPages: number
@@ -34,10 +34,10 @@ export let Users = (props: UsersComponentType) => {
                    currentPages={props.currentPages}/>
         <button onClick={()=>{props.FiendsAC(true)}}>find friends</button>
         <button onClick={()=>{props.FiendsAC(false)}}>show all</button>
-        {props.users.map((u: UsersType) =><User user={u}
-                                                follower={props.follower}
-                                                unfollow={props.unfollow}
-                                                IsFollowingProgress={props.IsFollowingProgress}/>
+        {props.users.map((u: OneUsersType) =><User user={u}
+                                                   follower={props.follower}
+                                                   unfollow={props.unfollow}
+                                                   userIdForDisabled={props.IsFollowingProgress}/>
 
         )
         }

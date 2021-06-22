@@ -7,35 +7,40 @@ type UsersComponentType = {
     user: any
     follower: (id: number) => void
     unfollow: (id: number) => void
-    IsFollowingProgress: any
+    userIdForDisabled: any
 }
 
 export let User = (props: UsersComponentType) => {
-let user = props.user
+    let user = props.user
 
     return <div>
-            <div >
+        <div>
                     <span>
                         <div>
                           <NavLink to={'/profile/' + user.id}>  <img width={"50px"} height={"50px"}
-                                                                  src={user.photos.small != null ? user.photos.small : no_image}/>
+                                                                     src={user.photos.small != null ? user.photos.small : no_image}/>
                           </NavLink>
                         </div>
                         <div>{user.followed
-                            ?
-                            <Button color="primary"  disabled={props.IsFollowingProgress.some((id: any) => id === user.id)} onClick={() => {
-                                props.unfollow(user.id)
-                            }
-                            }>Unfollow</Button>
+                            ?//arr.some возвращает true, если хотя бы для одного элемента массива условие верно
+                            //при раздизабл. кнопки к нам прихоидот пустой массив
+                            <Button color="primary"
+                                    disabled={props.userIdForDisabled.some((id: any) => id === user.id)}
+                                    onClick={() => {
+                                        props.unfollow(user.id)
+                                    }
+                                    }>Unfollow</Button>
                             :
-                            <Button color="primary" variant="contained" disabled={props.IsFollowingProgress.some((id: any) => id === user.id)} onClick={() => {
-                                props.follower(user.id)
-                            }
-                            }>Follow</Button>}
+                            <Button color="primary" variant="contained"
+                                    disabled={props.userIdForDisabled.some((id: any) => id === user.id)}
+                                    onClick={() => {
+                                        props.follower(user.id)
+                                    }
+                                    }>Follow</Button>}
                         </div>
                     </span>
 
-                <span>
+            <span>
                         <span>
                             <div>{user.name}</div>
                             <div>{user.status}</div>
@@ -46,7 +51,7 @@ let user = props.user
 
                         </span>
                     </span>
-            </div>
+        </div>
         )
     </div>
 }

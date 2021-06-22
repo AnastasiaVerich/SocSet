@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followThunkCreater, getFriendsThunkCreater, getUsersThunkCreater, isFollowAC,
-    setCurrentPageAC, setIsFetchingAC, setIsFollowingProgressAC,
+    followTC, getUsersTC, toggleFollowAC,
+    setCurrentPageAC, toggleIsFetchingAC, setUserIdForDisabledAC,
     setTotalUsersCountAC,
     setUsersAC,
-    UNfollowThunkCreater,
-    UsersType
-} from "../../../BLL/UsersReducer";
-import {StoreStateType} from "../../../BLL/StoreRedux";
+    unFollowTC,
+    OneUsersType
+} from "../../../BLL/Reducers/users-reducer";
+import {StoreStateType} from "../../../BLL/store";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {compose} from "redux";
@@ -24,7 +24,7 @@ import thunk from "redux-thunk";
 
 
 export type MapStateToPropsType = {
-    users: UsersType[]
+    users: OneUsersType[]
     pagesize: number
     totalUsersCount: number
     currentPages: number
@@ -77,7 +77,7 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     }
 
     render() {
-        console.log("render")
+
         return <>
             {this.props.isFetching ? <Preloader/> : null}
 
@@ -98,15 +98,15 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
 
 export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
 
-    follower:followThunkCreater,
-    unfollow: UNfollowThunkCreater,
+    follower:followTC,
+    unfollow: unFollowTC,
     setUsers:setUsersAC,
     SetCurrentPage:setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
-    setIsFollowingProgress: setIsFollowingProgressAC,
-    toogleIsFetching:setIsFetchingAC,
-    getUsersThunk: getUsersThunkCreater,
-    FiendsAC: isFollowAC
+    setIsFollowingProgress: setUserIdForDisabledAC,
+    toogleIsFetching:toggleIsFetchingAC,
+    getUsersThunk: getUsersTC,
+    FiendsAC: toggleFollowAC
     //getUsersThunk: getFriendsThunkCreater
 }))(UsersAPI)
 

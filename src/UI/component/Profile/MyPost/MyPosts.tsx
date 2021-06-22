@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
-import {maxLenght, requiredField} from '../../../utils/validators/validators';
+import {maxLength, requiredField} from '../../../utils/validators/validators';
 import {Textarea} from "../../Common/FormsControl/FormsControl";
 import {Button} from "@material-ui/core";
 
@@ -52,7 +52,7 @@ export const MyPosts=React.memo((props: MyPostType)=> {
     )
 })
 
-const maxLenghtCreater=maxLenght(10)
+const maxLenghtCreater=maxLength(10)
 const postForm = (props: any) => {
     return (
 

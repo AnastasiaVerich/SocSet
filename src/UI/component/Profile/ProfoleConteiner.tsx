@@ -2,15 +2,17 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {
-    getOneProfileThunkCreater,
-    getStatusThunkCreater,
-    savePhotoThunkCreater, saveProfileThunkCreater,
-    updateStatusThunkCreater
-} from "../../../BLL/ProfileReducer";
-import {StoreStateType} from "../../../BLL/StoreRedux";
+    getOneProfileTC,
+    getStatusTC,
+    updatePhotoTC, updateInfoProfileTC,
+    updateStatusTC
+} from "../../../BLL/Reducers/profile-reducer";
+import {StoreStateType} from "../../../BLL/store";
 import {Redirect, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
+import {DispatchTypeDialog} from "../Dialog/Dialog";
+import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../../BLL/Reducers/dialogs-reducer";
 
 
  class ProfileConteiner extends React.Component<any, any>{
@@ -52,23 +54,39 @@ import {compose} from "redux";
 
 
 let mapStateToprops=(state:StoreStateType):any=>{
-
     return{
         profile: state.profile.profile,
         status: state.profile.status,
         authorazedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuthorization
+    }
+}
+let mapDispatchToProps = (dispatch: any)  => {
+    return {
+        getOneProfileThunk: (id: number) => {
+            dispatch(getOneProfileTC(id))
+        },
+        getStatusThunk: (id: number) => {
+            dispatch(getStatusTC(id))
+        },updateStatusThunk: (status: string) => {
+            dispatch(updateStatusTC(status))
+        },savePhotoThunk: (file: any) => {
+            dispatch(updatePhotoTC(file))
+        },
+        saveProfileThunk: (profile: any) => {
+            dispatch(updateInfoProfileTC(profile))
+        }
     }
 }
 
 
  const ProfileConteinerConnect:any= compose(
     connect (mapStateToprops,{
-        getOneProfileThunk:getOneProfileThunkCreater,
-        getStatusThunk:getStatusThunkCreater,
-        updateStatusThunk: updateStatusThunkCreater,
-        savePhotoThunk: savePhotoThunkCreater,
-        saveProfileThunk: saveProfileThunkCreater
+        getOneProfileThunk:getOneProfileTC,
+        getStatusThunk:getStatusTC,
+        updateStatusThunk: updateStatusTC,
+        savePhotoThunk: updatePhotoTC,
+        saveProfileThunk: updateInfoProfileTC
     })
     ,withRouter
 )(ProfileConteiner)

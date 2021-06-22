@@ -1,7 +1,7 @@
-import {addPostAC, deletePostAC, ProfileReducer, StatePropfilaType} from "./ProfileReducer";
+import {addPostAC, deletePostAC, ProfileReducer, StateType} from "../Reducers/profile-reducer";
 
 test("new post should be added", () => {
-    let state: StatePropfilaType = {
+    let state: StateType = {
         profile:null,
         postsDataArray: [
             {id: 1, post: "Приветики??", likeCount: 1},
@@ -16,7 +16,7 @@ test("new post should be added", () => {
 })
 
 test("delete post should be correct ", () => {
-    let state: StatePropfilaType = {
+    let state: StateType = {
         profile:null,
         postsDataArray: [
             {id: 1, post: "Приветики??", likeCount: 1},

@@ -2,16 +2,13 @@ import React from 'react';
 import './App.css';
 import {Nav} from "./UI/component/Nav/Nav";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom"
-import {News} from "./UI/component/News/News";
-import {Setting} from "./UI/component/Setting/Setting";
-import {Music} from "./UI/component/Music/Music";
 import {UsersContainer} from "./UI/component/Users/UsersConteiner";
 import {HeaderConteiner} from "./UI/component/Header/HeaderConteiner";
-import {LoginConteiner} from './UI/component/login/login';
+import {LoginContainer} from './UI/component/login/login';
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeTC} from "./BLL/AppReducer";
-import {StoreStateType} from "./BLL/StoreRedux";
+import {initializeTC} from "./BLL/Reducers/app-reducer";
+import {StoreStateType} from "./BLL/store";
 import {Preloader} from "./UI/component/Common/Preloader/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
 import {AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography} from "@material-ui/core";
@@ -75,17 +72,12 @@ class App extends React.Component<any, any> {
                                    render={WithSuspenseHOC(ProfileConteinerConnect)}/>
                             <Route path='/dialogs/:userID?'
                                    render={WithSuspenseHOC(DialogsConteiner)}/>
-                            <Route exact path='/news'
-                                   render={() => <News/>}
-                            />
+
                             <Route path='/findUsers'
                                    render={() => <UsersContainer/>}
                             />
-                            <Route path='/setting'
-                                   render={() => <Setting/>}
-                            />
                             <Route path='/login'
-                                   render={() => <LoginConteiner/>}
+                                   render={() => <LoginContainer/>}
                             />
                             <Route path='*'
                                    render={() => <div>404 not found</div>}

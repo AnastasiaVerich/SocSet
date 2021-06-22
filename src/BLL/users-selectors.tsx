@@ -4,15 +4,11 @@ import { createSelector } from 'reselect';
 export const getUsers=(state: any)=>{
     return state.usersPage.usersData
 }
-
 export const getUsersCreateSelector=createSelector(getUsers,(users)=>{
     return users.filter((x:any)=>true)
 })
-
-
-
 export const getPageSize=(state: any)=>{
-    return state.usersPage.pagesize
+    return state.usersPage.pageSize
 }
 export const getTotalUsersCount=(state: any)=>{
     return state.usersPage.totalUsersCount
@@ -24,5 +20,5 @@ export const getIsFetching=(state: any)=>{
     return state.usersPage.isFetching
 }
 export const getIsFollowingProgress=(state: any)=>{
-    return state.usersPage.followingInProgress
+    return state.usersPage.userIdForDisabled
 }
