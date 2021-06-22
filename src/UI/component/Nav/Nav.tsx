@@ -20,9 +20,6 @@ export const Nav = () => {
                 <NavLink to="/news" activeClassName={c.act}>News</NavLink>
             </div>*/}
             <div className={c.item}>
-                <NavLink to="/music" activeClassName={c.act}><b>Friends</b></NavLink>
-            </div>
-            <div className={c.item}>
                 <NavLink to="/findUsers" activeClassName={c.act}><b>Find Users</b></NavLink>
             </div>
             {/*<div className={c.item}>*/}

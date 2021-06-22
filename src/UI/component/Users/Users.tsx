@@ -13,6 +13,8 @@ type UsersComponentType = {
     onPageChanget: (x: any) => void
     setIsFollowingProgress: (x: any, id: any) => void
     IsFollowingProgress: any
+    isFollow: boolean
+    FiendsAC: any
 }
 
 export let Users = (props: UsersComponentType) => {
@@ -30,6 +32,8 @@ export let Users = (props: UsersComponentType) => {
                    totalItemsCount={props.totalUsersCount}
                    onPageChanget={props.onPageChanget}
                    currentPages={props.currentPages}/>
+        <button onClick={()=>{props.FiendsAC(true)}}>find friends</button>
+        <button onClick={()=>{props.FiendsAC(false)}}>show all</button>
         {props.users.map((u: UsersType) =><User user={u}
                                                 follower={props.follower}
                                                 unfollow={props.unfollow}

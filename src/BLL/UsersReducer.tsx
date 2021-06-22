@@ -7,11 +7,16 @@ const SetCurrentPage = "SetCurrentPage"
 const setTotalUsersCount = "setTotalUsersCount"
 const ToogleIsFatching = "IsFetching"
 const ToogleIsFollowingProgress = "IsFollowingProgress"
+const ISFollow = "ISFollow"
 
 //type for Reduces
 type FollowType = {
     type: "Follow"
     userId: number
+}
+type IsFollowType = {
+    type: "ISFollow"
+    follow: boolean
 }
 type UNfollowType = {
     type: "UnFollow"
@@ -48,6 +53,7 @@ type ActionType =
     | SetTotalUsersCountACType
     | SetIsFetchingType
     | SetFollowingProgressType
+    | IsFollowType
 //initial State type
 export type UsersType = {
     id: number,
@@ -64,6 +70,7 @@ type UsersTypeAll = {
     currentPages: number
     isFetching: boolean
     followingInProgress: any
+    isFollow: boolean
 }
 let initionState: UsersTypeAll = {
     usersData: [],
@@ -71,12 +78,18 @@ let initionState: UsersTypeAll = {
     totalUsersCount: 0,
     currentPages: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [],
+    isFollow: false
 }
 
 export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionType): UsersTypeAll => {
     if (state) {
         switch (action.type) {
+            case "ISFollow":
+                return {
+                    ...state,
+                    isFollow: action.follow
+                }
 
             case Follow:
                 return {
@@ -119,6 +132,7 @@ export const UsersReducer = (state: UsersTypeAll = initionState, action: ActionT
 }
 
 export const followAC = (userId: number): FollowType => ({type: Follow, userId})
+export const isFollowAC = (follow: boolean): IsFollowType => ({type: ISFollow, follow})
 export const UNfollowAC = (userId: number): UNfollowType => ({type: UnFollow, userId})
 export const setUsersAC = (users: []): SetUsersType => ({type: SetUsers, users})
 export const setCurrentPageAC = (currentPages: number): SetCurrentPageType => ({type: SetCurrentPage, currentPages})
@@ -135,10 +149,16 @@ export const setIsFollowingProgressAC = (IsFollowingProgress: boolean, userId: a
     IsFollowingProgress: IsFollowingProgress,
     userId
 })
-export const getUsersThunkCreater = (currentPages: number, pagesize: number) => {
+export const getUsersThunkCreater = (currentPages: number, pagesize: number, follow: boolean) => {
     return async (dispatch: any) => {
         dispatch(setIsFetchingAC(true))
-        let response = await usersAPI.getUsers(currentPages, pagesize)
+        let response;
+        debugger
+        if (follow) {
+            response = await usersAPI.getFriendsUsers(currentPages, pagesize)
+        } else {
+            response = await usersAPI.getUsers(currentPages, pagesize)
+        }
         dispatch(setIsFetchingAC(false))
         dispatch(setUsersAC(response.items))
         dispatch(setTotalUsersCountAC(/*50*/ response.totalCount))

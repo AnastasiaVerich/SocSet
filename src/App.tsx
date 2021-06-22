@@ -14,7 +14,6 @@ import {initializeTC} from "./BLL/AppReducer";
 import {StoreStateType} from "./BLL/StoreRedux";
 import {Preloader} from "./UI/component/Common/Preloader/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
-import {FriendsConteiner} from "./UI/component/UsersFriends/UsersConteiner";
 import {AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography} from "@material-ui/core";
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
@@ -78,9 +77,6 @@ class App extends React.Component<any, any> {
                                    render={WithSuspenseHOC(DialogsConteiner)}/>
                             <Route exact path='/news'
                                    render={() => <News/>}
-                            />
-                            <Route path='/music'
-                                   render={() => <FriendsConteiner/>}
                             />
                             <Route path='/findUsers'
                                    render={() => <UsersContainer/>}
