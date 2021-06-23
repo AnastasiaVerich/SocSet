@@ -8,26 +8,24 @@ import {
     updateStatusTC
 } from "../../../BLL/Reducers/profile-reducer";
 import {StoreStateType} from "../../../BLL/store";
-import {Redirect, withRouter} from "react-router-dom";
-import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {DispatchTypeDialog} from "../Dialog/Dialog";
-import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../../BLL/Reducers/dialogs-reducer";
 
 
  class ProfileConteiner extends React.Component<any, any>{
 // match из  withRouter  взялся
      refreshProfile(){
-         let userID =this.props.match.params.userID
-         if (!userID){
-
-             userID=this.props.authorazedUserId
-             if(!userID){
+         let ownerId =this.props.match.params.userID
+         // если айди не найден, то задаем айди авторизированного пользователя
+         if (!ownerId){
+             ownerId=this.props.authorizationUserId
+             // если пользователь не авторизирован, то в айди ничего нет и мы редеректемся на страницу логина
+             if(!ownerId){
                  this.props.history.push("/login")
              }
          }
-         this.props.getOneProfileThunk(userID)
-         this.props.getStatusThunk(userID)
+         this.props.getOneProfile(ownerId)
+         this.props.getStatus(ownerId)
      }
 
      componentDidMount() {
@@ -41,12 +39,12 @@ import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../../
 
      render(){
         return(
-            <Profile {...this.props} profile={this.props.profile}
-                     isOwner={!this.props.match.params.userID}
+            <Profile profile={this.props.profile}
+                     ownerId={!this.props.match.params.userID}
                      status={this.props.status}
-                     updateStatus={this.props.updateStatusThunk}
-                     savePhoto={this.props.savePhotoThunk}
-                     saveProfile={this.props.saveProfileThunk}/>
+                     updateStatus={this.props.updateStatus}
+                     updatePhoto={this.props.updatePhoto}
+                     updateInfoProfile={this.props.updateInfoProfile}/>
         )
     }
 }
@@ -57,23 +55,24 @@ let mapStateToprops=(state:StoreStateType):any=>{
     return{
         profile: state.profile.profile,
         status: state.profile.status,
-        authorazedUserId: state.auth.userId,
-        isAuth: state.auth.isAuthorization
+        authorizationUserId: state.auth.userId,
+        isAuthorization: state.auth.isAuthorization
+
     }
 }
 let mapDispatchToProps = (dispatch: any)  => {
     return {
-        getOneProfileThunk: (id: number) => {
+        getOneProfile: (id: number) => {
             dispatch(getOneProfileTC(id))
         },
-        getStatusThunk: (id: number) => {
+        getStatus: (id: number) => {
             dispatch(getStatusTC(id))
-        },updateStatusThunk: (status: string) => {
+        },updateStatus: (status: string) => {
             dispatch(updateStatusTC(status))
-        },savePhotoThunk: (file: any) => {
+        },updatePhoto: (file: any) => {
             dispatch(updatePhotoTC(file))
         },
-        saveProfileThunk: (profile: any) => {
+        updateInfoProfile: (profile: any) => {
             dispatch(updateInfoProfileTC(profile))
         }
     }
@@ -82,11 +81,11 @@ let mapDispatchToProps = (dispatch: any)  => {
 
  const ProfileConteinerConnect:any= compose(
     connect (mapStateToprops,{
-        getOneProfileThunk:getOneProfileTC,
-        getStatusThunk:getStatusTC,
-        updateStatusThunk: updateStatusTC,
-        savePhotoThunk: updatePhotoTC,
-        saveProfileThunk: updateInfoProfileTC
+        getOneProfile:getOneProfileTC,
+        getStatus:getStatusTC,
+        updateStatus: updateStatusTC,
+        updatePhoto: updatePhotoTC,
+        updateInfoProfile: updateInfoProfileTC
     })
     ,withRouter
 )(ProfileConteiner)

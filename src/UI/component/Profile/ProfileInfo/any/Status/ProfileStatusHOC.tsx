@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-
+//статус в виде функциональной  компоненты
 export const ProfileStatusHOC = (props: any) => {
     let[editMode, setEditMode]=useState(false)
     let[status, setStatus]=useState(props.status)
@@ -9,7 +9,7 @@ export const ProfileStatusHOC = (props: any) => {
     },[props.status])
 
 
-    const activateMode=()=>{
+    const activateEditMode=()=>{
         setEditMode(true)
     }
 
@@ -24,19 +24,13 @@ export const ProfileStatusHOC = (props: any) => {
     return <>
         <b>Статус: </b>
         {!editMode &&
-
-            <span onDoubleClick={activateMode}>{props.status || "-----"}</span>
-
+            <span onDoubleClick={activateEditMode}>{props.status || "-----"}</span>
         }
         {editMode &&
-
             <input autoFocus={true}
                    onBlur={offEditMode}
                    onChange={onStatusChange}
             value={status}/>
-
         }
-
     </>
-
 }

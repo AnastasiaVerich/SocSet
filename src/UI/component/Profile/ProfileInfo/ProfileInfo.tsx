@@ -1,29 +1,39 @@
-import React, {ChangeEvent, useState} from 'react';
-import s from './ProfileInfo.module.css'
+import React, {useState} from 'react';
 import {Preloader} from "../../Common/Preloader/Preloader";
-import {ProfileStatusHOC} from "./ProfileStatusHOC";
+import {ProfileStatusHOC} from "./any/Status/ProfileStatusHOC";
 import no_image from "../../../assets/img/no_image.png"
-import {ProfileDataSetting, ProfileRditeForm} from "./ProfileEdit";
+import {UserInfoEditForm} from "./any/UserInfoEdit";
 import {Button, Grid, Input} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import c from "../../Nav/Nav.module.css";
+import {UserInfo} from "./any/UserInfo";
+import {ProfileStatus} from "./any/Status/ProfileStatus";
 
-export const ProfileInfo = (props: any) => {
+type ProfileInfoType = {
+    profile: any
+    status: any
+    updateStatus: any
+    ownerId: any
+    updatePhoto: any
+    updateInfoProfile: any
+}
+
+export const ProfileInfo = (props: ProfileInfoType) => {
 
     let [editMode, setEditMode] = useState(false)
-
+// пока профайл не пришел с сервера, показываем загрузку страницы
     if (!props.profile) {
         return <Preloader/>
     }
 
-    const mainPhotoChange = (e: any/*: ChangeEvent<HTMLInputElement>*/) => {
+    const updatePhoto = (e: any/*: ChangeEvent<HTMLInputElement>*/) => {
         if (e.target.files.length) {
-            props.savePhoto(e.target.files[0])
+            props.updatePhoto(e.target.files[0])
         }
     }
-
-    const onSumbit = (formData: any) => {
-        props.saveProfile(formData)
+//отправка данных с формы на сервер через санку. когда данные отправились, то меняемм  режим редактирования
+    const onSubmit = (formData: any) => {
+        props.updateInfoProfile(formData)
             .then(() => {
                 setEditMode(false);
             })
@@ -35,62 +45,31 @@ export const ProfileInfo = (props: any) => {
                 {props.profile.photos.large === null
                     ? <img height={150} width={150} src={no_image}/>
                     : <img src={props.profile.photos.large}/>}
-
                 <Grid>
+                    {/*разные виды профайла*/}
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 </Grid>
-                    <Grid>
-                    {props.isOwner && <Input color="primary" type={"file"} onChange={mainPhotoChange}/>}
+                {/*если мы на странице владельца то показываем изменение фото*/}
+                <Grid>
+                    {props.ownerId && <Input color="primary" type={"file"} onChange={updatePhoto}/>}
                 </Grid>
                 <Grid>
-                    {!props.isOwner &&
-                    <NavLink to={'/dialogs/'+ props.profile.userId} activeClassName={c.act}>
-                        <Button variant="contained" color="primary">START CHATING</Button>
+                    {/*если на странице НЕТ владельца, то показываем возможность начать диалог*/}
+                    {!props.ownerId &&
+                    <NavLink to={'/dialogs/' + props.profile.userId} activeClassName={c.act}>
+                        <Button variant="contained" color="primary">Start dialog</Button>
                     </NavLink>}
                 </Grid>
             </Grid>
-
+            {/* Информация о пользователе */}
             <Grid item xs={12} sm={7}>
                 {editMode
-                    ? <ProfileRditeForm onSubmit={onSumbit} initialValues={props.profile} profile={props.profile}/>
-                    : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditeMode={() => {
+                    ? <UserInfoEditForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
+                    : <UserInfo profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
                         setEditMode(true)
                     }}/>
                 }
             </Grid>
         </Grid>)
-}
-
-
-export const Contact = (props: any) => {
-    return (
-        <div><b>{props.contactTitle}: </b>{props.contactValue}</div>
-    )
-}
-
-const ProfileData = (props: any) => {
-    return (
-        <div>
-            <div>
-               <h2><b>FullName:  </b>{props.profile.fullName}</h2>
-            </div>
-
-            {/*<div>
-                <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
-            </div>
-            {props.profile.lookingForAJobDescription &&
-            <div>
-                <b>I can: </b>{props.profile.lookingForAJobDescription}
-            </div>}*/}
-            <div>
-                <b>About me: </b>{props.profile.aboutMe}
-            </div>
-            <div>
-                <b>Contacts: </b>{Object.keys(props.profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
-            })}
-            </div>
-            {props.isOwner && <Button variant="contained" color="primary" onClick={props.goToEditeMode}>edit Data</Button>}
-        </div>
-    )
 }

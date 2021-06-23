@@ -1,7 +1,5 @@
 import React, {ChangeEvent} from "react";
-import s from './ProfileInfo.module.css'
-import thunk from "redux-thunk";
-
+//статус в виде классовой компоненты
 export class ProfileStatus extends React.Component<any, any> {
     state = {
         editMode: false,
@@ -36,7 +34,6 @@ export class ProfileStatus extends React.Component<any, any> {
                     <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.offEditMode} value={this.state.status}/>
                 </div>
             }
-
         </>
     }
 }

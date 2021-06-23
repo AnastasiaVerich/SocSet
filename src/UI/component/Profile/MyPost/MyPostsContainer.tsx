@@ -25,5 +25,5 @@ let mapDispatchToToprops = (dispatch: Dispatch): DispatchTypePosts => {
 }
 
 
-export const MyPostsConteiner = connect(mapSttateToprops, mapDispatchToToprops)(MyPosts);
+export const MyPostsContainer = connect(mapSttateToprops, mapDispatchToToprops)(MyPosts);
 
