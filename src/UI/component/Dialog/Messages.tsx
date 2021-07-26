@@ -1,20 +1,19 @@
 import React from "react";
-import {Grid} from "@material-ui/core";
 import {OneMessage} from "./OneMessage/OneMessage";
-
+import style from "./messages.module.css"
 type MessagesType = {
     messages: any
     authorizationUserId: any
 }
  export const Messages = (props: MessagesType) => {
-    return (<div>
+    return (<div className={style.block}>
             {props.messages.map((element: any) =>
-                <Grid>
+                <div>
                     <div key={element.id}>
                         <OneMessage massageText={element.body} authorazedUserId={props.authorizationUserId}
                                     senderId={element.senderId}/>
                     </div>
-                </Grid>)
+                </div>)
             }
         </div>
     )

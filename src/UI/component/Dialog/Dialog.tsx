@@ -61,8 +61,9 @@ export const Dialogs = (props: DialogType) => {
 
 
     return (
-        <div className={style.dialogs}>
-            <div className={style.dialogsItems}>
+        <div className={style.block}>
+            <div className={style.container}>
+            <div className={style.contact}>
                 МОИ ДИАЛОГИ
                 <NavLink to={'/dialogs/' + recipientId}>
                     <div>
@@ -76,7 +77,7 @@ export const Dialogs = (props: DialogType) => {
                 {fieldMessages()}
                 <AddMessagesReduxForm onSubmit={sendMessage}/>
             </div>
-            <div>
+
             </div>
         </div>
     )

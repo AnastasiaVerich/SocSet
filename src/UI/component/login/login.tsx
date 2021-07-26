@@ -6,11 +6,9 @@ import {connect} from "react-redux";
 import {loginTC} from "../../../BLL/Reducers/authorization-reducer";
 import {Redirect} from "react-router-dom";
 import {StoreStateType} from "../../../BLL/store";
-import style from "../Common/FormsControl/forms.module.css"
+import s from "../Common/FormsControl/forms.module.css"
 import {Grid, IconButton, Typography} from "@material-ui/core";
-import {Dispatch} from "redux";
-import {DispatchTypePosts} from "../Profile/MyPost/MyPosts";
-import {addPostAC, deletePostAC} from "../../../BLL/Reducers/profile-reducer";
+import style from "./login.module.css"
 
 
 const maxLengthValidator = maxLength(50)
@@ -40,31 +38,34 @@ const LoginForm = ({handleSubmit, error, x}: any) => {
 
             {x && createFormField("captcha URl", "captcha", [], Input, {})}
 
-            {error && <div className={style.formSunnierError}>
+            {error && <div className={s.formSunnierError}>
                 {error}
             </div>}
             <div>
                 <IconButton type='submit' color="primary">Login</IconButton>
             </div>
         </form>
+
     )
 }
 
 export const Login = (props: any) => {
     const onSubmit = (formData: any) => {
-        debugger
+
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) return <Redirect to={"/profile"}/>
-    return <Grid container
-                 direction="column"
-                 justify="center"
-                 alignItems="center">
-        <Typography variant="h4">
-            Login
-        </Typography>
-        <LoginReduxForm onSubmit={onSubmit} x={props.captcha}/>
-    </Grid>
+    return <div className={style.block}>
+        <div className={style.container}>
+            <div className={style.another}>another</div>
+            <div className={style.login} >
+                <Typography variant="h4">
+                    Login
+                </Typography>
+                <LoginReduxForm onSubmit={onSubmit} x={props.captcha}/>
+            </div>
+        </div>
+    </div>
 }
 
 

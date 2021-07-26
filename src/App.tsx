@@ -44,27 +44,15 @@ class App extends React.Component<any, any> {
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (
             <div>
-                <Grid container spacing={2} >
-                  <Grid item xs={12}>
-                <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <MenuItem/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        SocSet
-                    </Typography>
-                    <Typography variant="h6">
-                        <HeaderConteiner/>
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-                  </Grid>
+                <div  >
+                  <HeaderConteiner/>
 
-                    <Grid item xs={10} sm={2}>
+                    <div >
+{/*
                         <Nav/>
-                    </Grid>
-                    <Grid item xs={12} sm={10}>
+*/}
+                    </div>
+                    <div >
                         <Switch>
                             <Route exact path='/'
                                    render={() => <Redirect to={'/profile'}/>}/>
@@ -78,13 +66,13 @@ class App extends React.Component<any, any> {
                             />
                             <Route path='/login'
                                    render={() => <LoginContainer/>}
+                            /> <Route path='*'
+                                   render={() => <LoginContainer/>}
                             />
-                            <Route path='*'
-                                   render={() => <div>404 not found</div>}
-                            />
+
                         </Switch>
-                    </Grid>
-                </Grid>
+                    </div>
+                </div>
             </div>
         );
     }

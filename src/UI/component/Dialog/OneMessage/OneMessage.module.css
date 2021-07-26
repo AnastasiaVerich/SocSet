@@ -1,9 +1,17 @@
-
-
-
+.container{
+    width: 100%;
+    display: flex;
+}
 .sms{
-color: black;
+    border: 2px solid ;
+    width: fit-content;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.smsOther{
+justify-content: flex-start;
 }
 .smsMy{
-color: cornflowerblue;
+justify-content: flex-end;
 }

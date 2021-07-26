@@ -1,10 +1,31 @@
-.header {
-    grid-area: h;
-    background-color: aquamarine;
+.block {
+    width: 100%;
+    height: 60px;
+    background: cornflowerblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
+
 .header img {
     width: 20px;
 }
-.loginBlock{
+
+.loginBlock {
     float: right;
+}
+
+.navR {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.nav {
+    margin: 10px;
+}
+
+.auth{
+    margin: 10px;
 }

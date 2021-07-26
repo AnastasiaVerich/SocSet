@@ -1,7 +1,11 @@
-
+.block {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
 .item a{
     color: #4052b5;
-    text-decoration: none;
+    margin: 10px;
 }
 .item a.act{
     color: gold;

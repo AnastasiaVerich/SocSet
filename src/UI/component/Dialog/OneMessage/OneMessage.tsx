@@ -1,6 +1,5 @@
 import React from "react";
-import S from './OneMessage.module.css'
-import {Grid} from "@material-ui/core";
+import style from './OneMessage.module.css'
 
 
 type SmsType = {
@@ -12,24 +11,16 @@ type SmsType = {
 
 
 export const OneMessage = (props: SmsType) => {
-    return (<>
+    return (<div >
             {props.authorazedUserId === props.senderId
-                ? <Grid container
-                        direction="column"
-                        justify="flex-end"
-                        alignItems="center"
-                ><div className={S.smsMy} >
+                ? <div className={`${style.container} ${style.smsMy}`}><div className={style.sms} >
                     <b>{props.massageText}</b>
                 </div>
-            </Grid>
-                : <Grid container
-                        direction="column"
-                        justify="center"
-                        alignItems="flex-start"
-                ><div className={S.sms}>
+            </div>
+                : <div className={`${style.container} ${style.smsOther}`}><div className={style.sms}>
                     {props.massageText}
-                </div> </Grid>}
-        </>
+                </div> </div>}
+        </div>
     )
 }
 

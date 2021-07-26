@@ -2,6 +2,7 @@ import React from 'react';
 import { OneUsersType} from "../../../BLL/Reducers/users-reducer";
 import {Paginator} from "./Paginator";
 import {User} from "./oneUser";
+import style from "./Users.module.css"
 
 type UsersComponentType = {
     users: OneUsersType[]
@@ -27,13 +28,14 @@ export let Users = (props: UsersComponentType) => {
     }
 
 
-    return <div>
+    return <div className={style.block}>
         <Paginator pagesize={props.pagesize}
                    totalItemsCount={props.totalUsersCount}
                    onPageChanget={props.onPageChanget}
                    currentPages={props.currentPages}/>
         <button onClick={()=>{props.FiendsAC(true)}}>find friends</button>
         <button onClick={()=>{props.FiendsAC(false)}}>show all</button>
+<div className={style.userContainer}>
         {props.users.map((u: OneUsersType) =><User user={u}
                                                    follower={props.follower}
                                                    unfollow={props.unfollow}
@@ -41,5 +43,6 @@ export let Users = (props: UsersComponentType) => {
 
         )
         }
+</div>
     </div>
 }
