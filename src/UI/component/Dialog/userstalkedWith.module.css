@@ -1,0 +1,28 @@
+
+.container {
+    height: 70px;
+    width: 100%;
+    border: 2px solid red;
+    display: flex;
+}
+
+.photo {
+
+    border-radius: 25%;
+
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.userName {
+
+}
+
+.sms {
+
+}
+
+
