@@ -1,6 +1,7 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPost/MyPostsContainer";
+import style from "./Profile.module.css"
 
 
 type ProfileType = {
@@ -14,14 +15,14 @@ type ProfileType = {
 
 export const Profile = (props: ProfileType) => {
     return (
-        <div>
+        <div className={style.block}>
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
                          ownerId={props.ownerId}
                          updatePhoto={props.updatePhoto}
                          updateInfoProfile={props.updateInfoProfile}/>
-            <MyPostsContainer/>
+          {/*  <MyPostsContainer/>*/}
         </div>
 
     )

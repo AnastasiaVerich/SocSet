@@ -21,8 +21,8 @@ let mapStateToProps = (state: StoreStateType): StateTypeDialog => {
 }
 let mapDispatchToProps = (dispatch: any):DispatchTypeDialog  => {
     return {
-        selectedDialogMessages: (id: number) => {
-            dispatch(getSelectedDialogTC(id))
+        selectedDialogMessages: (id: number, currentPages: any, pagesize: any) => {
+            dispatch(getSelectedDialogTC(id, currentPages,pagesize))
         },
         sendMessage: (id: number, text: string) => {
             dispatch(senMessageTC(id, text))

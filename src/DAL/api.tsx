@@ -97,9 +97,9 @@ export const securityAPI = {
     }
 }
 export const messagesAPI = {
-    getSelectedDialog(userId: any) {
+    getSelectedDialog(userId: any,currentPages: any, pagesize: any ) {
         return (
-            instanse.get(`dialogs/${userId}/messages`, {})
+            instanse.get(`dialogs/${userId}/messages?page=${currentPages}&count=${pagesize}`, {})
                 .then(response => response.data)
         )
     },

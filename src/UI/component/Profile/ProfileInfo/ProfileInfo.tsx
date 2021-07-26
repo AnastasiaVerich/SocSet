@@ -8,6 +8,7 @@ import {NavLink} from "react-router-dom";
 import c from "../../Nav/Nav.module.css";
 import {UserInfo} from "./any/UserInfo";
 import {ProfileStatus} from "./any/Status/ProfileStatus";
+import style from "./ProfileInfo.module.css"
 
 type ProfileInfoType = {
     profile: any
@@ -40,36 +41,36 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     }
 
     return (
-        <Grid container spacing={0}>
-            <Grid item xs={12} sm={5}>
+        <div className={style.container}>
+            <div  >
                 {props.profile.photos.large === null
-                    ? <img height={150} width={150} src={no_image}/>
-                    : <img src={props.profile.photos.large}/>}
-                <Grid>
+                    ? <img className={style.photo}  src={no_image}/>
+                    : <img className={style.photo}  src={props.profile.photos.large}/>}
+                <div>
                     {/*разные виды профайла*/}
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
                     <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-                </Grid>
+                </div>
                 {/*если мы на странице владельца то показываем изменение фото*/}
-                <Grid>
+                <div>
                     {props.ownerId && <Input color="primary" type={"file"} onChange={updatePhoto}/>}
-                </Grid>
-                <Grid>
+                </div>
+                <div>
                     {/*если на странице НЕТ владельца, то показываем возможность начать диалог*/}
                     {!props.ownerId &&
                     <NavLink to={'/dialogs/' + props.profile.userId} activeClassName={c.act}>
                         <Button variant="contained" color="primary">Start dialog</Button>
                     </NavLink>}
-                </Grid>
-            </Grid>
+                </div>
+            </div>
             {/* Информация о пользователе */}
-            <Grid item xs={12} sm={7}>
+            <div >
                 {editMode
                     ? <UserInfoEditForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
                     : <UserInfo profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
                         setEditMode(true)
                     }}/>
                 }
-            </Grid>
-        </Grid>)
+            </div>
+        </div>)
 }

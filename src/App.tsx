@@ -55,7 +55,7 @@ class App extends React.Component<any, any> {
                     <div >
                         <Switch>
                             <Route exact path='/'
-                                   render={() => <Redirect to={'/profile'}/>}/>
+                                   render={() => <Redirect to={'/login'}/>}/>
                             <Route path='/profile/:userID?'
                                    render={WithSuspenseHOC(ProfileConteinerConnect)}/>
                             <Route path='/dialogs/:userID?'

@@ -15,6 +15,7 @@
 }
 
 .contact {
+    overflow: scroll;
     width: 35%;
     border: 2px solid #2f792f;
     display: flex;
@@ -24,11 +25,14 @@
 
 
 .massages {
-    border: 2px solid #263826;
 
+    border: 2px solid #263826;
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+}
+.fieldMessages{
+    overflow: auto;
 }

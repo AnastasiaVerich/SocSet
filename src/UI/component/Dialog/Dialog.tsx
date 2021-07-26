@@ -32,7 +32,8 @@ export const Dialogs = (props: DialogType) => {
 
     useEffect(() => {
         if (recipientId) {
-            props.selectedDialogMessages(recipientId)
+
+            props.selectedDialogMessages(recipientId,1,20)
         }
     }, [recipientId])
     useEffect(() => {
@@ -72,9 +73,10 @@ export const Dialogs = (props: DialogType) => {
                 </NavLink>
                 {fieldUsers()}
             </div>
+                <button onClick={()=>{ props.selectedDialogMessages(recipientId,2,20)}}>++</button>
             <div className={style.massages}>
                 СООБЩЕНИЯ В ДИАЛОГЕ:
-                {fieldMessages()}
+              <div className={style.fieldMessages}> {fieldMessages()}</div>
                 <AddMessagesReduxForm onSubmit={sendMessage}/>
             </div>
 
