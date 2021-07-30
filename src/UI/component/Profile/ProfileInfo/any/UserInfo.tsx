@@ -5,7 +5,7 @@ import {Contact} from "./Contact";
 export const UserInfo = (props: any) => {
     return (
         <div>
-            <div>
+           {/* <div>
                 <h2><b>FullName: </b>{props.profile.fullName}</h2>
             </div>
 
@@ -18,7 +18,7 @@ export const UserInfo = (props: any) => {
             </div>}
             <div>
                 <b>About me: </b>{props.profile.aboutMe}
-            </div>
+            </div>*/}
             <div>
                 <b>Contacts: </b>{Object.keys(props.profile.contacts).map(key => {
                 return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>

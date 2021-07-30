@@ -42,35 +42,59 @@ export const ProfileInfo = (props: ProfileInfoType) => {
 
     return (
         <div className={style.container}>
-            <div  >
-                {props.profile.photos.large === null
-                    ? <img className={style.photo}  src={no_image}/>
-                    : <img className={style.photo}  src={props.profile.photos.large}/>}
-                <div>
+            <div className={style.upContainer} >
+                <div className={style.photoBlock}>
+                    {props.profile.photos.large === null
+                        ? <img className={style.photo} src={no_image}/>
+                        : <img className={style.photo} src={props.profile.photos.large}/>}
+
+                    {/*если мы на странице владельца то показываем изменение фото*/}
+                    <div>
+                        {props.ownerId && <div>
+                            <label htmlFor="file-upload" className={style.customfileupload} onChange={updatePhoto}>
+                                <input className={style.inputFile} id="file-upload" type="file"/>
+                                Custom Upload
+                            </label>
+
+                        </div>}
+                    </div>
+                    <div>
+                        {/*если на странице НЕТ владельца, то показываем возможность начать диалог*/}
+                        {!props.ownerId &&
+                        <NavLink to={'/dialogs/' + props.profile.userId} activeClassName={c.act}>
+                            <Button variant="contained" color="primary">Start dialog</Button>
+                        </NavLink>}
+                    </div>
+                </div>
+                <div className={style.mainInfoBlock}>
+                    <div>
+                        <h2><b>FullName: </b>{props.profile.fullName}</h2>
+                    </div>
+                    <div>
+                        <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
+                    </div>
+                    {props.profile.lookingForAJobDescription &&
+                    <div>
+                        <b>I can: </b>{props.profile.lookingForAJobDescription}
+                    </div>}
+                    <div>
+                        <b>About me: </b>{props.profile.aboutMe}
+                    </div>
                     {/*разные виды профайла*/}
                     <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-                </div>
-                {/*если мы на странице владельца то показываем изменение фото*/}
-                <div>
-                    {props.ownerId && <Input color="primary" type={"file"} onChange={updatePhoto}/>}
-                </div>
-                <div>
-                    {/*если на странице НЕТ владельца, то показываем возможность начать диалог*/}
-                    {!props.ownerId &&
-                    <NavLink to={'/dialogs/' + props.profile.userId} activeClassName={c.act}>
-                        <Button variant="contained" color="primary">Start dialog</Button>
-                    </NavLink>}
+                    {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
                 </div>
             </div>
-            {/* Информация о пользователе */}
-            <div >
-                {editMode
-                    ? <UserInfoEditForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
-                    : <UserInfo profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
-                        setEditMode(true)
-                    }}/>
-                }
+            <div className={style.downContainer}>
+                {/* Информация о пользователе */}
+                <div className={style.contactsBlock}>
+                    {editMode
+                        ? <UserInfoEditForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
+                        : <UserInfo profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
+                            setEditMode(true)
+                        }}/>
+                    }
+                </div>
             </div>
         </div>)
 }
