@@ -10,6 +10,8 @@ import {UserInfo} from "./any/UserInfo";
 import {ProfileStatus} from "./any/Status/ProfileStatus";
 import style from "./ProfileInfo.module.css"
 import {Contact} from "./any/Contact";
+import {createFormField, Textarea} from "../../Common/FormsControl/FormsControl";
+import {reduxForm} from "redux-form";
 
 type ProfileInfoType = {
     profile: any
@@ -44,7 +46,8 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div className={style.container}>
             <div className={style.firstBlock}>
-                <div>
+                <div className={style.width100}>
+                    <div className={style.divPhoto}/>
                     {props.profile.photos.large === null
                         ? <img className={style.photo} src={no_image}/>
                         : <img className={style.photo} src={props.profile.photos.large}/>}
@@ -64,10 +67,15 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                     </NavLink>}
                 </div>
                 <div className={style.info}>
-                    <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
-                    <b>I can: </b>{props.profile.lookingForAJobDescription}
-                    <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
-
+                    <div className={style.infoItem}>
+                        <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
+                    </div>
+                    <div className={style.infoItem}>
+                        <b>I can: </b>{props.profile.lookingForAJobDescription}
+                    </div>
+                    <div className={style.infoItem}>
+                        <ProfileStatusHOC status={props.status} updateStatus={props.updateStatus}/>
+                    </div>
                 </div>
             </div>
             <div className={style.secondBlock}>
@@ -78,11 +86,12 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                     <div className={style.title}> Contacts( через пропсы в отд комп) или один ситиль</div>
                     <div className={style.contacts}>
                         {editMode
-                                     ? <UserInfoEditForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
-                                     : <UserInfo2 profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
-                                         setEditMode(true)
-                                     }}/>
-                                 }
+                            ? <UserInfoEditForm2 onSubmit={onSubmit} initialValues={props.profile}
+                                                profile={props.profile}/>
+                            : <UserInfo2 profile={props.profile} ownerId={props.ownerId} goToEditeMode={() => {
+                                setEditMode(true)
+                            }}/>
+                        }
                     </div>
                 </div>
             </div>
@@ -149,30 +158,17 @@ export const ProfileInfo = (props: ProfileInfoType) => {
 }
 const UserInfo2 = (props: any) => {
     return (
-        <div>
-            {/* <div>
-                <h2><b>FullName: </b>{props.profile.fullName}</h2>
-            </div>
-
-            <div>
-                <b>looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
-            </div>
-            {props.profile.lookingForAJobDescription &&
-            <div>
-                <b>I can: </b>{props.profile.lookingForAJobDescription}
-            </div>}
-            <div>
-                <b>About me: </b>{props.profile.aboutMe}
-            </div>*/}
-            <b>Contacts: </b>
+        <>
+            <b className={style.titleContact}>Contacts: </b>
             <div className={style.userInfoBlock}>
+
                 {Object.keys(props.profile.contacts).map(key => {
                     return <Contact2 key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
                 })}
             </div>
             {props.ownerId &&
             <Button variant="contained" color="primary" onClick={props.goToEditeMode}>edit Data</Button>}
-        </div>
+        </>
     )
 }
 
@@ -181,3 +177,41 @@ const Contact2 = (props: any) => {
         <div className={style.oneInfoContainer}><b>{props.contactTitle}: </b>{props.contactValue}</div>
     )
 }
+const UserInfoEdit=({handleSubmit, profile, error}: any)=>{
+    return(
+        <form onSubmit={handleSubmit} className={style.formContainer}>
+            {error && <div className={style.formSunnierError}>
+                {error}
+            </div>}
+            <div>
+                <b>FullName: </b> {createFormField("Full name", "fullName", [], Input)}
+            </div>
+
+            <div>
+                <b>looking for a job: </b>{createFormField("", "lookingForAJob", [], Input, {type: "checkbox"})}
+            </div>
+
+            <div>
+                <b>I can: </b>
+                {createFormField("skils", "lookingForAJobDescription", [], Textarea)}
+            </div>
+            <div>
+                <b>About me: </b>
+                {createFormField("About me", "aboutMe", [], Textarea)}
+
+            </div>
+            <div>
+                <b>Contacts: {Object.keys(profile.contacts).map(key=>{
+                        return <div key={key}>
+                            <b>{key}: {createFormField(key, "contacts."+key, [], Input)}</b>
+                        </div>
+                    }
+                )}</b>
+            </div>
+            <button>save</button>
+        </form>
+    )
+}
+
+export const UserInfoEditForm2: any = reduxForm({ form: 'editProfile'})(UserInfoEdit)
+
