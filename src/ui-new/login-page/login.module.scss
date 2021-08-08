@@ -1,0 +1,138 @@
+@import "../sass/variables";
+@import "../sass/mixins";
+
+.block {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(121, 47, 67, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 800px;
+    height: 60%;
+    display: flex;
+
+    .rightPart {
+      width: 50%;
+      height: 100%;
+      background-color: $primaryColor;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .pathContainer {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        .firstText {
+          @include text($mainTextStyle, 21px, 1.5);
+          font-weight: 700;
+          margin-bottom: 10px
+        }
+
+        .secondText {
+          @include text($secondTextStyle, 14px, 26px);
+          margin-bottom: 10px
+        }
+
+        .oneAdvantage {
+
+          height: 50px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          margin-bottom: 10px;
+
+          .icon {
+            width: 47px;
+            height: 47px;
+            border: 1px solid $textColor;
+            border-radius: 12px;
+
+          }
+
+          .description {
+            margin-left: 10px;
+            height: 47px;
+
+            .title {
+              @include text($mainTextStyle, 18px, 1.5);
+              font-weight: 700;
+            }
+
+            .desc {
+              @include text($secondTextStyle, 14px, 26px);
+              margin-bottom: 10px
+            }
+          }
+        }
+      }
+    }
+
+    .leftPart {
+      width: 50%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .pathContainer {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .iconNetwork {
+          width: 60px;
+        }
+
+        .welcome {
+          @include text($mainTextStyle, 21px, 1.5);
+          font-weight: 700;
+          margin-bottom: 10px;
+          color: black;
+        }
+
+        .loginForm {
+          width: 100%;
+
+          .input {
+            height: 40px;
+            border: 1px solid transparent;
+            border-radius: 1.25rem;
+            width: 100%;
+            background-color: rgb(232, 240, 254) !important;
+            margin-bottom: 10px;
+          }
+          .rememberMe{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            @include text($secondTextStyle, 14px, 26px);
+            color: #797575;
+            .checkbox{
+              margin-right: 5px;
+            }
+          }
+          .button {
+            @include text($secondTextStyle, 14px, 26px);
+            height: 40px;
+            border: 1px solid transparent;
+            border-radius: 1.25rem;
+            width: 100%;
+            background-color: $primaryColor;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
