@@ -9,6 +9,7 @@
     color: blue;
 }
 .block{
+
     background: fuchsia;
     display: flex;
     flex-direction: column;

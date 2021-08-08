@@ -1,0 +1,51 @@
+@import "./variables";
+
+@mixin  text ($fF, $fS, $lH){
+  font-family: $fF;
+  color: $textColor;
+  line-height: $lH;
+  font-size: $fS;
+  font-weight: 400;
+}
+@mixin  block ($bC){
+  background-color: $bC;
+  display: flex;
+  align-items: center;
+}
+@mixin  context ($jC){
+  //border: 3px solid #0c357d;
+  height: 100%;
+  width:70%;
+  margin: 100px auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: $jC;
+  @media screen and (max-width: 710px) {
+    width: 95%;
+  }
+
+  }
+
+@mixin itemsContainer(){
+  margin-top: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+//@import "../Common/Styles/sass/variables";
+//@import "../Common/Styles/sass/mixins";
+//
+//
+//.block {
+//    width: 100%;
+//    height: 80px;
+//    justify-content: flex-end;
+//    @include block($promeryColor);
+//    position: sticky;
+//    top: 0;
+//    z-index: 100;
+//
+//}

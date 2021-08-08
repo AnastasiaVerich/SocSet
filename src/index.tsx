@@ -6,13 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import {store} from "./BLL/store";
 import {Provider} from "react-redux";
 import {BrowserRouter, HashRouter} from "react-router-dom";
+import {Login} from "./ui-new/login-page/login";
 
 // BrowserRouter добовляет
 // Provider добовляет store в контекст, из которого все компаненты могут брать данные ( наприер стор, тема темная/светлая, язык)
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <AppContainer/>
+            {/*<AppContainer/>*/}
+            <Login/>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')
