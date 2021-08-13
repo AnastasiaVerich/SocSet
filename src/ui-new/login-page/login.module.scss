@@ -4,12 +4,27 @@
 .block {
   width: 100%;
   height: 100vh;
+  /*
   background-color: rgba(121, 47, 67, 0.35);
+  */
+  background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
+  &::before {
+    position: absolute;
+    content: "";
+    background-color: black;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.001;
+    z-index: 1;
+  }
 
   .container {
+    z-index: 2;
     width: 800px;
     height: 60%;
     display: flex;
@@ -17,7 +32,7 @@
     .rightPart {
       width: 50%;
       height: 100%;
-      background-color: $primaryColor;
+      background-color: #8224e3d6;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -102,6 +117,9 @@
 
         .loginForm {
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
           .input {
             height: 40px;
@@ -112,6 +130,7 @@
             margin-bottom: 10px;
           }
           .rememberMe{
+            width: 100%;
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -120,6 +139,12 @@
             .checkbox{
               margin-right: 5px;
             }
+          }
+          .captcha{
+            width: 200px;
+            height: 100px;
+            background-color: #f0f0f0;
+            margin: 10px;
           }
           .button {
             @include text($secondTextStyle, 14px, 26px);

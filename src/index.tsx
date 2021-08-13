@@ -7,14 +7,17 @@ import {store} from "./BLL/store";
 import {Provider} from "react-redux";
 import {BrowserRouter, HashRouter} from "react-router-dom";
 import {Login} from "./ui-new/login-page/login";
+import {Profile} from "./ui-new/profile-page/profile";
 
 // BrowserRouter добовляет
 // Provider добовляет store в контекст, из которого все компаненты могут брать данные ( наприер стор, тема темная/светлая, язык)
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            {/*<AppContainer/>*/}
-            <Login/>
+{/*
+            <AppContainer/>
+*/}
+            <Profile/>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

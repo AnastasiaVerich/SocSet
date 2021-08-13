@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import s from "./login.module.scss"
 
 export const Login = () => {
+
+    const on= false;
 
     return (
         <div className={s.block}>
@@ -45,7 +47,8 @@ export const Login = () => {
                             <div className={s.rememberMe}>
                                 <input className={s.checkbox} type="checkbox"/>
                                 <p>Remember</p>
-                            </div>
+                            </div >
+                            {on &&<div className={s.captcha}>captcha</div>}
                             <button className={s.button}>Login In</button>
 
                         </div>
