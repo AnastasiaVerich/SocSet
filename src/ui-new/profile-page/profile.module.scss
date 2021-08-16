@@ -397,6 +397,8 @@
             box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.04);
             @media screen and (max-width: 980px) {
               width: 200px;
+              flex: 0 0 auto;
+
             }
 
             .ava {
