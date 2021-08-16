@@ -4,7 +4,6 @@
 .block {
   width: 100%;
   height: 100vh;
-  background-color: rgba(121, 47, 67, 0.35);
 
   display: flex;
   flex-direction: column;
@@ -14,7 +13,7 @@
   .backgroundImage {
     width: 100%;
     height: 20%;
-    background-color: #f0f0f0;
+    background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,11 +23,13 @@
       height: 200px;
       display: flex;
       justify-content: space-between;
-      .avatarContainer{
+
+      .avatarContainer {
         z-index: 10;
         width: 30%;
         display: flex;
         justify-content: center;
+
         .avatar {
           margin-top: 50px;
           width: 160px;
@@ -39,21 +40,23 @@
         }
       }
 
-
-
-
       .buttons {
-        border: 2px solid;
-        width: 70%;
+        height: fit-content;
         margin-top: 100px;
         display: flex;
         justify-content: flex-end;
-        .buttonItem{
-          border: 2px solid red;
-          height: 50px;
-          width: 50px;
+
+        .buttonItem {
+          background: rgba(255, 255, 255, 0.2);
+          border: 1px solid transparent;
+          color: #fff;
+          height: 40px;
+          line-height: 2.5rem;
+          width: 40px;
+          padding: 0;
           margin: 2px;
           border-radius: 25px;
+          text-align: center;
 
         }
       }
@@ -63,33 +66,35 @@
   .mainBlock {
     width: 70%;
     height: 80%;
-    background-color: #2f792f;
 
     .middlePart {
       width: 100%;
       height: 20%;
-      border: 2px solid red;
       display: flex;
+      border-bottom: 2px solid gainsboro;
       justify-content: space-between;
       align-items: center;
 
       .name {
         width: 30%;
-        height: 20px;
-        background-color: #8224e3;
         text-align: center;
+        @include text($mainTextStyle, 1rem, 1.2);
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: black;
       }
 
       .menu {
         width: 70%;
         display: flex;
-        border: 2px solid;
 
         .menuItem {
           width: 50px;
           height: 50px;
-          border: 2px solid yellow;
+          background-color: gainsboro;
           margin: 2px;
+          border-radius: 5px;
+          cursor: pointer;
 
         }
       }
@@ -98,104 +103,155 @@
     .bottomPart {
       width: 100%;
       height: 80%;
-      border: 2px solid red;
       display: flex;
-      .info{
+
+      .info {
         height: 100%;
         width: 30%;
-        border: 2px solid #ff9900;
         display: flex;
         flex-direction: column;
-        .firstInfo{
+        padding-right: 20px;
+
+        .firstInfo {
           width: 100%;
           height: 15%;
-          border: 2px;
           display: flex;
           text-align: center;
           justify-content: space-between;
-          .countFriends{
+          border-bottom: 2px solid gainsboro;
+
+
+          .countFriends {
+            @include text($secondTextStyle, 14px, 26px);
+            color: black;
             width: 49%;
             height: 100%;
-            border: 2px solid gainsboro;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .pp {
+              font-size: 18px;
+              color: $primaryColor;
+            }
           }
-          .isFindWork{
+
+          .isFindWork {
+            @include text($secondTextStyle, 14px, 26px);
+            color: black;
+
             width: 49%;
             height: 100%;
-            border: 2px solid gainsboro;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .pp {
+              font-size: 18px;
+              color: $primaryColor;
+            }
 
           }
         }
-        .secondInfo{
+
+        .secondInfo {
           width: 100%;
           height: 85%;
           display: flex;
           flex-direction: column;
-          border: 2px solid #b03131;
 
-          .title{
+          .title {
             width: 100%;
             height: 15%;
-            border: 2px solid gainsboro;
-
+            text-align: center;
+            @include text($mainTextStyle, 0.9rem, 1.2);
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
-          .photos{
+
+          .photos {
             width: 100%;
             height: 85%;
-            border: 2px solid gainsboro;
-
+background-color: #f0f0f0;
           }
         }
 
       }
-      .menuSelection{
+
+      .menuSelection {
         width: 70%;
         height: 100%;
-        border: 2px solid #00bbff;
-        .viewProfile{
+        border-left: 2px solid gainsboro;
+        padding: 20px;
+
+
+        .viewProfile {
           width: 100%;
           height: 100%;
           display: flex;
           flex-direction: column;
-          .titleMenu{
-            width: 100%;
-            height: 15%;
-            border: 2px solid;
-            color: #00bbff;
 
-          }
-          .selectionMainContainer{
+          .titleMenu {
             width: 100%;
-            border: 2px solid #1a0808;
+            height: 50px;
+            border-bottom: 2px solid gainsboro;
+            margin-bottom: 20px;
+            @include text($mainTextStyle, 0.9rem, 1.2);
+            color: black;
+            font-weight: 700;
+          }
+
+          .selectionMainContainer {
+            width: 100%;
             display: flex;
             justify-content: space-between;
-            .titleColumn{
+            @include text($secondTextStyle, 14px, 26px);
+            color: black;
+
+            .titleColumn {
               width: 40%;
               display: flex;
               flex-direction: column;
-              .item{
+              background-color: #eaeaea;
+
+
+              .item {
                 height: 40px;
-                border: 2px solid gainsboro;
+                border-bottom: 1px solid gainsboro;
+                padding: 10px;
               }
             }
-            .descriptionColumn{
+
+            .descriptionColumn {
               width: 60%;
               display: flex;
               flex-direction: column;
-              .item{
+
+              .item {
+                padding: 10px;
+
                 height: 40px;
-                border: 2px solid gainsboro;
+                border-bottom: 1px solid gainsboro;
               }
 
             }
 
           }
         }
-        .viewFriends{
+
+        .viewFriends {
           width: 100%;
           height: 100%;
           display: flex;
           flex-wrap: wrap;
-          .friendContainer{
+
+          .friendContainer {
             width: 33%;
             height: 49%;
             display: flex;
@@ -203,27 +259,31 @@
             justify-content: center;
             align-items: center;
             border: 2px solid saddlebrown;
-            .ava{
+
+            .ava {
               width: 60px;
               height: 60px;
               border-radius: 30px;
               background-color: black;
             }
-            .name{
+
+            .name {
               width: 100%;
               height: 30px;
               text-align: center;
               border: 2px solid;
 
             }
-            .butt{
+
+            .butt {
               border: 2px solid;
 
               width: 100%;
               height: 60px;
               display: flex;
               justify-content: space-between;
-              .butItem{
+
+              .butItem {
                 border: 2px solid darkblue;
                 width: 49%;
                 height: 100%;
