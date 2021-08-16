@@ -45,8 +45,6 @@ export const Profile = () => {
 
                 </div>
 
-
-
                 <div className={s.buttons}>
                     <div className={s.buttonItem}>ddf</div>
                     <div className={s.buttonItem}>sd</div>
