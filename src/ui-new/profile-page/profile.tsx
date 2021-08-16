@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import s from "./profile.module.scss"
+import {NavLink} from "react-router-dom";
 
 export const Profile = () => {
     let [x, setX] =useState(true)
@@ -35,21 +36,33 @@ export const Profile = () => {
     return <div className={s.block}>
         <div className={s.backgroundImage}>
             <div className={s.topPart}>
-                <div className={s.avatarContainer}>
-                    <div className={s.avatar}>
-
+                <div className={s.avaName}>
+                    <div className={s.avatarContainer}>
+                        <div className={s.avatar}>
+                        </div>
                     </div>
+                    <div className={s.name}> Aastasia</div>
+
                 </div>
+
+
+
                 <div className={s.buttons}>
-                    <div className={s.buttonItem}>df</div>
+                    <div className={s.buttonItem}>ddf</div>
                     <div className={s.buttonItem}>sd</div>
                     <div className={s.buttonItem}>as</div>
+                    <NavLink to="/h" className={s.buttonItem}>
+                        Log
+                    </NavLink>
                 </div>
             </div>
         </div>
         <div className={s.mainBlock}>
             <div className={s.middlePart}>
-                <div className={s.name}> Aastasia</div>
+                <div className={s.firstInfo}>
+                    <div className={s.countFriends}> <p className={s.pp}>13</p> friends/общих</div>
+                    <div className={s.countFriends}><p className={s.pp}>looking</p> for a job</div>
+                </div>
                 <div className={s.menu}>
                     <div className={s.menuItem} onClick={xx}>profile</div>
                     <div className={s.menuItem}onClick={zz} >contacts</div>
@@ -94,52 +107,44 @@ export const Profile = () => {
                     {y && <div className={s.viewFriends}>
                         <div className={s.friendContainer}>
                             <div className={s.ava}></div>
-                            <div className={s.name}></div>
+                            <div className={s.name}>Hbj Kdscsdcd</div>
                             <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
+                                <div className={s.butItem}>foll/unf</div>
+                                <div className={s.butItem}> send sms</div>
                             </div>
+                            <div className={s.viewProfileFriend}>view profile</div>
+
                         </div>
                         <div className={s.friendContainer}>
                             <div className={s.ava}></div>
-                            <div className={s.name}></div>
+                            <div className={s.name}>LMklcjdksc JKNjnkjncs</div>
                             <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
+                                <div className={s.butItem}>foll/unf</div>
+                                <div className={s.butItem}> send sms</div>
                             </div>
+                            <div className={s.viewProfileFriend}>view profile</div>
+
                         </div>
                         <div className={s.friendContainer}>
                             <div className={s.ava}></div>
-                            <div className={s.name}></div>
+                            <div className={s.name}>JKl JK</div>
                             <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
+                                <div className={s.butItem}>foll/unf</div>
+                                <div className={s.butItem}> send sms</div>
                             </div>
+                            <div className={s.viewProfileFriend}>view profile</div>
+
                         </div>
                         <div className={s.friendContainer}>
                             <div className={s.ava}></div>
-                            <div className={s.name}></div>
+                            <div className={s.name}> Lfjejnfkje KNjn</div>
                             <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
+                                <div className={s.butItem}>foll/unf</div>
+                                <div className={s.butItem}> send sms</div>
                             </div>
+                            <div className={s.viewProfileFriend}>view profile</div>
                         </div>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}></div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
-                            </div>
-                        </div>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}></div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}></div>
-                                <div className={s.butItem}></div>
-                            </div>
-                        </div>
+
 
                     </div>}
                     {/*мои соц сети*/}
@@ -166,6 +171,27 @@ export const Profile = () => {
                     {w && <div className={s.viewProfile}>
                         <div className={s.titleMenu}> about me</div>
                         <div className={s.selectionMainContainer}>
+                            <div className={s.aboutMeField}>many info about me
+                                many info about me
+                                many info about me
+                                many info about me
+                                many info about me many info about me
+                                many info about me
+                                many info about me
+                                many info about me many info about me
+                                many info about me
+                                many info about me
+                                many info about me many info about me
+                                many info about me
+                                many info about me
+                                many info about me many info about me
+                                many info about me
+                                many info about me
+                                many info about me
+
+
+
+                            </div>
 
                         </div>
                     </div>}

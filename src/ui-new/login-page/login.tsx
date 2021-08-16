@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import s from "./login.module.scss"
+import {NavLink} from "react-router-dom";
+import style from "../../UI/component/Nav/Nav.module.css";
 
 export const Login = () => {
 
@@ -49,8 +51,9 @@ export const Login = () => {
                                 <p>Remember</p>
                             </div >
                             {on &&<div className={s.captcha}>captcha</div>}
-                            <button className={s.button}>Login In</button>
-
+                            <NavLink to="/profile" className={s.button}>
+                               Login In
+                            </NavLink>
                         </div>
                     </div>
                 </div>

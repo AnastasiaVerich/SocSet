@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   &::before {
     position: absolute;
     content: "";
@@ -28,6 +29,12 @@
     width: 800px;
     height: 60%;
     display: flex;
+    /*до тех пор, пока ширина от 0 до 550, мы выполняем это*/
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     .rightPart {
       width: 50%;
@@ -36,6 +43,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width: 800px) {
+       width: 360px;
+      }
 
       .pathContainer {
         width: 70%;
@@ -96,6 +106,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width: 800px) {
+        width: 360px;
+      }
 
       .pathContainer {
         width: 70%;
@@ -154,6 +167,9 @@
             width: 100%;
             background-color: $primaryColor;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
