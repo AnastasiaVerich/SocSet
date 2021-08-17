@@ -46,11 +46,14 @@ export const Profile = () => {
                 </div>
 
                 <div className={s.buttons}>
-                    <div className={s.buttonItem}>ddf</div>
-                    <div className={s.buttonItem}>sd</div>
-                    <div className={s.buttonItem}>as</div>
                     <NavLink to="/h" className={s.buttonItem}>
                         Log
+                    </NavLink>
+                    <NavLink to="/messages" className={s.buttonItem}>
+                        sms
+                    </NavLink>
+                    <NavLink to="/users" className={s.buttonItem}>
+                        users
                     </NavLink>
                 </div>
             </div>
@@ -62,7 +65,7 @@ export const Profile = () => {
                     <div className={s.countFriends}><p className={s.pp}>looking</p> for a job</div>
                 </div>
                 <div className={s.menu}>
-                    <div className={s.menuItem} onClick={xx}>profile</div>
+                    <div className={s.menuItem}  onClick={xx}>profile</div>
                     <div className={s.menuItem}onClick={zz} >contacts</div>
                     <div className={s.menuItem}  onClick={ww}>about me</div>
                     <div className={s.menuItem}onClick={yy}>friends</div>

@@ -2,6 +2,8 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import {Login} from "./login-page/login";
 import {Profile} from "./profile-page/profile";
+import {Messages} from "./messages-page/messages";
+import {Users} from "./users-page/users";
 
 
 
@@ -23,6 +25,10 @@ export const App =()=> {
 
                             <Route path='/profile'
                                    render={() => <Profile/>} />
+                            <Route path='/messages'
+                                   render={() => <Messages/>} />
+                            <Route path='/users'
+                                   render={() => <Users/>} />
                             <Route path='*'
                                       render={() => <Login/>}
                         />

@@ -1,0 +1,114 @@
+@import "../sass/variables";
+@import "../sass/mixins";
+
+
+.block {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 70%;
+    height: 80%;
+
+    .search {
+      border-bottom: 1px solid gainsboro;
+      width: 100%;
+      height: 15%;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+
+      .inp {
+        height: 40px;
+        background: none;
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      .spn {
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: $primaryColor;
+      }
+    }
+
+    .viewFriends {
+
+      width: 100%;
+      min-height: 85%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+
+      .friendContainer {
+        margin: 10px;
+        border-radius: 12px;
+        width: 200px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.04);
+
+
+        .ava {
+          width: 60px;
+          height: 60px;
+          border-radius: 30px;
+          background-color: black;
+        }
+
+        .name {
+          width: 100%;
+          height: 30px;
+          text-align: center;
+          @include text($mainTextStyle, 1rem, 1.2);
+          font-weight: 600;
+          color: black;
+        }
+
+        .butt {
+          width: 100%;
+          height: 60px;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+
+          .butItem {
+            border: 1px solid transparent;
+            border-radius: 1.25rem;
+            width: 80px;
+            height: 40px;
+            background: gainsboro;
+            @include text($secondTextStyle, 14px, 26px);
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .viewProfileFriend {
+          @include text($secondTextStyle, 14px, 26px);
+          height: 40px;
+          border: 1px solid transparent;
+          border-radius: 1.25rem;
+          width: 100%;
+          background-color: $primaryColor;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+  }
+}
