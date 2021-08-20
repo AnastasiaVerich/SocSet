@@ -10,10 +10,9 @@ import s from "../Common/FormsControl/forms.module.css"
 import {Grid, IconButton, Typography} from "@material-ui/core";
 import style from "./login.module.css"
 
-
+//login-form.tsx
 const maxLengthValidator = maxLength(50)
 const LoginForm = ({handleSubmit, error, x}: any) => {
-    console.log(error)
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -48,7 +47,7 @@ const LoginForm = ({handleSubmit, error, x}: any) => {
 
     )
 }
-
+// like a login.tsx
 export const Login = (props: any) => {
     const onSubmit = (formData: any) => {
 
@@ -68,16 +67,16 @@ export const Login = (props: any) => {
     </div>
 }
 
-
+//login-form.tsx
 const LoginReduxForm: any = reduxForm({
     form: 'Login'
 })(LoginForm)
 
+//login-container.tsx
 const mapStateToProps = (state: StoreStateType) => ({
     isAuth: state.auth.isAuthorization,
     captcha: state.auth.captchaURl
 })
-
 const mapDispatchToProps = (dispatch: any) => {
     return {
         login: (email: string, password: string, rememberMe: boolean, captcha: any) => {
@@ -85,6 +84,5 @@ const mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-
 export const LoginContainer = connect(
     mapStateToProps, mapDispatchToProps)(Login)

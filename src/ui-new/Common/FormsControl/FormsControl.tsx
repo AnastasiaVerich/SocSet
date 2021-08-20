@@ -31,11 +31,11 @@ export const Form = ({input, meta, el, ...props}: any) => {
 }
 
 export const createFormField = (placeholder: any, name: any, validator: any, component: any, props = {}, text = "") => (
-    <>
+    <div>
         <Field placeholder={placeholder}
                name={name}
                validate={validator}
                component={component}
                {...props}/> {text}
-    </>
+    </div>
 )

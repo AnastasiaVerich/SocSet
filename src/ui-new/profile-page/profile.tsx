@@ -189,9 +189,6 @@ export const Profile = () => {
                                 many info about me
                                 many info about me
                                 many info about me
-
-
-
                             </div>
 
                         </div>

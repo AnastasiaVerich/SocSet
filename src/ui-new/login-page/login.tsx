@@ -1,9 +1,19 @@
 import React, {useState} from 'react'
 import s from "./login.module.scss"
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import style from "../../UI/component/Nav/Nav.module.css";
+import {maxLength, requiredField} from "../../UI/utils/validators/validators";
+import {Field, reduxForm} from "redux-form";
+import {createFormField, Input} from "../../UI/component/Common/FormsControl/FormsControl";
+import {IconButton} from "@material-ui/core";
+import {LoginReduxForm} from "./login-form";
 
-export const Login = () => {
+export const Login = (props:any) => {
+    const onSubmit = (formData: any) => {
+
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+    }
+    if (props.isAuth) return <Redirect to={"/profile"}/>
 
     const on= false;
 
@@ -43,7 +53,10 @@ export const Login = () => {
                     <div className={s.pathContainer}>
                         <img  className={s.iconNetwork} src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"}/>
                         <div className={s.welcome}>Welcome</div>
-                        <div className={s.loginForm}>
+
+
+                        <LoginReduxForm onSubmit={onSubmit} x={props.captcha}/>
+                       {/* <div className={s.loginForm}>
                             <input className={s.input}/>
                             <input className={s.input}/>
                             <div className={s.rememberMe}>
@@ -54,7 +67,10 @@ export const Login = () => {
                             <NavLink to="/profile" className={s.button}>
                                Login In
                             </NavLink>
-                        </div>
+                        </div>*/}
+
+
+
                     </div>
                 </div>
 
@@ -63,3 +79,4 @@ export const Login = () => {
         </div>
     )
 }
+

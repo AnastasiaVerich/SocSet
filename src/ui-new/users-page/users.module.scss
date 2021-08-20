@@ -8,8 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
+
 
   .container {
+    background-color: #f0f0f0;
     width: 70%;
     height: 80%;
     @media screen and (max-width: 800px) {

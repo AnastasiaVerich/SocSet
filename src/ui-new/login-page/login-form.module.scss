@@ -1,0 +1,55 @@
+@import "../sass/variables";
+@import "../sass/mixins";
+
+
+.loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .input {
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    width: 100%;
+    background-color: rgb(232, 240, 254) !important;
+    margin-bottom: 10px;
+  }
+
+  .rememberMe {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include text($secondTextStyle, 14px, 26px);
+    color: #797575;
+
+    .checkbox {
+      margin-right: 5px;
+    }
+  }
+
+  .captcha {
+    width: 100%;
+    height: 100px;
+    background-color: #f0f0f0;
+    margin: 10px;
+  }
+
+
+  .button {
+    @include text($secondTextStyle, 14px, 26px);
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    width: 100%;
+    background-color: $primaryColor;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
