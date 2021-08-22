@@ -9,8 +9,8 @@ import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
 import {AboutMe} from "./menu-items/about-me/about-me";
 
 export const Profile = (props: any) => {
-    let[x, setX]=useState(false)
-    let[y, setY]=useState(true)
+    let[x, setX]=useState(true)
+    let[y, setY]=useState(false)
     let[z, setZ]=useState(false)
     let[w, setW]=useState(false)
 
@@ -54,21 +54,17 @@ export const Profile = (props: any) => {
                 <div className={s.menu}>
                     <div className={s.menuItem} onClick={() => {
                         setX(true); setY(false); setZ(false);setW(false)
-                    }}>profile
-                    </div>
+                    }}>profile</div>
                     <div className={s.menuItem} onClick={() => {
                         setX(false); setY(true); setZ(false);setW(false)
-                    }}>contacts
-                    </div>
+                    }}>contacts</div>
                     <div className={s.menuItem} onClick={() => {
                         setX(false); setY(false); setZ(true);setW(false)
 
-                    }}>about me
-                    </div>
+                    }}>about me</div>
                     <div className={s.menuItem} onClick={() => {
                         setX(false); setY(false); setZ(false);setW(true)
-                    }}>friends
-                    </div>
+                    }}>friends</div>
                 </div>
             </div>
             <div className={s.bottomPart}>

@@ -7,9 +7,8 @@ import {
     setUsersAC,
     unFollowTC,
     OneUsersType
-} from "../../../BLL/Reducers/users-reducer";
-import {StoreStateType} from "../../../BLL/store";
-import {Users} from "./Users";
+} from "../../BLL/Reducers/users-reducer";
+import {StoreStateType} from "../../BLL/store";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {compose} from "redux";
 import {
@@ -18,8 +17,9 @@ import {
     getIsFollowingProgress,
     getPageSize,
     getTotalUsersCount,
-     getUsersCreateSelector
-} from "../../../BLL/users-selectors";
+    getUsersCreateSelector
+} from "../../BLL/users-selectors";
+import {Users} from "./users";
 
 
 export type MapStateToPropsType = {
@@ -63,8 +63,8 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
 
     }
     componentDidUpdate(prevProps: Readonly<MapDispatchTopropsType & MapStateToPropsType>, prevState: Readonly<any>, snapshot?: any) {
-       if(this.props.isFollow!==prevProps.isFollow)
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow)
+        if(this.props.isFollow!==prevProps.isFollow)
+            this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow)
     }
 
 

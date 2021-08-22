@@ -14,10 +14,11 @@ export const UsersTalkedWith = (props: UsersType) => {
 
                     <NavLink to={'/dialogs/' + element.id} activeClassName={c.act}>
 
-                    <div className={style.photo}><img width={"50px"} height={"50px"}
-                                                      src={element.photos.small != null
-                                                          ? element.photos.small
-                                                          : no_image}/></div></NavLink>
+                        <div className={style.photo}><img width={"50px"} height={"50px"}
+                                                          src={element.photos.small != null
+                                                              ? element.photos.small
+                                                              : no_image}/></div>
+                    </NavLink>
                     <div className={style.info}>
                         <div className={style.userName}>{element.userName}</div>
                         <div className={style.sms}>типа сообщение с диалога и оно не влаз...</div>

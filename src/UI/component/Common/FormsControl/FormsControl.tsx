@@ -4,7 +4,7 @@ import {Field} from "redux-form";
 
 export const Textarea = ({input, meta, ...props}: any) => {
     const hasError = meta.touched && meta.error
-    return <div className={style.formControl + " " + (hasError ? style.error : "")}>
+    return <div  className={style.formControl + " " + (hasError ? style.error : "")}>
         <textarea {...input} {...props}/>
         <div>
             {hasError && <span>{meta.error}</span>}

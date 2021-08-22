@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {AppContainer} from './App';
+// import {AppContainer} from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./BLL/store";
 import {Provider} from "react-redux";
 import {BrowserRouter, HashRouter} from "react-router-dom";
 import {Login} from "./ui-new/login-page/login";
 import {Profile} from "./ui-new/profile-page/profile";
-import {App} from "./ui-new/App";
+import {AppContainer} from "./ui-new/App";
 import {Users} from "./ui-new/users-page/users";
 import {Messages} from "./ui-new/messages-page/messages";
 
@@ -22,7 +22,7 @@ ReactDOM.render(
 */}
 
 
-            <App/>
+            <AppContainer/>
 
 
         </BrowserRouter>

@@ -1,4 +1,4 @@
-import looading from '../../../assets/img/looading.gif'
+import looading from '../../assets/img/looading.gif'
 import React from "react";
 
 export const Preloader=()=>{

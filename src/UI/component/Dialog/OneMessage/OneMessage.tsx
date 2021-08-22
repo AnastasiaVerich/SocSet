@@ -11,15 +11,19 @@ type SmsType = {
 
 
 export const OneMessage = (props: SmsType) => {
-    return (<div >
+    return (<div>
             {props.authorazedUserId === props.senderId
-                ? <div className={`${style.container} ${style.smsMy}`}><div className={style.sms} >
-                    <b>{props.massageText}</b>
+                ?
+                <div className={`${style.container} ${style.smsMy}`}>
+                    <div className={style.sms}>
+                        <b>{props.massageText}</b>
+                    </div>
                 </div>
-            </div>
-                : <div className={`${style.container} ${style.smsOther}`}><div className={style.sms}>
-                    {props.massageText}
-                </div> </div>}
+                : <div className={`${style.container} ${style.smsOther}`}>
+                    <div className={style.sms}>
+                        {props.massageText}
+                    </div>
+                </div>}
         </div>
     )
 }

@@ -1,8 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import s from "./users.module.scss"
+import {OneUsersType} from "../../BLL/Reducers/users-reducer";
+import {OneUser} from "./one-user/oneUser";
 
-export const Users = () => {
+export const Users = (props:any) => {
 
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pagesize)
+    let pages = []
+
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
 
     return (
         <div className={s.block}>
@@ -14,129 +22,17 @@ export const Users = () => {
                     <div className={s.spn}></div>
                 </div>
                 <div className={s.viewFriends}>
-                    <div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div><div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>Hbj Kdscsdcd</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div>
-                    <div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>LMklcjdksc JKNjnkjncs</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-
-                    </div>
-                    <div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}>JKl JK</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-
-                    </div>
-                    <div className={s.friendContainer}>
-                        <div className={s.ava}></div>
-                        <div className={s.name}> Lfjejnfkje KNjn</div>
-                        <div className={s.butt}>
-                            <div className={s.butItem}>foll/unf</div>
-                            <div className={s.butItem}> send sms</div>
-                        </div>
-                        <div className={s.viewProfileFriend}>view profile</div>
-                    </div>
-
-
+                    {props.users.map((user: OneUsersType) =>
+                        <OneUser user={user}
+                                 unfollow={props.unfollow}
+                                 IsFollowingProgress={props.IsFollowingProgress}
+                                 follower={props.follower}
+                        />
+                    )
+                    }
                 </div>
             </div>
-
         </div>
     )
 }
+
