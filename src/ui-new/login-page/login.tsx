@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import s from "./login.module.scss"
-import {NavLink, Redirect} from "react-router-dom";
-import style from "../../UI/component/Nav/Nav.module.css";
-import {maxLength, requiredField} from "../../UI/utils/validators/validators";
-import {Field, reduxForm} from "redux-form";
-import {createFormField, Input} from "../../UI/component/Common/FormsControl/FormsControl";
-import {IconButton} from "@material-ui/core";
+import {Redirect} from "react-router-dom";
 import {LoginReduxForm} from "./login-form";
+import {reset} from "redux-form";
 
 export const Login = (props:any) => {
+/*    в месте вызова нашей компоненты с окончательной «редаксовской формой» теперь нужно повесить
+    произвольную функцию через onSubmit, которая соберет данные из полей из полей и обработает их при нажатии на кнопку:*/
     const onSubmit = (formData: any) => {
-
+        console.log(formData)//здесь мы получаем данные с формы и будем из диспатчить потом
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+        // dispatch(reset("profileAddPostForm")) для очистки полей в форме, в кавычках имя формы
     }
     if (props.isAuth) return <Redirect to={"/profile"}/>
 
@@ -34,14 +33,14 @@ export const Login = (props:any) => {
                             </div>
                         </div>
                         <div className={s.oneAdvantage}>
-                            <div className={s.icon}></div>
+                            <div className={s.icon}/>
                             <div className={s.description}>
                                 <div className={s.title}>Online shop</div>
                                 <div className={s.desc}>At vero eos et accusamus et.</div>
                             </div>
                         </div>
                         <div className={s.oneAdvantage}>
-                            <div className={s.icon}></div>
+                            <div className={s.icon}/>
                             <div className={s.description}>
                                 <div className={s.title}>Job search</div>
                                 <div className={s.desc}>At vero eos et accusamus et.</div>
@@ -53,24 +52,7 @@ export const Login = (props:any) => {
                     <div className={s.pathContainer}>
                         <img  className={s.iconNetwork} src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"}/>
                         <div className={s.welcome}>Welcome</div>
-
-
                         <LoginReduxForm onSubmit={onSubmit} x={props.captcha}/>
-                       {/* <div className={s.loginForm}>
-                            <input className={s.input}/>
-                            <input className={s.input}/>
-                            <div className={s.rememberMe}>
-                                <input className={s.checkbox} type="checkbox"/>
-                                <p>Remember</p>
-                            </div >
-                            {on &&<div className={s.captcha}>captcha</div>}
-                            <NavLink to="/profile" className={s.button}>
-                               Login In
-                            </NavLink>
-                        </div>*/}
-
-
-
                     </div>
                 </div>
 

@@ -8,6 +8,7 @@ import {Users} from "./users-page/users";
 import {Header} from "./header/header";
 import {Nav} from "./nav/nav";
 import {LoginContainer} from "./login-page/login-container";
+import ProfileContainerConnect from "./profile-page/profile-container";
 
 
 export const App = () => {
@@ -17,7 +18,7 @@ export const App = () => {
                 <Nav/>
                 <Switch>
                     <Route path='/profile'
-                           render={() => <Profile/>}/>
+                           render={() => <ProfileContainerConnect/>}/>
                     <Route path='/messages'
                            render={() => <Messages/>}/>
                     <Route path='/users'

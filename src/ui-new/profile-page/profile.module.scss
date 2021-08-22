@@ -329,6 +329,7 @@
           .selectionMainContainer {
             width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
             @include text($secondTextStyle, 14px, 26px);
             color: black;
@@ -338,34 +339,38 @@
               display: flex;
               flex-direction: column;
             }
-
-            .titleColumn {
-              width: 40%;
+            .oneContact{
               display: flex;
-              flex-direction: column;
-              background-color: #eaeaea;
+              .titleColumn {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                background-color: #eaeaea;
 
 
-              .item {
-                height: 40px;
-                border-bottom: 1px solid gainsboro;
-                padding: 10px;
+                .item {
+                  height: 40px;
+                  border-bottom: 1px solid gainsboro;
+                  padding: 10px;
+                }
+              }
+
+              .descriptionColumn {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+
+                .item {
+                  padding: 10px;
+
+                  height: 40px;
+                  border-bottom: 1px solid gainsboro;
+                }
+
               }
             }
 
-            .descriptionColumn {
-              width: 60%;
-              display: flex;
-              flex-direction: column;
 
-              .item {
-                padding: 10px;
-
-                height: 40px;
-                border-bottom: 1px solid gainsboro;
-              }
-
-            }
 
           }
         }

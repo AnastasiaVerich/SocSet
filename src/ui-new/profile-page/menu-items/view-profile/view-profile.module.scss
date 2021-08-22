@@ -1,0 +1,48 @@
+@import "../../../sass/variables";
+@import "../../../sass/mixins";
+
+.viewProfile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .titleMenu {
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid gainsboro;
+    margin-bottom: 20px;
+    @include text($mainTextStyle, 0.9rem, 1.2);
+    color: black;
+    font-weight: 700;
+  }
+
+  .selectionMainContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include text($secondTextStyle, 14px, 26px);
+    color: black;
+      .titleColumn {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        background-color: #eaeaea;
+        .item {
+          height: 40px;
+          border-bottom: 1px solid gainsboro;
+          padding: 10px;
+        }
+      }
+      .descriptionColumn {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        .item {
+          padding: 10px;
+          height: 40px;
+          border-bottom: 1px solid gainsboro;
+        }
+      }
+    }
+  }

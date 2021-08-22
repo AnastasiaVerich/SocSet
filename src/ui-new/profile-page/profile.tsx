@@ -1,47 +1,32 @@
 import React, {useState} from 'react'
 import s from "./profile.module.scss"
 import {NavLink} from "react-router-dom";
+import no_image from "../../UI/assets/img/no_image.png";
+import {Preloader} from "../../UI/component/Common/Preloader/Preloader";
+import {ViewProfile} from "./menu-items/view-profile/view-profile";
+import {ViewFrinds} from "./menu-items/view-friends/view-friends";
+import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
+import {AboutMe} from "./menu-items/about-me/about-me";
 
-export const Profile = () => {
-    let [x, setX] =useState(true)
-    let [y, setY] =useState(false)
-    let [z, setZ] =useState(false)
-    let [w, setW] =useState(false)
+export const Profile = (props: any) => {
+    let[x, setX]=useState(false)
+    let[y, setY]=useState(true)
+    let[z, setZ]=useState(false)
+    let[w, setW]=useState(false)
 
-    const xx=()=>{
-        setX(true);
-        setY(false);
-        setZ(false);
-        setW(false);
-    };
-    const yy=()=>{
-        setX(false);
-        setY(true);
-        setZ(false);
-        setW(false);
-    };
-    const zz=()=>{
-        setX(false);
-        setY(false);
-        setZ(true);
-        setW(false);
-    };
-    const ww=()=>{
-        setX(false);
-        setY(false);
-        setZ(false);
-        setW(true);
-    }
-
+    if (!props.profile) {
+        return <Preloader/>
+    } else {
     return <div className={s.block}>
         <div className={s.backgroundImage}>
             <div className={s.topPart}>
                 <div className={s.avaName}>
                     <div className={s.avatarContainer}>
-                        <div className={s.avatar}>
-                        </div>
+                        {props.profile.photos.large === null
+                            ? <img className={s.avatar} src={no_image}/>
+                            : <img className={s.avatar} src={props.profile.photos.large}/>}
                     </div>
-                    <div className={s.name}> Aastasia</div>
+                    <div className={s.name}> {props.profile.fullName}</div>
 
                 </div>
 
@@ -61,21 +46,38 @@ export const Profile = () => {
         <div className={s.mainBlock}>
             <div className={s.middlePart}>
                 <div className={s.firstInfo}>
-                    <div className={s.countFriends}> <p className={s.pp}>13</p> friends/общих</div>
-                    <div className={s.countFriends}><p className={s.pp}>looking</p> for a job</div>
+                    <div className={s.countFriends}><p className={s.pp}>0</p> frinds/общих</div>
+                    <div className={s.countFriends}><p
+                        className={s.pp}>{props.profile.lookingForAJob ? "yes" : "no"}</p> need job
+                    </div>
                 </div>
                 <div className={s.menu}>
-                    <div className={s.menuItem}  onClick={xx}>profile</div>
-                    <div className={s.menuItem}onClick={zz} >contacts</div>
-                    <div className={s.menuItem}  onClick={ww}>about me</div>
-                    <div className={s.menuItem}onClick={yy}>friends</div>
+                    <div className={s.menuItem} onClick={() => {
+                        setX(true); setY(false); setZ(false);setW(false)
+                    }}>profile
+                    </div>
+                    <div className={s.menuItem} onClick={() => {
+                        setX(false); setY(true); setZ(false);setW(false)
+                    }}>contacts
+                    </div>
+                    <div className={s.menuItem} onClick={() => {
+                        setX(false); setY(false); setZ(true);setW(false)
+
+                    }}>about me
+                    </div>
+                    <div className={s.menuItem} onClick={() => {
+                        setX(false); setY(false); setZ(false);setW(true)
+                    }}>friends
+                    </div>
                 </div>
             </div>
             <div className={s.bottomPart}>
                 <div className={s.info}>
                     <div className={s.firstInfo}>
-                        <div className={s.countFriends}> <p className={s.pp}>13</p> friends/общих</div>
-                        <div className={s.isFindWork}><p className={s.pp}>looking</p> for a job</div>
+                        <div className={s.countFriends}><p className={s.pp}>13</p> friends/общих</div>
+                        <div className={s.isFindWork}><p
+                            className={s.pp}>{props.profile.lookingForAJob ? "yes" : "no"}</p> need job
+                        </div>
                     </div>
                     <div className={s.secondInfo}>
                         <div className={s.title}> My Photos</div>
@@ -84,115 +86,13 @@ export const Profile = () => {
                 </div>
                 <div className={s.menuSelection}>
                     {/* посмотреть профиль*/}
-                    {x && <div className={s.viewProfile}>
-                        <div className={s.titleMenu}> View Profile</div>
-                        <div className={s.selectionMainContainer}>
-                            <div className={s.titleColumn}>
-                                <div className={s.item}>Name</div>
-                                <div className={s.item}>Day of Birth</div>
-                                <div className={s.item}>Sex</div>
-                                <div className={s.item}>City</div>
-                                <div className={s.item}>Country</div>
-                            </div>
-                            <div className={s.descriptionColumn}>
-                                <div className={s.item}>Anastasia</div>
-                                <div className={s.item}>18.11.1996</div>
-                                <div className={s.item}>W</div>
-                                <div className={s.item}>Minsk</div>
-                                <div className={s.item
-                                }>Belarus</div>
-                            </div>
-                        </div>
-                    </div>}
+                    {x && <ViewProfile profile={props.profile}/> }
                     {/*посмотреть друзей*/}
-                    {y && <div className={s.viewFriends}>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}>Hbj Kdscsdcd</div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}>foll/unf</div>
-                                <div className={s.butItem}> send sms</div>
-                            </div>
-                            <div className={s.viewProfileFriend}>view profile</div>
-
-                        </div>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}>LMklcjdksc JKNjnkjncs</div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}>foll/unf</div>
-                                <div className={s.butItem}> send sms</div>
-                            </div>
-                            <div className={s.viewProfileFriend}>view profile</div>
-
-                        </div>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}>JKl JK</div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}>foll/unf</div>
-                                <div className={s.butItem}> send sms</div>
-                            </div>
-                            <div className={s.viewProfileFriend}>view profile</div>
-
-                        </div>
-                        <div className={s.friendContainer}>
-                            <div className={s.ava}></div>
-                            <div className={s.name}> Lfjejnfkje KNjn</div>
-                            <div className={s.butt}>
-                                <div className={s.butItem}>foll/unf</div>
-                                <div className={s.butItem}> send sms</div>
-                            </div>
-                            <div className={s.viewProfileFriend}>view profile</div>
-                        </div>
-
-
-                    </div>}
+                    {w && <ViewFrinds/>}
                     {/*мои соц сети*/}
-                    {z && <div className={s.viewProfile}>
-                        <div className={s.titleMenu}> My contacts</div>
-                        <div className={s.selectionMainContainer}>
-                            <div className={s.titleColumn}>
-                                <div className={s.item}>vk</div>
-                                <div className={s.item}>faceboock</div>
-                                <div className={s.item}>twetter</div>
-                                <div className={s.item}>git</div>
-                                <div className={s.item}>toytube</div>
-                            </div>
-                            <div className={s.descriptionColumn}>
-                                <div className={s.item}>Anastasia.com</div>
-                                <div className={s.item}>111111111.u</div>
-                                <div className={s.item}>Wjkjhjhjk.by</div>
-                                <div className={s.item}>zsxfdcghjbkml.5.vj</div>
-                                <div className={s.item}>muui.hu</div>
-                            </div>
-                        </div>
-                    </div>}
+                    {y && <ViewContacts profile={props.profile}/>}
                     {/*обо мне*/}
-                    {w && <div className={s.viewProfile}>
-                        <div className={s.titleMenu}> about me</div>
-                        <div className={s.selectionMainContainer}>
-                            <div className={s.aboutMeField}>many info about me
-                                many info about me
-                                many info about me
-                                many info about me
-                                many info about me many info about me
-                                many info about me
-                                many info about me
-                                many info about me many info about me
-                                many info about me
-                                many info about me
-                                many info about me many info about me
-                                many info about me
-                                many info about me
-                                many info about me many info about me
-                                many info about me
-                                many info about me
-                                many info about me
-                            </div>
-
-                        </div>
-                    </div>}
+                    {z && <AboutMe profile={props.profile}/>}
                 </div>
             </div>
         </div>
@@ -200,3 +100,5 @@ export const Profile = () => {
 
     </div>
 }
+}
+
