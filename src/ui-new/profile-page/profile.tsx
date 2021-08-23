@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import s from "./profile.module.scss"
 import {NavLink} from "react-router-dom";
 import no_image from "../../UI/assets/img/no_image.png";
-import {Preloader} from "../../UI/component/Common/Preloader/Preloader";
+import {Preloader} from "../Common/pr/Preloader";
 import {ViewProfile} from "./menu-items/view-profile/view-profile";
 import {ViewFrinds} from "./menu-items/view-friends/view-friends";
 import {ViewContacts} from "./menu-items/view-contacts/view-contacts";

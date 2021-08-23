@@ -9,7 +9,6 @@ import {
     OneUsersType
 } from "../../BLL/Reducers/users-reducer";
 import {StoreStateType} from "../../BLL/store";
-import {Preloader} from "../Common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPages,
@@ -20,6 +19,7 @@ import {
     getUsersCreateSelector
 } from "../../BLL/users-selectors";
 import {Users} from "./users";
+import {Preloader} from "../Common/pr/Preloader";
 
 
 export type MapStateToPropsType = {

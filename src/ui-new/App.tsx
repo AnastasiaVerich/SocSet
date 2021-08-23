@@ -12,7 +12,7 @@ import {LoginContainer} from "./login-page/login-container";
 import ProfileContainerConnect from "./profile-page/profile-container";
 */
 import {UsersContainer} from "./users-page/users-container";
-import {Preloader} from "../UI/component/Common/Preloader/Preloader";
+import {Preloader} from "./Common/pr/Preloader";
 import {HeaderConteiner} from "../UI/component/Header/HeaderConteiner";
 import {WithSuspenseHOC} from "../UI/HOC/WithSuspense";
 import {StoreStateType} from "../BLL/store";

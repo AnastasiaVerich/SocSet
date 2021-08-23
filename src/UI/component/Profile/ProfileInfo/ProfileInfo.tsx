@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Preloader} from "../../Common/Preloader/Preloader";
+import {Preloader} from "../../../../ui-new/Common/pr/Preloader";
 import {ProfileStatusHOC} from "./any/Status/ProfileStatusHOC";
 import no_image from "../../../assets/img/no_image.png"
 import {UserInfoEditForm} from "./any/UserInfoEdit";

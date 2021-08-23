@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import s from "./messages.module.scss"
-import {Preloader} from "../../UI/component/Common/Preloader/Preloader";
+import {Preloader} from "../Common/pr/Preloader";
 import {UsersTalkedWith} from "../../UI/component/Dialog/UsersTalkedWith";
 import {IconButton} from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";

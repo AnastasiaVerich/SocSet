@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import style from './Dialog.module.css';
 import {NavLink} from "react-router-dom";
-import {Preloader} from "../Common/Preloader/Preloader";
+import {Preloader} from "../../../ui-new/Common/pr/Preloader";
 import {IconButton} from "@material-ui/core";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import {Messages} from "./Messages";

@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeTC} from "./BLL/Reducers/app-reducer";
 import {StoreStateType} from "./BLL/store";
-import {Preloader} from "./UI/component/Common/Preloader/Preloader";
+import {Preloader} from "./ui-new/Common/pr/Preloader";
 import {WithSuspenseHOC} from "./UI/HOC/WithSuspense";
 import {AppBar, Button, Container, Grid, IconButton, MenuItem, Paper, Toolbar, Typography} from "@material-ui/core";
 

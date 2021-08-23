@@ -26,7 +26,7 @@
 
       border-right: 1px solid gainsboro;
       height: 100%;
-      width: 30%;
+      min-width: 30%;
       display: flex;
       flex-direction: column;
 
@@ -49,7 +49,7 @@
         padding: 10px;
 
         width: 100%;
-        height: 70px;
+        height: 10%;
         display: flex;
         align-items: center;
         @media screen and (max-width: 992px) {
@@ -94,10 +94,27 @@
       }
 
       .users {
-        height: 80%;
+        height: 90%;
         width: 100%;
         display: flex;
         flex-direction: column;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: 10px;
+          background-color: #f9f9fd;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background-color: #18aaaa;
+        }
+
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+          border-radius: 10px;
+          background-color: #f9f9fd;
+        }
+
         @media screen and (max-width: 992px) {
           width: 300px;
           background-color: gainsboro;
@@ -106,7 +123,7 @@
 
         .user {
           border-bottom: 1px solid gainsboro;
-          width: 100%;
+          width: 90%;
           height: 70px;
           display: flex;
 
@@ -202,7 +219,7 @@
 
       .userSelected {
         width: 100%;
-        height: 70px;
+        height: 10%;
         display: flex;
         align-items: center;
         border-bottom: 1px solid gainsboro;
@@ -225,9 +242,10 @@
 
       .chat {
         width: 100%;
-        height: 100%;
+        height: 90%;
         display: flex;
         flex-direction: column;
+        justify-content: flex-end;
 
         .chatField {
           padding: 10px;
@@ -235,8 +253,24 @@
           width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
+          justify-content: flex-start;
           border-bottom: 1px solid gainsboro;
+          overflow-y: scroll;
+          &::-webkit-scrollbar {
+            width: 10px;
+            background-color: #f9f9fd;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #18aaaa;
+          }
+
+          &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            background-color: #f9f9fd;
+          }
 
           .field {
             margin: 1px;
