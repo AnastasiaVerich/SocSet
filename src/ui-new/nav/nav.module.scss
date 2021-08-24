@@ -1,13 +1,30 @@
 .block{
-  min-width: 80px;
+  width: 80px;
   height: 100vh;
   background-color: #f0f0f0;
   display: flex;
   align-items: flex-start;
+  @media screen and (max-width: 992px) {
+
+    transition-duration: 500ms;
+    transform: translate(80%);
+    border: none;
+  }
+
+  &:hover {
+    transition-duration: 500ms;
+    transform: translate(0);
+
+  }
   .container{
+    width: 100%;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 992px) {
+      //display: none;
+      width: 200px;
+    }
     .item{
       width: 80px;
       height: 80px;
@@ -15,6 +32,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width: 992px) {
+        //display: none;
+        width: 100%;
+      }
 
     }
   }
