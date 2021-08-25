@@ -166,27 +166,11 @@
           border-bottom: 2px solid gainsboro;
 
 
-          .countFriends {
-            @include text($secondTextStyle, 14px, 26px);
-            color: black;
-            width: 49%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            .pp {
-              font-size: 18px;
-              color: $primaryColor;
-            }
-          }
-
           .isFindWork {
             @include text($secondTextStyle, 14px, 26px);
             color: black;
 
-            width: 49%;
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -237,27 +221,13 @@
           border-bottom: 2px solid gainsboro;
 
 
-          .countFriends {
-            @include text($secondTextStyle, 14px, 26px);
-            color: black;
-            width: 49%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
 
-            .pp {
-              font-size: 18px;
-              color: $primaryColor;
-            }
-          }
 
           .isFindWork {
             @include text($secondTextStyle, 14px, 26px);
             color: black;
 
-            width: 49%;
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;

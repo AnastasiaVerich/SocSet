@@ -56,9 +56,7 @@ class App extends React.Component<any, any> {
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (<div className={s.block}>
-{/*
                 <HeaderConteiner/>
-*/}
                 <div className={s.container}>
                     <Nav/>
                     <Switch>

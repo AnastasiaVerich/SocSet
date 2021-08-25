@@ -7,6 +7,9 @@ import {ViewProfile} from "./menu-items/view-profile/view-profile";
 import {ViewFrinds} from "./menu-items/view-friends/view-friends";
 import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
 import {AboutMe} from "./menu-items/about-me/about-me";
+import {ViewFriendsContainer} from "./menu-items/view-friends/view-friends-container";
+import c from "../../UI/component/Nav/Nav.module.css";
+import style from "../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
 
 export const Profile = (props: any) => {
     let[x, setX]=useState(true)
@@ -31,14 +34,13 @@ export const Profile = (props: any) => {
                 </div>
 
                 <div className={s.buttons}>
-                    <NavLink to="/h" className={s.buttonItem}>
-                        Log
-                    </NavLink>
-                    <NavLink to="/messages" className={s.buttonItem}>
+                    { <div className={s.buttonItem}
+                            onClick={() => {
+                                props.follower(props.profile.userId)
+                            }
+                            }>Follow</div>}
+                    <NavLink to={'/messages/' + props.profile.userId} className={s.buttonItem}>
                         sms
-                    </NavLink>
-                    <NavLink to="/users" className={s.buttonItem}>
-                        users
                     </NavLink>
                 </div>
             </div>
@@ -46,7 +48,6 @@ export const Profile = (props: any) => {
         <div className={s.mainBlock}>
             <div className={s.middlePart}>
                 <div className={s.firstInfo}>
-                    <div className={s.countFriends}><p className={s.pp}>0</p> frinds/общих</div>
                     <div className={s.countFriends}><p
                         className={s.pp}>{props.profile.lookingForAJob ? "yes" : "no"}</p> need job
                     </div>
@@ -70,7 +71,6 @@ export const Profile = (props: any) => {
             <div className={s.bottomPart}>
                 <div className={s.info}>
                     <div className={s.firstInfo}>
-                        <div className={s.countFriends}><p className={s.pp}>13</p> friends/общих</div>
                         <div className={s.isFindWork}><p
                             className={s.pp}>{props.profile.lookingForAJob ? "yes" : "no"}</p> need job
                         </div>
@@ -84,7 +84,7 @@ export const Profile = (props: any) => {
                     {/* посмотреть профиль*/}
                     {x && <ViewProfile profile={props.profile}/> }
                     {/*посмотреть друзей*/}
-                    {w && <ViewFrinds/>}
+                    {w && <ViewFriendsContainer/>}
                     {/*мои соц сети*/}
                     {y && <ViewContacts profile={props.profile}/>}
                     {/*обо мне*/}

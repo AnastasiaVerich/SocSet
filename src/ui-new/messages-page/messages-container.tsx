@@ -7,15 +7,18 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {WithAuthRedirect} from "../../UI/HOC/WithAuthRedirect";
 import {Messages} from "./messages";
+import {getOneProfileTC} from "../../BLL/Reducers/profile-reducer";
 
-let mapStateToProps = (state: StoreStateType): StateTypeDialog => {
+let mapStateToProps = (state: StoreStateType) => {
     return {
         messages: state.dialog.messages,
         authorizationUserId: state.auth.userId,
-        users: state.dialog.users
+        users: state.dialog.users,
+        profile: state.profile.profile,
+
     }
 }
-let mapDispatchToProps = (dispatch: any):DispatchTypeDialog  => {
+let mapDispatchToProps = (dispatch: any)  => {
     return {
         selectedDialogMessages: (id: number, currentPages: any, pagesize: any) => {
             dispatch(getSelectedDialogTC(id, currentPages,pagesize))
@@ -25,7 +28,9 @@ let mapDispatchToProps = (dispatch: any):DispatchTypeDialog  => {
         },
         usersTalkedWith: () => {
             dispatch(getUsersTalkedWithTC())
-        }
+        }, getOneProfile: (id: number) => {
+            dispatch(getOneProfileTC(id))
+        },
     }
 }
 const MessagesContainer: any = compose(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Messages)

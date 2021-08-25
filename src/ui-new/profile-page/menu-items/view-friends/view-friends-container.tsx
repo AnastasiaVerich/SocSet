@@ -1,26 +1,24 @@
-import React from 'react';
-import {connect} from "react-redux";
 import {
-    followTC, getUsersTC, toggleFollowAC,
-    setCurrentPageAC, toggleIsFetchingAC, setUserIdForDisabledAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unFollowTC,
-    OneUsersType
-} from "../../BLL/Reducers/users-reducer";
-import {StoreStateType} from "../../BLL/store";
-import {compose} from "redux";
+    followTC, getUsersTC,
+    OneUsersType,
+    setCurrentPageAC,
+    setTotalUsersCountAC, setUserIdForDisabledAC,
+    setUsersAC, toggleFollowAC, toggleIsFetchingAC,
+    unFollowTC
+} from "../../../../BLL/Reducers/users-reducer";
+import {StoreStateType} from "../../../../BLL/store";
 import {
-    getCurrentPages,
-    getIsFetching,
-    getIsFollowingProgress,
+    getCurrentPages, getIsFetching, getIsFollowingProgress,
     getPageSize,
     getTotalUsersCount,
     getUsersCreateSelector
-} from "../../BLL/users-selectors";
-import {Users} from "./users";
-import {Preloader} from "../Common/pr/Preloader";
-
+} from "../../../../BLL/users-selectors";
+import React from "react";
+import {Preloader} from "../../../Common/pr/Preloader";
+import {Users} from "../../../users-page/users";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {ViewFrinds} from "./view-friends";
 
 export type MapStateToPropsType = {
     users: OneUsersType[]
@@ -59,7 +57,7 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
 
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, false)
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, true)
 
     }
     componentDidUpdate(prevProps: Readonly<MapDispatchTopropsType & MapStateToPropsType>, prevState: Readonly<any>, snapshot?: any) {
@@ -76,11 +74,10 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     }
 
     render() {
-
         return <>
             {this.props.isFetching ? <Preloader/> : null}
 
-            <Users users={this.props.users}
+            <ViewFrinds users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPages={this.props.currentPages}
                    pagesize={this.props.pagesize}
@@ -90,12 +87,12 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
                    IsFollowingProgress={this.props.IsFollowingProgress}
                    setIsFollowingProgress={this.props.setIsFollowingProgress}
                    isFollow={this.props.isFollow}
-                   FiendsAC={this.props.FiendsAC}/>
+                   />
         </>
     }
 }
 
-export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
+export const ViewFriendsContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
 
     follower:followTC,
     unfollow: unFollowTC,
@@ -108,5 +105,3 @@ export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateT
     FiendsAC: toggleFollowAC
     //getUsersThunk: getFriendsThunkCreater
 }))(UsersAPI)
-
-

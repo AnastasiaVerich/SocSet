@@ -21,6 +21,7 @@ export const Messages = (props: any) => {
         if (recipientId) {
 
             props.selectedDialogMessages(recipientId, 1, 20)
+            props.getOneProfile(recipientId)
         }
     }, [recipientId])
     useEffect(() => {
@@ -46,12 +47,11 @@ export const Messages = (props: any) => {
             ? <Users users={props.users}/>
             : <div>нет диалогов</div>
     }
-
     return (
         <div className={s.block}>
             <div className={s.container}>
                 <div className={s.chats}>
-                    <div  className={s.butMenu} >
+                    <div className={s.butMenu}>
                         <div className={s.d1}></div>
                         <div className={s.d2}></div>
                         <div className={s.d3}></div>
@@ -72,13 +72,17 @@ export const Messages = (props: any) => {
                     </div>
                 </div>
                 <div className={s.selectedChat}>
-                    <div className={s.userSelected}>
-                        <div className={s.ava2}></div>
-                        <div className={s.name2}> Anastasia Sinkevich</div>
-                    </div>
+                    {props.profile != null
+                        ?
+                        <div className={s.userSelected}>
+                            <div className={s.ava2}></div>
+                            <div className={s.name2}>{props.profile.fullName}</div>
+                        </div>
+                        :<></>
+                    }
                     <div className={s.chat}>
                         {fieldMessages()}
-                            <SendMessageReduxForm onSubmit={sendMessage}/>
+                        <SendMessageReduxForm onSubmit={sendMessage}/>
                     </div>
                 </div>
             </div>
@@ -111,10 +115,12 @@ const Users = (props: any) => {
     )
 }
 
-const MessagesWithOneUser=(props: any)=>{
-    return(<div className={s.chatField} >
-        {props.messages.map((element: any) =>
-                <div key={element.id} className={s.field} >
+const MessagesWithOneUser = (props: any) => {
+
+
+    return (<div className={s.chatField}>
+            {props.messages.map((element: any) =>
+                <div key={element.id} className={s.field}>
                     {props.authorizationUserId === element.senderId
                         ?
                         <div className={s.my}><p className={s.sms}>{element.body}</p></div>
@@ -129,14 +135,14 @@ const MessagesWithOneUser=(props: any)=>{
 
 const maxLengthCreator = maxLength(10)
 
-const SendMessageForm=(props: any)=>{
-    return(
+const SendMessageForm = (props: any) => {
+    return (
         <form onSubmit={props.handleSubmit} className={s.sendField}>
             <Field placeholder="Enter sms"
                    component={Textarea}
                    name={"massages"}
                    validate={[requiredField, maxLengthCreator]}
-                   props={{ className: s.printMess }}
+                   props={{className: s.printMess}}
             />
             <button type='submit' className={s.sendMess}>Send</button>
         </form>

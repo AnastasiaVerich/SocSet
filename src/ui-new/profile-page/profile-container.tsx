@@ -12,6 +12,7 @@ import {
     updatePhotoTC,
     updateStatusTC
 } from "../../BLL/Reducers/profile-reducer";
+import {followTC} from "../../BLL/Reducers/users-reducer";
 
 
 class ProfileConteiner extends React.Component<any, any>{
@@ -46,7 +47,8 @@ class ProfileConteiner extends React.Component<any, any>{
                      status={this.props.status}
                      updateStatus={this.props.updateStatus}
                      updatePhoto={this.props.updatePhoto}
-                     updateInfoProfile={this.props.updateInfoProfile}/>
+                     updateInfoProfile={this.props.updateInfoProfile}
+                     follower={this.props.follower}/>
         )
     }
 }
@@ -83,6 +85,7 @@ let mapDispatchToProps = (dispatch: any)  => {
 
 const ProfileContainerConnect:any= compose(
     connect (mapStateToprops,{
+        follower:followTC,
         getOneProfile:getOneProfileTC,
         getStatus:getStatusTC,
         updateStatus: updateStatusTC,
