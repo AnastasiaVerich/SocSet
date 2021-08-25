@@ -51,7 +51,7 @@ export const Profile = (props: any) => {
                 <div className={s.middlePart}>
                     <div className={s.firstInfo}>
                         <div className={s.countFriends}><p
-                            className={s.pp}>{props.profile.lookingForAJob ? "yes " : "no "}</p> need job
+                            className={s.pp}>{props.profile.lookingForAJob ? "I am looking for a job" : "I am not looking for a job"}</p>
                         </div>
                     </div>
                     <div className={s.menu}>

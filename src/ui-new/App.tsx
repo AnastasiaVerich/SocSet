@@ -29,8 +29,6 @@ const MessagesContainer = React.lazy(() => import('./messages-page/messages-cont
 const ProfileContainerConnect = React.lazy(() => import('./profile-page/profile-container'));
 
 
-
-
 class App extends React.Component<any, any> {
 // componentDidMount срабатывает один раз, когда К. вмонтируется
     catchAllUnhandleError = (promiseRejectEvent: PromiseRejectionEvent) => {
@@ -56,13 +54,20 @@ class App extends React.Component<any, any> {
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (<div className={s.block}>
-                {window.location.pathname !== '/login' ? <HeaderConteiner/> : null}
+                {window.location.pathname === '/'
+                || window.location.pathname === '/login'
+                    ? null
+                    : <HeaderConteiner/>}
 
                 <div className={s.container}>
-                    {window.location.pathname !== '/login' ? <Nav/> : null}
+                    {window.location.pathname === '/'
+                    || window.location.pathname === '/login'
+                        ? null
+                        : <Nav/>}
 
 
                     <Switch>
+
                         <Route path='/profile/:userID?'
                                render={WithSuspenseHOC(ProfileContainerConnect)}/>
                         <Route path='/messages/:userID?'
@@ -71,8 +76,10 @@ class App extends React.Component<any, any> {
                                render={() => <UsersContainer/>}/>
                         <Route path='/login'
                                render={() => <LoginContainer/>}/>
-                        <Route path='*'
+                        <Route path='/'
                                render={() => <LoginContainer/>}/>
+                        <Route path='*'
+                               render={() => <>not found</>}/>
 
                     </Switch>
                 </div>
