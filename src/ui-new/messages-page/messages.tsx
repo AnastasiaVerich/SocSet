@@ -8,8 +8,8 @@ import {NavLink} from "react-router-dom";
 import no_image from "../../UI/assets/img/no_image.png";
 import {AddMessagesReduxForm} from "../../UI/component/Dialog/AddMessagesReduxForm";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../UI/component/Common/FormsControl/FormsControl";
 import {maxLength, requiredField} from "../../UI/utils/validators/validators";
+import {Textarea} from "../Common/FormsControl/FormsControl";
 
 export const Messages = (props: any) => {
 
@@ -72,7 +72,7 @@ export const Messages = (props: any) => {
                     </div>
                 </div>
                 <div className={s.selectedChat}>
-                    {props.profile != null
+                    {props.profile!= null && recipientId !== undefined
                         ?
                         <div className={s.userSelected}>
                             <div className={s.ava2}></div>

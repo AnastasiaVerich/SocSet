@@ -8,15 +8,7 @@ import {NavLink} from "react-router-dom";
 export const ViewFrinds = (props: any) => {
     return (
         <div className={s.viewFriends}>
-            <div className={s.friendContainer}>
-                <div className={s.ava}></div>
-                <div className={s.name}>Hbj Kdscsdcd</div>
-                <div className={s.butt}>
-                    <div className={s.butItem}>foll/unf</div>
-                    <div className={s.butItem}> send sms</div>
-                </div>
-                <div className={s.viewProfileFriend}>view profile</div>
-            </div>
+
             {props.users.map((user: OneUsersType) =>
                 <div className={s.friendContainer}>
                     <img className={s.ava}
@@ -39,11 +31,12 @@ export const ViewFrinds = (props: any) => {
                                         props.follower(user.id)
                                     }
                                     }>Follow</button>}
-                        <div className={s.butItem}> send sms</div>
-                    </div>
+                        <NavLink to={'/messages/' + user.id} className={s.butItem}>
+                            sms
+                        </NavLink></div>
                     <NavLink className={s.viewProfileFriend} to={'/profile/' + user.id}>
                         view profile
-                    </NavLink>                </div>
+                    </NavLink></div>
             )
             }
         </div>

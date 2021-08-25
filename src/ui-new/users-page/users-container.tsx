@@ -76,10 +76,9 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     }
 
     render() {
-
-        return <>
-            {this.props.isFetching ? <Preloader/> : null}
-
+        if (this.props.isFetching ) {
+            return <Preloader/>
+        } else return <>
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPages={this.props.currentPages}

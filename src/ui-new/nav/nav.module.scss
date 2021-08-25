@@ -1,22 +1,25 @@
-.block{
-  width: 300px;
-  min-width: 300px;
+.block {
+  width: 80px;
   height: 100vh;
   background-color: #f0f0f0;
   display: flex;
   align-items: flex-start;
   @media screen and (max-width: 992px) {
+    width: 300px;
+    min-width: 300px;
     /* сдвигаем (прячем) панель относительно левого края страницы */
     transform: translate(300px);
     transition-duration: 500ms;
     position: fixed;
     z-index: 2001;
   }
+
   &:hover {
     transition-duration: 500ms;
     transform: translate(0);
 
   }
+
   .butMenu {
     display: none;
     @media screen and (max-width: 992px) {
@@ -25,29 +28,33 @@
       transform: translate(-35px);
 
       div {
-          width: 35px;
-          height: 5px;
-          background-color: #333;
-          margin: 6px 0;
-          transition: 0.4s;
+        width: 35px;
+        height: 5px;
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
 
       }
     }
+
     &:hover {
 
-      .d1{
-        transform: rotate(-45deg) translate(-9px, 6px) ;
+      .d1 {
+        transform: rotate(-45deg) translate(-9px, 6px);
       }
-      .d2{
+
+      .d2 {
         opacity: 0;
       }
-      .d3{
-        transform: rotate(45deg) translate(-8px, -8px) ;
+
+      .d3 {
+        transform: rotate(45deg) translate(-8px, -8px);
       }
 
     }
   }
-  .container{
+
+  .container {
     width: 100%;
     margin-top: 40px;
     display: flex;
@@ -56,18 +63,25 @@
     //  //display: none;
     //  width: 200px;
     //}
-    .item{
+    .item {
       width: 80px;
       height: 80px;
-      border: 2px solid;
+      border-bottom: 1px solid gainsboro;
       display: flex;
       justify-content: center;
       align-items: center;
-      //@media screen and (max-width: 992px) {
-      //  //display: none;
-      //  width: 100%;
-      //}
+      @media screen and (max-width: 992px) {
+        //display: none;
+        width: 100%;
+      }
+    }
 
+    .logOut {
+      display: none;
+      @media screen and (max-width: 992px) {
+        display: block;
+        width: 100%;
+      }
     }
   }
 }

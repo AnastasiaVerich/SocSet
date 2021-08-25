@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./app.module.scss"
-import {Redirect, Route, Switch, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, useLocation, withRouter} from "react-router-dom";
 import {Login} from "./login-page/login";
 import {Profile} from "./profile-page/profile";
 import {Messages} from "./messages-page/messages";
@@ -56,9 +56,12 @@ class App extends React.Component<any, any> {
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (<div className={s.block}>
-                <HeaderConteiner/>
+                {window.location.pathname !== '/login' ? <HeaderConteiner/> : null}
+
                 <div className={s.container}>
-                    <Nav/>
+                    {window.location.pathname !== '/login' ? <Nav/> : null}
+
+
                     <Switch>
                         <Route path='/profile/:userID?'
                                render={WithSuspenseHOC(ProfileContainerConnect)}/>

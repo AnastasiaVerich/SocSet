@@ -26,9 +26,7 @@ export const Header = (props: any) => {
                                 LogOut
                             </NavLink>
                         </>
-                        : <NavLink to="/*" className={s.btn} onClick={()=>{}} >
-                            Login
-                        </NavLink>}</div>
+                        : <></>}</div>
 
 
             </div>

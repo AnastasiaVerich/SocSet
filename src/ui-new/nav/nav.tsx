@@ -1,10 +1,15 @@
 import React from 'react';
 import s from "./nav.module.scss"
 import {NavLink} from "react-router-dom";
+import {logoutTC} from "../../BLL/Reducers/authorization-reducer";
+import {useDispatch} from "react-redux";
 
 
 export const Nav = () => {
-
+    const dispatch=useDispatch()
+    const logOut= () => {
+        dispatch(logoutTC())
+    }
     return (<div className={s.block}>
 
         <div  className={s.butMenu}  >
@@ -30,7 +35,9 @@ export const Nav = () => {
                 </NavLink>
             </div>
             <div className={s.item}>Set</div>
-
+            <NavLink to="/login" className={s.logOut} onClick={()=>logOut()}>
+                LogOut
+            </NavLink>
         </div>
     </div>)
 }

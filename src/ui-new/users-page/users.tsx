@@ -21,7 +21,6 @@ export const Users = (props:any) => {
                            placeholder={"Search Members"}></input>
                     <div className={s.spn}></div>
                 </div>
-                <button onClick={()=>{props.FiendsAC(true)}}>show all</button>
 
                 <div className={s.viewFriends}>
                     {props.users.map((user: OneUsersType) =>

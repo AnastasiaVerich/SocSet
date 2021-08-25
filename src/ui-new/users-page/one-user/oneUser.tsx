@@ -28,7 +28,9 @@ export const OneUser = (props: any) => {
                                 props.follower(user.id)
                             }
                             }>Follow</button>}
-                <div className={s.butItem}> send sms</div>
+                <NavLink to={'/messages/' + user.id} className={s.butItem}>
+                    sms
+                </NavLink>
             </div>
             <NavLink className={s.viewProfileFriend} to={'/profile/' + user.id}>
                 view profile
