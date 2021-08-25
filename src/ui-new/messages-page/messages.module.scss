@@ -31,17 +31,50 @@
       flex-direction: column;
 
       @media screen and (max-width: 992px) {
-        //display: none;
-        width: 0;
+        padding: 0;
+        width: 100px;
         transition-duration: 500ms;
-        transform: translate(-310px);
-        border: none;
+        transform: translate(-300px);
+        position: fixed;
+        z-index: 2001;
       }
 
       &:hover {
         transition-duration: 500ms;
         transform: translate(0);
 
+      }
+
+      .butMenu {
+        height: 0;
+        display: none;
+        @media screen and (max-width: 992px) {
+          display: inline-block;
+          cursor: pointer;
+          transform: translate(300px);
+
+          div {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+
+          }
+        }
+        &:hover {
+
+          .d1{
+            transform: rotate(-45deg) translate(-9px, 6px) ;
+          }
+          .d2{
+            opacity: 0;
+          }
+          .d3{
+            transform: rotate(45deg) translate(-8px, -8px) ;
+          }
+
+        }
       }
 
       .search {
@@ -67,29 +100,6 @@
 
         .serBut {
 
-        }
-
-        .butMenu {
-          display: none;
-          @media screen and (max-width: 992px) {
-            display: flex;
-            margin-right: 20px;
-            transform: translate(+80px);
-            width: 82px;
-            height: 40px;
-            justify-content: flex-end;
-            .btn {
-
-              div {
-                width: 35px;
-                height: 5px;
-                background-color: black;
-                margin: 6px 0;
-              }
-            }
-
-
-          }
         }
       }
 

@@ -51,6 +51,12 @@ export const Messages = (props: any) => {
         <div className={s.block}>
             <div className={s.container}>
                 <div className={s.chats}>
+                    <div  className={s.butMenu} >
+                        <div className={s.d1}></div>
+                        <div className={s.d2}></div>
+                        <div className={s.d3}></div>
+
+                    </div>
                     <div className={s.search}>
                         <input className={s.inp}></input>
                         <NavLink to={'/messages/' + recipientId}>
@@ -59,14 +65,6 @@ export const Messages = (props: any) => {
                             </div>
                         </NavLink>
                         <div className={s.serBut}>+</div>
-                        <div className={s.butMenu}>
-                            <div className={s.btn}>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-
-                        </div>
 
                     </div>
                     <div className={s.users}>

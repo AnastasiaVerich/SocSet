@@ -1,6 +1,7 @@
 import {authorizationAPI, securityAPI} from "../../DAL/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
+import {Redirect} from "react-router-dom";
 
 const SET_USER_DATA = "SET_USER_DATA"
 const GET_CAPTCHA = "CAPTCHA"
@@ -91,7 +92,7 @@ export const getAuthorizationDataTC = () => async (dispath: Dispatch) => {
 export const logoutTC = () => async (dispath: Dispatch) => {
     let response = await authorizationAPI.logout()
     if (response.data.resultCode === 0) {
-        dispath(setAuthorizationDataAC(null, null, null, false))
+        dispath(setAuthorizationDataAC(null, null, null, false));
     }
 }
 // делаем запрос на сервер, получаем картинку антибот

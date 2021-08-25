@@ -13,12 +13,12 @@ import ProfileContainerConnect from "./profile-page/profile-container";
 */
 import {UsersContainer} from "./users-page/users-container";
 import {Preloader} from "./Common/pr/Preloader";
-import {HeaderConteiner} from "../UI/component/Header/HeaderConteiner";
 import {WithSuspenseHOC} from "../UI/HOC/WithSuspense";
 import {StoreStateType} from "../BLL/store";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {initializeTC} from "../BLL/Reducers/app-reducer";
+import {HeaderConteiner} from "./header/header-container";
 /*
 import MessagesContainer from "./messages-page/messages-container";
 */
@@ -56,7 +56,9 @@ class App extends React.Component<any, any> {
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (<div className={s.block}>
-                <Header/>
+{/*
+                <HeaderConteiner/>
+*/}
                 <div className={s.container}>
                     <Nav/>
                     <Switch>
@@ -66,9 +68,10 @@ class App extends React.Component<any, any> {
                                render={WithSuspenseHOC(MessagesContainer)}/>
                         <Route path='/users'
                                render={() => <UsersContainer/>}/>
+                        <Route path='/login'
+                               render={() => <LoginContainer/>}/>
                         <Route path='*'
-                               render={() => <LoginContainer/>}
-                        />
+                               render={() => <LoginContainer/>}/>
 
                     </Switch>
                 </div>

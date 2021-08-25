@@ -1,16 +1,16 @@
-import React from 'react';
-import {Header} from "./Header";
+import React from "react";
+import {StoreStateType} from "../../BLL/store";
+import {logoutTC} from "../../BLL/Reducers/authorization-reducer";
 import {connect} from "react-redux";
-import {logoutTC} from "../../../BLL/Reducers/authorization-reducer";
-import {StoreStateType} from "../../../BLL/store";
+import {Header} from "./header";
 
-class HeaderConteinerConnect extends React.Component<any, any> {
+class HeaderContainerConnect extends React.Component<any, any> {
     refreshHeader(){
         window.location.reload();
     }
     componentDidMount() {
 
-        this.refreshHeader()
+
     }
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
         if(this.props.isAuthorization !==prevProps.isAuthorization )
@@ -34,4 +34,4 @@ let mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-export const HeaderConteiner = connect(mapStateToProps, mapDispatchToProps)(HeaderConteinerConnect)
+export const HeaderConteiner = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerConnect)

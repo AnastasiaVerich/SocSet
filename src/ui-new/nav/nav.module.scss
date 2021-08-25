@@ -1,30 +1,61 @@
 .block{
-  width: 80px;
+  width: 300px;
+  min-width: 300px;
   height: 100vh;
   background-color: #f0f0f0;
   display: flex;
   align-items: flex-start;
   @media screen and (max-width: 992px) {
-
+    /* сдвигаем (прячем) панель относительно левого края страницы */
+    transform: translate(300px);
     transition-duration: 500ms;
-    transform: translate(80%);
-    border: none;
+    position: fixed;
+    z-index: 2001;
   }
-
   &:hover {
     transition-duration: 500ms;
     transform: translate(0);
 
+  }
+  .butMenu {
+    display: none;
+    @media screen and (max-width: 992px) {
+      display: inline-block;
+      cursor: pointer;
+      transform: translate(-35px);
+
+      div {
+          width: 35px;
+          height: 5px;
+          background-color: #333;
+          margin: 6px 0;
+          transition: 0.4s;
+
+      }
+    }
+    &:hover {
+
+      .d1{
+        transform: rotate(-45deg) translate(-9px, 6px) ;
+      }
+      .d2{
+        opacity: 0;
+      }
+      .d3{
+        transform: rotate(45deg) translate(-8px, -8px) ;
+      }
+
+    }
   }
   .container{
     width: 100%;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 992px) {
-      //display: none;
-      width: 200px;
-    }
+    //@media screen and (max-width: 992px) {
+    //  //display: none;
+    //  width: 200px;
+    //}
     .item{
       width: 80px;
       height: 80px;
@@ -32,10 +63,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      @media screen and (max-width: 992px) {
-        //display: none;
-        width: 100%;
-      }
+      //@media screen and (max-width: 992px) {
+      //  //display: none;
+      //  width: 100%;
+      //}
 
     }
   }
