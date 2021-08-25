@@ -11,7 +11,7 @@
   align-items: center;
 
   .container {
-    box-shadow: 0 0 50px rgba(0, 0, 0 , 0.6);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
 
     width: 70%;
     height: 80%;
@@ -25,7 +25,7 @@
 
     .chats {
       padding: 10px;
-
+      background-color: #f8f9fb;
       border-right: 1px solid gainsboro;
       height: 100%;
       min-width: 30%;
@@ -64,16 +64,19 @@
 
           }
         }
+
         &:hover {
 
-          .d1{
-            transform: rotate(-45deg) translate(-9px, 6px) ;
+          .d1 {
+            transform: rotate(-45deg) translate(-9px, 6px);
           }
-          .d2{
+
+          .d2 {
             opacity: 0;
           }
-          .d3{
-            transform: rotate(45deg) translate(-8px, -8px) ;
+
+          .d3 {
+            transform: rotate(45deg) translate(-8px, -8px);
           }
 
         }
@@ -98,6 +101,7 @@
           background: none;
           border-radius: 20px;
           padding: 20px;
+          outline:none;
         }
 
         .serBut {
@@ -111,6 +115,7 @@
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
+
         &::-webkit-scrollbar {
           width: 10px;
           background-color: #f9f9fd;
@@ -122,7 +127,7 @@
         }
 
         &::-webkit-scrollbar-track {
-          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
           border-radius: 10px;
           background-color: #f9f9fd;
         }
@@ -235,21 +240,16 @@
         height: 10%;
         display: flex;
         align-items: center;
+        justify-content: center;
         border-bottom: 1px solid gainsboro;
 
-        .ava2 {
-          margin-left: 40px;
-          width: 50px;
-          height: 50px;
-          border-radius: 25px;
-          background-color: black;
-          margin-right: 10px;
-        }
+
 
         .name2 {
           @include text($mainTextStyle, 16px, 1.2);
           color: black;
           font-weight: 600;
+          align-items: center;
         }
       }
 
@@ -270,6 +270,7 @@
           justify-content: flex-start;
           border-bottom: 1px solid gainsboro;
           overflow-y: scroll;
+
           &::-webkit-scrollbar {
             width: 10px;
             background-color: #f9f9fd;
@@ -281,7 +282,7 @@
           }
 
           &::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: #f9f9fd;
           }
@@ -334,6 +335,7 @@
             width: 250px;
             height: 50px;
             border-radius: 10px;
+            outline:none;
 
           }
 
@@ -342,7 +344,13 @@
             width: 50px;
             height: 50px;
             border-radius: 25px;
+            border: none;
             background-color: $primaryColor;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
 
           }

@@ -10,6 +10,7 @@ import {AddMessagesReduxForm} from "../../UI/component/Dialog/AddMessagesReduxFo
 import {Field, reduxForm} from "redux-form";
 import {maxLength, requiredField} from "../../UI/utils/validators/validators";
 import {Textarea} from "../Common/FormsControl/FormsControl";
+import {FiRefreshCcw, FiSend, IoIosSearch} from "react-icons/all";
 
 export const Messages = (props: any) => {
 
@@ -59,14 +60,15 @@ export const Messages = (props: any) => {
                     </div>
                     <div className={s.search}>
                         <input className={s.inp}></input>
+
+                        <div className={s.serBut}><IoIosSearch/></div>
                         <NavLink to={'/messages/' + recipientId}>
                             <div>
-                                <IconButton onClick={() => props.usersTalkedWith()}><RefreshIcon/></IconButton>
+                                <div onClick={() => props.usersTalkedWith()}><FiRefreshCcw/></div>
                             </div>
                         </NavLink>
-                        <div className={s.serBut}>+</div>
-
                     </div>
+
                     <div className={s.users}>
                         {fieldUsers()}
                     </div>
@@ -75,7 +77,6 @@ export const Messages = (props: any) => {
                     {props.profile!= null && recipientId !== undefined
                         ?
                         <div className={s.userSelected}>
-                            <div className={s.ava2}></div>
                             <div className={s.name2}>{props.profile.fullName}</div>
                         </div>
                         :<></>
@@ -144,7 +145,7 @@ const SendMessageForm = (props: any) => {
                    validate={[requiredField, maxLengthCreator]}
                    props={{className: s.printMess}}
             />
-            <button type='submit' className={s.sendMess}>Send</button>
+            <button type='submit' className={s.sendMess}><FiSend/></button>
         </form>
     )
 }

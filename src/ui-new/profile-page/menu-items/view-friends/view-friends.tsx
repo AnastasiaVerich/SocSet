@@ -4,6 +4,8 @@ import {OneUsersType} from "../../../../BLL/Reducers/users-reducer";
 import {OneUser} from "../../../users-page/one-user/oneUser";
 import no_image from "../../../../UI/assets/img/no_image.png";
 import {NavLink} from "react-router-dom";
+import {AiOutlineMail} from "react-icons/ai";
+import {AiOutlineUserAdd, AiOutlineUserDelete} from "react-icons/all";
 
 export const ViewFrinds = (props: any) => {
     return (
@@ -23,16 +25,16 @@ export const ViewFrinds = (props: any) => {
                                     onClick={() => {
                                         props.unfollow(user.id)
                                     }
-                                    }>Unfollow</button>
+                                    }><AiOutlineUserDelete/></button>
                             :
                             <button className={s.butItem}
                                     disabled={props.IsFollowingProgress.some((id: any) => id === user.id)}
                                     onClick={() => {
                                         props.follower(user.id)
                                     }
-                                    }>Follow</button>}
+                                    }><AiOutlineUserAdd/></button>}
                         <NavLink to={'/messages/' + user.id} className={s.butItem}>
-                            sms
+                            <AiOutlineMail/>
                         </NavLink></div>
                     <NavLink className={s.viewProfileFriend} to={'/profile/' + user.id}>
                         view profile

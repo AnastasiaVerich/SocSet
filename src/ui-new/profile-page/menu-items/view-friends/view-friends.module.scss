@@ -33,10 +33,9 @@
     }
 
     .ava {
-      width: 60px;
-      height: 60px;
-      border-radius: 30px;
-      background-color: black;
+      width: 160px;
+      height: 160px;
+      border-radius: 80px;
     }
 
     .name {
@@ -49,7 +48,7 @@
     }
 
     .butt {
-      width: 100%;
+      width: 80%;
       height: 60px;
       display: flex;
       justify-content: space-evenly;
@@ -58,7 +57,7 @@
       .butItem {
         border: 1px solid transparent;
         border-radius: 1.25rem;
-        width: 80px;
+        width: 40px;
         height: 40px;
         background: gainsboro;
         @include text($secondTextStyle, 14px, 26px);
@@ -69,12 +68,13 @@
       }
     }
 
+
     .viewProfileFriend {
       @include text($secondTextStyle, 14px, 26px);
       height: 40px;
       border: 1px solid transparent;
       border-radius: 1.25rem;
-      width: 100%;
+      width: 80%;
       background-color: $primaryColor;
       margin-bottom: 10px;
       display: flex;

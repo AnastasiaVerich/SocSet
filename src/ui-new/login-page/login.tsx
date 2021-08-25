@@ -3,6 +3,7 @@ import s from "./login.module.scss"
 import {Redirect} from "react-router-dom";
 import {LoginReduxForm} from "./login-form";
 import {reset} from "redux-form";
+import {AiOutlineShopping, CgWorkAlt, MdComputer} from "react-icons/all";
 
 export const Login = (props:any) => {
 /*    в месте вызова нашей компоненты с окончательной «редаксовской формой» теперь нужно повесить
@@ -26,21 +27,21 @@ export const Login = (props:any) => {
                             consectetur adipiscing elit. Ut elit tellus, luctus.
                         </div>
                         <div className={s.oneAdvantage}>
-                            <div className={s.icon}> ♥icon</div>
+                            <div className={s.icon}> <MdComputer/></div>
                             <div className={s.description}>
                                 <div className={s.title}>Community</div>
                                 <div className={s.desc}>At vero eos et accusamus et.</div>
                             </div>
                         </div>
                         <div className={s.oneAdvantage}>
-                            <div className={s.icon}/>
+                            <div className={s.icon}><AiOutlineShopping/></div>
                             <div className={s.description}>
                                 <div className={s.title}>Online shop</div>
                                 <div className={s.desc}>At vero eos et accusamus et.</div>
                             </div>
                         </div>
                         <div className={s.oneAdvantage}>
-                            <div className={s.icon}/>
+                            <div className={s.icon}> <CgWorkAlt/></div>
                             <div className={s.description}>
                                 <div className={s.title}>Job search</div>
                                 <div className={s.desc}>At vero eos et accusamus et.</div>

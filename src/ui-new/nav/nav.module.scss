@@ -1,10 +1,12 @@
 .block {
-  width: 80px;
+  width: 60px;
   height: 100vh;
   background-color: #f0f0f0;
   display: flex;
   align-items: flex-start;
   @media screen and (max-width: 992px) {
+    padding-right: 35px;
+
     width: 300px;
     min-width: 300px;
     /* сдвигаем (прячем) панель относительно левого края страницы */
@@ -54,33 +56,46 @@
     }
   }
 
-  .container {
+  .container1 {
     width: 100%;
+    height: 100%;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
-    //@media screen and (max-width: 992px) {
-    //  //display: none;
-    //  width: 200px;
-    //}
-    .item {
-      width: 80px;
-      height: 80px;
-      border-bottom: 1px solid gainsboro;
+    @media screen and (max-width: 992px) {
+      padding: 20px 0 20px 0;
+      margin: 0;
+      justify-content: space-between;
+    }
+    .container {
+      width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      @media screen and (max-width: 992px) {
-        //display: none;
-        width: 100%;
+      flex-direction: column;
+
+      .item {
+        width: 60px;
+        height: 60px;
+        border-bottom: 1px solid gainsboro;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 992px) {
+          //display: none;
+          width: 100%;
+        }
+
       }
+
+
     }
 
     .logOut {
       display: none;
       @media screen and (max-width: 992px) {
-        display: block;
+        display: flex;
         width: 100%;
+        justify-content: center;
+
       }
     }
   }

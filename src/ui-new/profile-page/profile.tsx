@@ -10,7 +10,9 @@ import {AboutMe} from "./menu-items/about-me/about-me";
 import {ViewFriendsContainer} from "./menu-items/view-friends/view-friends-container";
 import c from "../../UI/component/Nav/Nav.module.css";
 import style from "../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
-
+import {AiOutlineMail} from "react-icons/ai";
+import {AiOutlineUser} from "react-icons/ai";
+import {FaUserFriends, GrContactInfo, SiAboutDotMe, SiMailDotRu} from "react-icons/all";
 
 export const Profile = (props: any) => {
     let [x, setX] = useState(true)
@@ -31,7 +33,10 @@ export const Profile = (props: any) => {
                                 ? <img className={s.avatar} src={no_image}/>
                                 : <img className={s.avatar} src={props.profile.photos.large}/>}
                         </div>
-                        <div className={s.name}> {props.profile.fullName}</div>
+                        <div className={s.name}> {props.profile.fullName}
+                        </div>
+
+
 
                     </div>
 
@@ -41,33 +46,29 @@ export const Profile = (props: any) => {
                         {/*            props.follower(props.profile.userId)*/}
                         {/*        }*/}
                         {/*        }>Follow</div>}*/}
-                        <NavLink to={'/messages/' + props.profile.userId} className={s.buttonItem}>
-                            sms
-                        </NavLink>
+                        {!props.ownerId && <NavLink to={'/messages/' + props.profile.userId} className={s.buttonItem}>
+                            <AiOutlineMail/>
+                        </NavLink>}
+
                     </div>
                 </div>
             </div>
             <div className={s.mainBlock}>
                 <div className={s.middlePart}>
-                    <div className={s.firstInfo}>
-                        <div className={s.countFriends}><p
-                            className={s.pp}>{props.profile.lookingForAJob ? "I am looking for a job" : "I am not looking for a job"}</p>
-                        </div>
-                    </div>
                     <div className={s.menu}>
                         <div className={s.menuItem} onClick={() => {
                             setX(true);
                             setY(false);
                             setZ(false);
                             setW(false)
-                        }}>profile
+                        }}><AiOutlineUser/>
                         </div>
                         <div className={s.menuItem} onClick={() => {
                             setX(false);
                             setY(true);
                             setZ(false);
                             setW(false)
-                        }}>contacts
+                        }}><SiMailDotRu/>
                         </div>
                         <div className={s.menuItem} onClick={() => {
                             setX(false);
@@ -75,7 +76,7 @@ export const Profile = (props: any) => {
                             setZ(true);
                             setW(false)
 
-                        }}>about me
+                        }}><SiAboutDotMe/>
                         </div>
 
                         {props.ownerId && <div className={s.menuItem} onClick={() => {
@@ -83,28 +84,11 @@ export const Profile = (props: any) => {
                             setY(false);
                             setZ(false);
                             setW(true)
-                        }}>friends</div>}
+                        }}><FaUserFriends/>
+                        </div>}
                     </div>
                 </div>
                 <div className={s.bottomPart}>
-{/*
-                    <div className={s.info}>
-                        <div className={s.firstInfo}>
-                            <div className={s.isFindWork}><p
-                                className={s.pp}>{props.profile.lookingForAJob ? "yes" : "no"}</p> need job
-                            </div>
-                        </div>
-                        <div className={s.secondInfo}>
-                            <div className={s.title}> My Photos</div>
-                            <div className={s.photos}>
-                                <img className={s.photo}/>
-                                <img className={s.photo}/>
-                                <img className={s.photo}/>
-                                <img className={s.photo}/>
-                            </div>
-                        </div>
-                    </div>
-*/}
                     <div className={s.menuSelection}>
                         {/* посмотреть профиль*/}
                         {x && <ViewProfile profile={props.profile}/>}
@@ -117,8 +101,6 @@ export const Profile = (props: any) => {
                     </div>
                 </div>
             </div>
-
-
         </div>
     }
 }
