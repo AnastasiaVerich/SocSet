@@ -10,7 +10,7 @@ import {AddMessagesReduxForm} from "../../UI/component/Dialog/AddMessagesReduxFo
 import {Field, reduxForm} from "redux-form";
 import {maxLength, requiredField} from "../../UI/utils/validators/validators";
 import {Textarea} from "../Common/FormsControl/FormsControl";
-import {FiRefreshCcw, FiSend, IoIosSearch} from "react-icons/all";
+import {BiMessageError, FiRefreshCcw, FiSend, IoIosSearch} from "react-icons/all";
 
 export const Messages = (props: any) => {
 
@@ -45,9 +45,22 @@ export const Messages = (props: any) => {
     }
     let fieldUsers = () => {
         return props.users != null
-            ? <Users users={props.users}/>
+            ? <Users users={props.users} time={time}/>
             : <div>нет диалогов</div>
     }
+
+
+
+    let time = (t: any) => {
+        let date = new Date()
+        if (date.getMonth() == Number(t.substr(5, 2) - 1)
+            && date.getDate() == t.substr(8, 2)
+            && date.getFullYear() == t.substr(0, 4))
+            return t.substr(11, 5);
+        else return t.substr(5,5)
+    }
+
+
     return (
         <div className={s.block}>
             <div className={s.container}>
@@ -74,12 +87,12 @@ export const Messages = (props: any) => {
                     </div>
                 </div>
                 <div className={s.selectedChat}>
-                    {props.profile!= null && recipientId !== undefined
+                    {props.profile != null && recipientId !== undefined
                         ?
                         <div className={s.userSelected}>
                             <div className={s.name2}>{props.profile.fullName}</div>
                         </div>
-                        :<></>
+                        : <></>
                     }
                     <div className={s.chat}>
                         {fieldMessages()}
@@ -92,6 +105,7 @@ export const Messages = (props: any) => {
 }
 
 const Users = (props: any) => {
+
     return (
         <>
             {props.users.map((element: any) =>
@@ -107,8 +121,9 @@ const Users = (props: any) => {
                         <div className={s.lastMessages}>jhjkhkjh knkj...</div>
                     </div>
                     <div className={s.info}>
-                        <div className={s.time}>11:00</div>
-                        <div className={s.countUnread}>5</div>
+                        <div className={s.time}>{props.time(element.lastDialogActivityDate)}</div>
+                        {element.hasNewMessages && <div className={s.countUnread}><BiMessageError/></div>}
+
                     </div>
                 </NavLink>)
             }
