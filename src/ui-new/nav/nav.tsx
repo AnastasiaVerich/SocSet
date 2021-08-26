@@ -43,8 +43,11 @@ export const Nav = () => {
                     </NavLink>
                 </div>
                 <div className={s.item}>
-                    <AiOutlineSetting/>
+                    <NavLink to="/setting" className={s.buttonItem}>
+                        <AiOutlineSetting/>
+                    </NavLink>
                 </div>
+
 
             </div>
             <NavLink to="/login" className={s.logOut} onClick={() => logOut()}>

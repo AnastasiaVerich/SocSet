@@ -1,16 +1,9 @@
 import React from 'react';
 import s from "./app.module.scss"
 import {Redirect, Route, Switch, useLocation, withRouter} from "react-router-dom";
-import {Login} from "./login-page/login";
-import {Profile} from "./profile-page/profile";
-import {Messages} from "./messages-page/messages";
-import {Users} from "./users-page/users";
-import {Header} from "./header/header";
+
 import {Nav} from "./nav/nav";
 import {LoginContainer} from "./login-page/login-container";
-/*
-import ProfileContainerConnect from "./profile-page/profile-container";
-*/
 import {UsersContainer} from "./users-page/users-container";
 import {Preloader} from "./Common/pr/Preloader";
 import {WithSuspenseHOC} from "../UI/HOC/WithSuspense";
@@ -19,9 +12,9 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {initializeTC} from "../BLL/Reducers/app-reducer";
 import {HeaderConteiner} from "./header/header-container";
-/*
-import MessagesContainer from "./messages-page/messages-container";
-*/
+import {Setting} from "./setting/setting";
+import SettingContainer from "./setting/setting-container";
+
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
 const MessagesContainer = React.lazy(() => import('./messages-page/messages-container'));
@@ -76,6 +69,8 @@ class App extends React.Component<any, any> {
                                render={() => <UsersContainer/>}/>
                         <Route path='/login'
                                render={() => <LoginContainer/>}/>
+                        <Route path='/setting'
+                               render={() => <SettingContainer/>}/>
                         <Route path='/'
                                render={() => <LoginContainer/>}/>
                         <Route path='*'
