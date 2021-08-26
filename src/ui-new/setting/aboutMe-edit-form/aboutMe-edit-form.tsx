@@ -1,32 +1,34 @@
 import style from "../../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
-import {createFormField, Textarea} from "../../../UI/component/Common/FormsControl/FormsControl";
+import s from "./aboutMe-edit-form.module.scss"
 import {Input} from "@material-ui/core";
 import {reduxForm} from "redux-form";
 import React from "react";
+import {createFormField, Textarea} from "../../Common/FormsControl/FormsControl";
 
 
 const AboutMeEdit = ({handleSubmit, profile, error}: any) => {
     return (
-        <form onSubmit={handleSubmit} className={style.formContainer}>
+        <form onSubmit={handleSubmit} className={s.formContainer}>
             {error && <div className={style.formSunnierError}>
                 {error}
             </div>}
 
+            <div className={s.editBlock}>
+                <div className={s.item1}>
+                    <h4>looking for a job: </h4>{createFormField("", "lookingForAJob", [], Input, {type: "checkbox",  className: s.input })}
+                </div>
 
-            <div>
-                <b>looking for a job: </b>{createFormField("", "lookingForAJob", [], Input, {type: "checkbox"})}
-            </div>
+                <div className={s.item2}>
+                    <h4>I can: </h4>
+                    {createFormField("skils", "lookingForAJobDescription", [], Textarea, {  className: s.input })}
+                </div>
+                <div className={s.item2}>
+                    <h4>About me: </h4>
+                    {createFormField("About me", "aboutMe", [], Textarea, {  className: s.input })}
 
-            <div>
-                <b>I can: </b>
-                {createFormField("skils", "lookingForAJobDescription", [], Textarea)}
+                </div>
             </div>
-            <div>
-                <b>About me: </b>
-                {createFormField("About me", "aboutMe", [], Textarea)}
-
-            </div>
-            <button>save</button>
+            <button className={s.btn}>save</button>
         </form>
     )
 }

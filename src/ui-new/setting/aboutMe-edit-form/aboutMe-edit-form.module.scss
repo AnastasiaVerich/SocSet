@@ -1,0 +1,45 @@
+.formContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .editBlock {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .item1 {
+      height: 10%;
+      display: flex;
+      align-items: center;
+
+      h4{
+        margin-right: 10px;
+      }
+      .input {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .item2 {
+      width: 100%;
+      height: 40%;
+      .input {
+        width:100%;
+        height: 80%;
+      }
+    }
+  }
+
+  .btn {
+    height: 10%;
+    width: 10%;
+  }
+}

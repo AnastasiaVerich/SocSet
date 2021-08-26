@@ -1,4 +1,4 @@
-import style from "../../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
+import s from "./contacts-edit-form.module.scss";
 import {createFormField, Textarea} from "../../../UI/component/Common/FormsControl/FormsControl";
 import {Input} from "@material-ui/core";
 import {reduxForm} from "redux-form";
@@ -6,19 +6,20 @@ import React from "react";
 
 const ContactsEdit = ({handleSubmit, profile, error}: any) => {
     return (
-        <form onSubmit={handleSubmit} className={style.formContainer}>
-            {error && <div className={style.formSunnierError}>
+        <form onSubmit={handleSubmit} className={s.formContainer}>
+            {error && <div className={s.formSunnierError}>
                 {error}
             </div>}
-            <div>
-                <b>Contacts: {Object.keys(profile.contacts).map(key => {
-                        return <div key={key}>
-                            <b>{key}: {createFormField(key, "contacts." + key, [], Input)}</b>
+            <h4>Contacts:</h4>
+            <div className={s.contacts} >
+                {Object.keys(profile.contacts).map(key => {
+                        return <div key={key} className={s.contact}>
+                            <h4>{key}:</h4> {createFormField(key, "contacts." + key, [], Input, {  className: s.input })}
                         </div>
                     }
-                )}</b>
+                )}
             </div>
-            <button>save</button>
+            <button className={s.btn}>save</button>
         </form>
     )
 }
