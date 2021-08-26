@@ -2,6 +2,7 @@ import React from 'react'
 import s from "./users.module.scss"
 import {OneUsersType} from "../../BLL/Reducers/users-reducer";
 import {OneUser} from "./one-user/oneUser";
+import {Paginator} from "./paginator/Paginator";
 
 export const Users = (props:any) => {
 
@@ -16,12 +17,12 @@ export const Users = (props:any) => {
         <div className={s.block}>
             {/*посмотреть друзей*/}
             <div className={s.container}>
+
                 <div className={s.search}>
                     <input className={s.inp}
                            placeholder={"Search Members"}></input>
                     <div className={s.spn}></div>
                 </div>
-
                 <div className={s.viewFriends}>
                     {props.users.map((user: OneUsersType) =>
                         <OneUser user={user}
@@ -32,6 +33,13 @@ export const Users = (props:any) => {
                     )
                     }
                 </div>
+                <div className={s.paginator}>
+                    <Paginator pagesize={props.pagesize}
+                               totalItemsCount={props.totalUsersCount}
+                               onPageChanget={props.onPageChanget}
+                               currentPages={props.currentPages}/>
+                </div>
+
             </div>
         </div>
     )

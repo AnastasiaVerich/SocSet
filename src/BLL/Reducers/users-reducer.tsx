@@ -76,7 +76,7 @@ type UsersType = {
 }
 let initialState: UsersType = {
     usersData: [],
-    pageSize: 5,
+    pageSize: 30,
     totalUsersCount: 0,
     currentPages: 1,
     isFetching: true,

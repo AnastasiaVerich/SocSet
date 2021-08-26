@@ -1,0 +1,16 @@
+.block {
+  display: flex;
+  align-items: center;
+  .btn {
+margin: 10px;
+  }
+  .selectPage {
+    margin: 10px;
+    color: red;
+  }
+
+  .page {
+    margin: 10px;
+  }
+}
+

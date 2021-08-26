@@ -118,11 +118,11 @@ const Users = (props: any) => {
                     </div>
                     <div className={s.main}>
                         <div className={s.name}>{element.userName}</div>
-                        <div className={s.lastMessages}>jhjkhkjh knkj...</div>
+                        {element.hasNewMessages &&   <div className={s.lastMessages}>New messages!</div>}
                     </div>
                     <div className={s.info}>
                         <div className={s.time}>{props.time(element.lastDialogActivityDate)}</div>
-                        {element.hasNewMessages && <div className={s.countUnread}><BiMessageError/></div>}
+                        {element.newMessagesCount!==0 && <div className={s.countUnread}>{element.newMessagesCount}</div>}
 
                     </div>
                 </NavLink>)
