@@ -72,9 +72,6 @@ export const Messages = (props: any) => {
 
                     </div>
                     <div className={s.search}>
-                        <input className={s.inp}></input>
-
-                        <div className={s.serBut}><IoIosSearch/></div>
                         <NavLink to={'/messages/' + recipientId}>
                             <div>
                                 <div onClick={() => props.usersTalkedWith()}><FiRefreshCcw/></div>

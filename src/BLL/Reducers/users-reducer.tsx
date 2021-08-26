@@ -8,6 +8,7 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
 const SET_USERID_FOR_DISABLE = "SET_USERID_FOR_DISABLE"
 const TOGGLE_IS_FOLLOW = "TOGGLE_IS_FOLLOW"
+const SEARCH = "SEARCH"
 
 
 //type for Reduces
@@ -44,6 +45,10 @@ type ToggleIsFollowType = {
     type: "TOGGLE_IS_FOLLOW"
     follow: boolean
 }
+type SearchType = {
+    type: "SEARCH"
+    search: string
+}
 
 //type for Action
 type ActionType =
@@ -55,6 +60,7 @@ type ActionType =
     | ToggleIsFetchingType
     | SetUserIdForDisableType
     | ToggleIsFollowType
+    | SearchType
 
 //initial State type
 export type OneUsersType = {
@@ -73,6 +79,7 @@ type UsersType = {
     isFetching: boolean
     userIdForDisabled: any
     isFollow: boolean
+    search: string
 }
 let initialState: UsersType = {
     usersData: [],
@@ -81,7 +88,8 @@ let initialState: UsersType = {
     currentPages: 1,
     isFetching: true,
     userIdForDisabled: [],
-    isFollow: false
+    isFollow: false,
+    search: ""
 }
 
 export const UsersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
@@ -91,6 +99,12 @@ export const UsersReducer = (state: UsersType = initialState, action: ActionType
                 return {
                     ...state,
                     isFollow: action.follow
+                }
+
+            case SEARCH:
+                return {
+                    ...state,
+                    search: action.search
                 }
             case FOLLOW:
                 return {
@@ -133,7 +147,7 @@ export const UsersReducer = (state: UsersType = initialState, action: ActionType
 
 //Thunk Creator
 // делает запрос на сервер, возвращет всех пользователей
-export const getUsersTC = (currentPages: number, pagesize: number, follow: boolean) => {
+export const getUsersTC = (currentPages: number, pagesize: number, follow: boolean, term: any) => {
     return async (dispatch: any) => {
         dispatch(toggleIsFetchingAC(true))
         let response;
@@ -141,13 +155,14 @@ export const getUsersTC = (currentPages: number, pagesize: number, follow: boole
         if (follow) {
             response = await usersAPI.getFriendsUsers(currentPages, pagesize)
         } else {
-            response = await usersAPI.getUsers(currentPages, pagesize)
+            response = await usersAPI.getUsers(currentPages, pagesize, term)
         }
         dispatch(toggleIsFetchingAC(false))
         dispatch(setUsersAC(response.items))
         dispatch(setTotalUsersCountAC(response.totalCount))
     }
 }
+
 // делает запрос на сервер, меняет на сервере свойство фоллоу на true
 export const followTC = (id: any) => {
     return async (dispatch: any) => {
@@ -180,6 +195,12 @@ export const unFollowAC = (userId: number): UNfollowType =>
 
 export const setUsersAC = (users: []): SetUsersType =>
     ({type: SET_USERS, users})
+
+
+export const searchAC = (search: string): SearchType =>
+    ({type: SEARCH, search})
+
+
 export const setCurrentPageAC = (currentPages: number): SetCurrentPageType =>
     ({type: SET_CURRENT_PAGE, currentPages})
 export const setTotalUsersCountAC = (total: number): SetTotalUsersCountACType =>

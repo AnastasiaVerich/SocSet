@@ -59,17 +59,17 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
 
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow)
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow,"")
 
     }
     componentDidUpdate(prevProps: Readonly<MapDispatchTopropsType & MapStateToPropsType>, prevState: Readonly<any>, snapshot?: any) {
        if(this.props.isFollow!==prevProps.isFollow)
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow)
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow,"")
     }
 
 
     onPageChanget = (pageNumber: number) => {
-        this.props.getUsersThunk(pageNumber, this.props.pagesize,  this.props.isFollow)
+        this.props.getUsersThunk(pageNumber, this.props.pagesize,  this.props.isFollow,"")
 
         this.props.SetCurrentPage(pageNumber);
 

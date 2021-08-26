@@ -12,12 +12,13 @@ const instanse = axios.create({
 
 
 export const usersAPI = {
-    getUsers(currentPages: any, pagesize: any) {
+    getUsers(currentPages: any, pagesize: any, term: any) {
         return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}`, {})
+            instanse.get(`users?page=${currentPages}&count=${pagesize}&term=${term}`, {})
                 .then(response => response.data)
         )
     },
+
     follow(id: any) {
         return (
             instanse.post(`follow/${id}`, {}, {})

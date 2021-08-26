@@ -6,7 +6,7 @@ import {
     setTotalUsersCountAC,
     setUsersAC,
     unFollowTC,
-    OneUsersType
+    OneUsersType, searchAC
 } from "../../BLL/Reducers/users-reducer";
 import {StoreStateType} from "../../BLL/store";
 import {compose} from "redux";
@@ -30,6 +30,7 @@ export type MapStateToPropsType = {
     isFetching: boolean
     IsFollowingProgress:boolean
     isFollow: boolean
+    search: string
 }
 export type MapDispatchTopropsType = {
     follower: (id: number) => void
@@ -41,6 +42,7 @@ export type MapDispatchTopropsType = {
     setIsFollowingProgress: any
     getUsersThunk: any
     FiendsAC:any
+    searchAC:any
 }
 
 let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
@@ -52,33 +54,35 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
         currentPages: getCurrentPages(state),
         isFetching: getIsFetching(state),
         IsFollowingProgress: getIsFollowingProgress(state),
-        isFollow: state.usersPage.isFollow
+        isFollow: state.usersPage.isFollow,
+        search: state.usersPage.search
     }
 }
 
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
 
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, false)
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, false, this.props.search)
 
     }
     componentDidUpdate(prevProps: Readonly<MapDispatchTopropsType & MapStateToPropsType>, prevState: Readonly<any>, snapshot?: any) {
-        if(this.props.isFollow!==prevProps.isFollow)
-            this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow)
+        if(this.props.search!==prevProps.search)
+            this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow,this.props.search)
     }
 
 
     onPageChanget = (pageNumber: number) => {
-        this.props.getUsersThunk(pageNumber, this.props.pagesize,  this.props.isFollow)
+        this.props.getUsersThunk(pageNumber, this.props.pagesize,  this.props.isFollow,this.props.search)
 
         this.props.SetCurrentPage(pageNumber);
 
     }
 
     render() {
-        if (this.props.isFetching ) {
+        /*if (this.props.isFetching ) {
             return <Preloader/>
-        } else return <>
+        } else */
+            return <>
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPages={this.props.currentPages}
@@ -89,7 +93,10 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
                    IsFollowingProgress={this.props.IsFollowingProgress}
                    setIsFollowingProgress={this.props.setIsFollowingProgress}
                    isFollow={this.props.isFollow}
-                   FiendsAC={this.props.FiendsAC}/>
+                   FiendsAC={this.props.FiendsAC}
+                   search={this.props.search}
+                   searchAC={this.props.searchAC}
+            />
         </>
     }
 }
@@ -104,7 +111,8 @@ export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateT
     setIsFollowingProgress: setUserIdForDisabledAC,
     toogleIsFetching:toggleIsFetchingAC,
     getUsersThunk: getUsersTC,
-    FiendsAC: toggleFollowAC
+    FiendsAC: toggleFollowAC,
+    searchAC: searchAC
     //getUsersThunk: getFriendsThunkCreater
 }))(UsersAPI)
 

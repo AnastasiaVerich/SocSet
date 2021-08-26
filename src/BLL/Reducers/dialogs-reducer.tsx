@@ -20,13 +20,11 @@ type ActionType = GetSelectedDialogType | GetUsersTalkedWithType
 type StateType = {
     recipientId: number | null
     messages: any
-    oneMessage: string
     users: any
 }
 let initialState: StateType = {
     recipientId: null,
     messages: null,
-    oneMessage: "",
     users: null
 }
 
@@ -34,13 +32,14 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
     if (state) {
         switch (action.type) {
             case GET_SELECTED_DIALOG:
-                let oldMessages = {...state}
+                /*let oldMessages = {...state}
                 if (state.messages !== null) {
                     return {
                         ...state,
                         messages: action.items.concat(oldMessages.messages)
                     }
-                } else return {
+                } else */
+                    return {
                     ...state,
                     messages: action.items
                 }
