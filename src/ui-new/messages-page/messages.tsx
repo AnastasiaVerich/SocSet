@@ -13,6 +13,18 @@ import {Textarea} from "../Common/FormsControl/FormsControl";
 import {BiMessageError, FiRefreshCcw, FiSend, IoIosSearch} from "react-icons/all";
 
 export const Messages = (props: any) => {
+    function populate() {
+        while(true) {
+            // нижняя граница документа
+            let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
+
+            // если пользователь прокрутил достаточно далеко (< 100px до конца)
+            if (windowRelativeBottom < document.documentElement.clientHeight + 100) {
+                // добавим больше данных
+                document.body.insertAdjacentHTML("beforeend", `<p>Дата: ${new Date()}</p>`);
+            }
+        }
+    }
 
     // от куда берется match???
     let recipientId = props.match.params.userID
@@ -59,7 +71,7 @@ export const Messages = (props: any) => {
             return t.substr(11, 5);
         else return t.substr(5,5)
     }
-
+let[page, setPage]=useState(2)
 
     return (
         <div className={s.block}>
@@ -94,6 +106,8 @@ export const Messages = (props: any) => {
                     <div className={s.chat}>
                         {fieldMessages()}
                         <SendMessageReduxForm onSubmit={sendMessage}/>
+                        <button onClick={()=>{ props.selectedDialogMessages(recipientId,page,20); setPage(++page)}}>++</button>
+
                     </div>
                 </div>
             </div>

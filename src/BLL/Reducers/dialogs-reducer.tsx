@@ -2,10 +2,15 @@ import {messagesAPI} from "../../DAL/api";
 import {Dispatch} from "redux";
 
 const GET_SELECTED_DIALOG = "GET_SELECTED_DIALOG"
+const GET_SELECTED_DIALOG_MORE = "GET_SELECTED_DIALOG_MORE"
 const GET_USERS_TALKED_WITH = "GET_USERS_TALKED_WITH"
 //type for Reduces
 type GetSelectedDialogType = {
     type: "GET_SELECTED_DIALOG"
+    items: any;
+}
+type GetSelectedDialogMoreType = {
+    type: "GET_SELECTED_DIALOG_MORE"
     items: any;
 }
 type GetUsersTalkedWithType = {
@@ -14,7 +19,7 @@ type GetUsersTalkedWithType = {
 }
 
 //type for Action
-type ActionType = GetSelectedDialogType | GetUsersTalkedWithType
+type ActionType = GetSelectedDialogType | GetUsersTalkedWithType | GetSelectedDialogMoreType
 
 //initial State
 type StateType = {
@@ -43,6 +48,13 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
                     ...state,
                     messages: action.items
                 }
+                case GET_SELECTED_DIALOG_MORE:
+                let oldMessages = {...state}
+
+                    return {
+                    ...state,
+                    messages: action.items.concat(oldMessages.messages)
+                }
             case GET_USERS_TALKED_WITH:
                 return {
                     ...state,
@@ -60,7 +72,9 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
 // получить с сервера список сообщений с выбранным пользователем
 export const getSelectedDialogTC = (id: any, currentPages: any, pagesize: any) => async (dispatch: Dispatch) => {
     let response = await messagesAPI.getSelectedDialog(id, currentPages, pagesize)
-    dispatch(getSelectedDialogAC(response.items));
+    if(currentPages===1){
+    dispatch(getSelectedDialogAC(response.items));}
+    else {    dispatch(getSelectedDialogMoreAC(response.items));}
 }
 // отправить сообщение на сервер
 export const senMessageTC = (userId: any, body: string) => async (dispatch: any) => {
@@ -79,6 +93,14 @@ export const getUsersTalkedWithTC = () => async (dispatch: Dispatch) => {
 // Action Creator
 export const getSelectedDialogAC = (items: any): GetSelectedDialogType => ({
     type: GET_SELECTED_DIALOG,
+    items: items
+})
+
+
+
+
+export const getSelectedDialogMoreAC = (items: any): GetSelectedDialogMoreType => ({
+    type: GET_SELECTED_DIALOG_MORE,
     items: items
 })
 export const getUsersTalkedWithAC = (users: any): GetUsersTalkedWithType => ({
