@@ -13,6 +13,7 @@ type GetSelectedDialogMoreType = {
     type: "GET_SELECTED_DIALOG_MORE"
     items: any;
 }
+
 type GetUsersTalkedWithType = {
     type: "GET_USERS_TALKED_WITH"
     usersArray: any;
@@ -26,11 +27,13 @@ type StateType = {
     recipientId: number | null
     messages: any
     users: any
+    totalCount: any
 }
 let initialState: StateType = {
     recipientId: null,
     messages: null,
-    users: null
+    users: null,
+    totalCount: null
 }
 
 export const dialogReducer = (state: StateType = initialState, action: ActionType): StateType => {
@@ -44,16 +47,19 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
                         messages: action.items.concat(oldMessages.messages)
                     }
                 } else */
-                    return {
+                return {
                     ...state,
-                    messages: action.items
+                    messages: action.items.items,
+                    totalCount: action.items.totalCount
                 }
-                case GET_SELECTED_DIALOG_MORE:
+            case GET_SELECTED_DIALOG_MORE:
                 let oldMessages = {...state}
 
-                    return {
+                return {
                     ...state,
-                    messages: action.items.concat(oldMessages.messages)
+                    messages: action.items.items.concat(oldMessages.messages),
+                    totalCount: action.items.totalCount
+
                 }
             case GET_USERS_TALKED_WITH:
                 return {
@@ -72,9 +78,11 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
 // получить с сервера список сообщений с выбранным пользователем
 export const getSelectedDialogTC = (id: any, currentPages: any, pagesize: any) => async (dispatch: Dispatch) => {
     let response = await messagesAPI.getSelectedDialog(id, currentPages, pagesize)
-    if(currentPages===1){
-    dispatch(getSelectedDialogAC(response.items));}
-    else {    dispatch(getSelectedDialogMoreAC(response.items));}
+    if (currentPages === 1) {
+        dispatch(getSelectedDialogAC(response));
+    } else {
+        dispatch(getSelectedDialogMoreAC(response));
+    }
 }
 // отправить сообщение на сервер
 export const senMessageTC = (userId: any, body: string) => async (dispatch: any) => {
@@ -95,8 +103,6 @@ export const getSelectedDialogAC = (items: any): GetSelectedDialogType => ({
     type: GET_SELECTED_DIALOG,
     items: items
 })
-
-
 
 
 export const getSelectedDialogMoreAC = (items: any): GetSelectedDialogMoreType => ({

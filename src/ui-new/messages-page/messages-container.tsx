@@ -15,6 +15,8 @@ let mapStateToProps = (state: StoreStateType) => {
         authorizationUserId: state.auth.userId,
         users: state.dialog.users,
         profile: state.profile.profile,
+        totalCount: state.dialog.totalCount
+
 
     }
 }

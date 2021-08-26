@@ -14,7 +14,7 @@ import {BiMessageError, FiRefreshCcw, FiSend, IoIosSearch} from "react-icons/all
 
 export const Messages = (props: any) => {
     function populate() {
-        while(true) {
+        while (true) {
             // нижняя граница документа
             let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 
@@ -51,7 +51,11 @@ export const Messages = (props: any) => {
     let fieldMessages = () => {
         return recipientId !== undefined
             ? props.messages != null
-                ? <MessagesWithOneUser messages={props.messages} authorizationUserId={props.authorizationUserId}/>
+                ? <MessagesWithOneUser messages={props.messages}
+                                       authorizationUserId={props.authorizationUserId}
+                                       recipientId={recipientId}
+                                       selectedDialogMessages={props.selectedDialogMessages}
+                                       totalCount={props.totalCount}/>
                 : <Preloader/>
             : <div>Выбери диалог</div>
     }
@@ -62,16 +66,14 @@ export const Messages = (props: any) => {
     }
 
 
-
     let time = (t: any) => {
         let date = new Date()
         if (date.getMonth() == Number(t.substr(5, 2) - 1)
             && date.getDate() == t.substr(8, 2)
             && date.getFullYear() == t.substr(0, 4))
             return t.substr(11, 5);
-        else return t.substr(5,5)
+        else return t.substr(5, 5)
     }
-let[page, setPage]=useState(2)
 
     return (
         <div className={s.block}>
@@ -106,7 +108,6 @@ let[page, setPage]=useState(2)
                     <div className={s.chat}>
                         {fieldMessages()}
                         <SendMessageReduxForm onSubmit={sendMessage}/>
-                        <button onClick={()=>{ props.selectedDialogMessages(recipientId,page,20); setPage(++page)}}>++</button>
 
                     </div>
                 </div>
@@ -129,11 +130,12 @@ const Users = (props: any) => {
                     </div>
                     <div className={s.main}>
                         <div className={s.name}>{element.userName}</div>
-                        {element.hasNewMessages &&   <div className={s.lastMessages}>New messages!</div>}
+                        {element.hasNewMessages && <div className={s.lastMessages}>New messages!</div>}
                     </div>
                     <div className={s.info}>
                         <div className={s.time}>{props.time(element.lastDialogActivityDate)}</div>
-                        {element.newMessagesCount!==0 && <div className={s.countUnread}>{element.newMessagesCount}</div>}
+                        {element.newMessagesCount !== 0 &&
+                        <div className={s.countUnread}>{element.newMessagesCount}</div>}
 
                     </div>
                 </NavLink>)
@@ -144,8 +146,22 @@ const Users = (props: any) => {
 
 const MessagesWithOneUser = (props: any) => {
 
+    var messageBody = document.querySelector('#messageBody');
 
-    return (<div className={s.chatField}>
+    if(messageBody!==null) {
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    }
+
+    let [page, setPage] = useState(2)
+    console.log(props.messages.length)
+    return (<div className={s.chatField} id="messageBody">
+            {props.totalCount > props.messages.length
+                ? <button onClick={() => {
+                    props.selectedDialogMessages(props.recipientId, page, 20);
+                    setPage(++page)
+                }}>++</button>
+                : <></>}
+
             {props.messages.map((element: any) =>
                 <div key={element.id} className={s.field}>
                     {props.authorizationUserId === element.senderId
