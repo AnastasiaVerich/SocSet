@@ -72,7 +72,7 @@ class App extends React.Component<any, any> {
                         <Route path='/setting'
                                render={() => <SettingContainer/>}/>
                         <Route path='/'
-                               render={() => <LoginContainer/>}/>
+                               render={() => <Redirect to={'/login'}/>}/>
                         <Route path='*'
                                render={() => <>not found</>}/>
 

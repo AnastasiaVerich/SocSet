@@ -1,8 +1,7 @@
 import s from "./contacts-edit-form.module.scss";
-import {createFormField, Textarea} from "../../../UI/component/Common/FormsControl/FormsControl";
 import {reduxForm} from "redux-form";
 import React from "react";
-import {Input} from "../../Common/FormsControl/FormsControl";
+import {createFormField, Input} from "../../Common/FormsControl/FormsControl";
 
 const ContactsEdit = ({handleSubmit, profile, error}: any) => {
     return (
@@ -27,10 +26,8 @@ const ContactsEdit = ({handleSubmit, profile, error}: any) => {
                     )}
                 </div>
             </div>
-
-
-            <div className={s.btn}>save</div>
+            <button className={s.btn}>save</button>
         </form>
     )
 }
-export const ContactsEditForm: any = reduxForm({form: 'editProfile'})(ContactsEdit)
+export const ContactsEditForm: any = reduxForm({form: 'editProfileContacts'})(ContactsEdit)

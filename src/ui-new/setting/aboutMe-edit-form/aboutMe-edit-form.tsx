@@ -1,15 +1,13 @@
-import style from "../../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
 import s from "./aboutMe-edit-form.module.scss"
-import {Input} from "@material-ui/core";
 import {reduxForm} from "redux-form";
 import React from "react";
-import {createFormField, Textarea} from "../../Common/FormsControl/FormsControl";
+import {createFormField, Input, Textarea} from "../../Common/FormsControl/FormsControl";
 
 
 const AboutMeEdit = ({handleSubmit, profile, error}: any) => {
     return (
         <form onSubmit={handleSubmit} className={s.formContainer}>
-            {error && <div className={style.formSunnierError}>
+            {error && <div className={s.formSunnierError}>
                 {error}
             </div>}
 
@@ -32,4 +30,4 @@ const AboutMeEdit = ({handleSubmit, profile, error}: any) => {
         </form>
     )
 }
-export const AboutMeEditForm: any = reduxForm({form: 'editProfile'})(AboutMeEdit)
+export const AboutMeEditForm: any = reduxForm({form: 'editProfileAbout'})(AboutMeEdit)
