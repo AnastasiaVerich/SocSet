@@ -1,28 +1,109 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+
 .formContainer {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 
-  h4 {
+  .editName {
+    padding: 20px 0 20px 0;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid gainsboro;
 
+
+    .title {
+      @include text($mainTextStyle, 1rem, 1.2);
+      color: black;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+
+    .input {
+      @include text($secondTextStyle, 1rem, 1.2);
+      color: black;
+      font-weight: 300;
+      height: 30px;
+      border: 1px solid transparent;
+      border-radius: 1.25rem;
+      width: 50%;
+      background-color: rgb(232, 240, 254) !important;
+      margin-bottom: 10px;
+      padding: 10px;
+      outline:none;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+
+      }
+
+    }
   }
 
-  .contacts {
-    .contact {
-      display: flex;
-      h4 {
-        width: 100px;
+  .editContacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h4 {
+      @include text($mainTextStyle, 1.2rem, 1.2);
+      color: black;
+      font-weight: 700;
+      margin: 20px 10px 10px 20px;
+      @media screen and (max-width: 992px) {
+        text-align: center;
+
+      }
+    }
+
+    .contacts {
+      .contact {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        .title {
+          display: flex;
+          align-items: center;
+         min-width: 85px;
+          height: 30px;
+
+          @include text($mainTextStyle, 1rem, 1.2);
+          color: black;
+          font-weight: 700;
+          margin-right: 10px;
+        }
+
+        .input {
+          @include text($secondTextStyle, 1rem, 1.2);
+          color: black;
+          font-weight: 300;
+          height: 30px;
+          border: 1px solid transparent;
+          border-radius: 1.25rem;
+          width: 50%;
+          background-color: rgb(232, 240, 254) !important;
+          margin-bottom: 10px;
+          padding: 10px;
+          outline:none;
+          @media screen and (max-width: 992px) {
+            width: 100%;
+
+          }
+        }
       }
 
-      .input {
-
-      }
     }
   }
 
   .btn {
-
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: fit-content;
+    background-color: $primaryColor;
   }
 }

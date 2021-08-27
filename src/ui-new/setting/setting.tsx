@@ -10,12 +10,10 @@ import {Button, Input} from "@material-ui/core";
 import {reduxForm} from "redux-form";
 import {ContactsEditForm} from "./contacts-edit-form/contacts-edit-form";
 import {AboutMeEditForm} from "./aboutMe-edit-form/aboutMe-edit-form";
-import {MainEditForm} from "./main-edit-form/main-edit-form";
 
 export const Setting = (props: any) => {
     let [x, setX] = useState(true)
     let [y, setY] = useState(false)
-    let [z, setZ] = useState(false)
     let [editMode, setEditMode] = useState(false)
 // пока профайл не пришел с сервера, показываем загрузку страницы
     if (!props.profile) {
@@ -48,36 +46,25 @@ export const Setting = (props: any) => {
                             Upgrade photo
                         </label>
                     </div>
-                    <MainEditForm nSubmit={onSubmit} initialValues={props.profile}
-                                  profile={props.profile}/>
+                    <ContactsEditForm onSubmit={onSubmit} initialValues={props.profile}
+                                      profile={props.profile}/>
                 </div>}
                 {y &&<div className={s.aboutMeBlock}>
 
                     <AboutMeEditForm onSubmit={onSubmit} initialValues={props.profile}
                                      profile={props.profile}/>
                 </div>}
-                {z && <div className={s.contactBlock}>
-                    <ContactsEditForm onSubmit={onSubmit} initialValues={props.profile}
-                                      profile={props.profile}/>
-
-                </div>}
             </div>
             <div className={s.nav}>
                 <div className={s.item} onClick={() => {
                     setX(true);
                     setY(false);
-                    setZ(false);
                 }}>1</div>
                 <div className={s.item} onClick={() => {
                     setX(false);
                     setY(true);
-                    setZ(false);
                 }}>2</div>
-                <div className={s.item} onClick={() => {
-                    setX(false);
-                    setY( false);
-                    setZ(true);
-                }}>3</div>
+
             </div>
 
 
