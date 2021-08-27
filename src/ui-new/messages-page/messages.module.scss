@@ -3,7 +3,6 @@
 
 .block {
   background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
-
   width: 100%;
   height: 100vh;
   display: flex;
@@ -12,7 +11,6 @@
 
   .container {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
-
     width: 70%;
     height: 80%;
     background-color: #ffffff;
@@ -22,8 +20,7 @@
       height: 100%;
     }
 
-
-    .chats {
+    .allChats {
       padding: 10px;
       background-color: #f8f9fb;
       border-right: 1px solid gainsboro;
@@ -31,7 +28,6 @@
       min-width: 30%;
       display: flex;
       flex-direction: column;
-
       @media screen and (max-width: 992px) {
         padding: 0;
         width: 100px;
@@ -40,52 +36,23 @@
         position: fixed;
         z-index: 2001;
       }
-
       &:hover {
         transition-duration: 500ms;
         transform: translate(0);
-
       }
-
-      .butMenu {
+      .iconMenuMobile {
         height: 0;
         display: none;
         @media screen and (max-width: 992px) {
           display: inline-block;
           cursor: pointer;
           transform: translate(300px);
-
-          div {
-            width: 35px;
-            height: 5px;
-            background-color: #333;
-            margin: 6px 0;
-            transition: 0.4s;
-
-          }
-        }
-
-        &:hover {
-
-          .d1 {
-            transform: rotate(-45deg) translate(-9px, 6px);
-          }
-
-          .d2 {
-            opacity: 0;
-          }
-
-          .d3 {
-            transform: rotate(45deg) translate(-8px, -8px);
-          }
-
         }
       }
 
-      .search {
+      .refreshAllChats {
         border-bottom: 1px solid gainsboro;
         padding: 10px;
-
         width: 100%;
         height: 10%;
         display: flex;
@@ -95,21 +62,9 @@
           background-color: gainsboro;
         }
 
-        .inp {
-          height: 40px;
-          width: 80%;
-          background: none;
-          border-radius: 20px;
-          padding: 20px;
-          outline:none;
-        }
-
-        .serBut {
-
-        }
       }
 
-      .users {
+      .fieldUsers {
         height: 90%;
         width: 100%;
         display: flex;
@@ -137,99 +92,7 @@
           background-color: gainsboro;
           height: 100%;
         }
-
-        .user {
-          text-decoration: none;
-          border-bottom: 1px solid gainsboro;
-          width: 90%;
-          height: 70px;
-          display: flex;
-
-          .avatar {
-            padding: 5px;
-            width: 70px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-
-            .ava {
-              width: 50px;
-              height: 50px;
-              border-radius: 25px;
-              background-color: black;
-            }
-          }
-
-          .main {
-            padding: 5px;
-
-            width: 60%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-
-
-            .name {
-              @include text($mainTextStyle, 16px, 1.2);
-              color: black;
-              font-weight: 600;
-              height: 49%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-
-            }
-
-            .lastMessages {
-              @include text($secondTextStyle, 16px, 26px);
-              color: $primaryColor;
-              height: 49%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-weight: 600;
-
-            }
-
-          }
-
-          .info {
-            padding: 5px;
-
-            width: 30px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-
-            .time {
-              height: 49%;
-              width: max-content;
-
-              @include text($secondTextStyle, 10px, 26px);
-              color: #bbb4b4;
-
-
-            }
-
-            .countUnread {
-              height: 20px;
-              width: 20px;
-              border-radius: 10px;
-              background-color: #cecece;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              @include text($secondTextStyle, 14px, 26px);
-              color: #5b9d95;
-              font-weight: 700;
-
-
-            }
-
-          }
-        }
-
-
       }
-
     }
 
     .selectedChat {
@@ -238,22 +101,17 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
-
       @media screen and (max-width: 992px) {
         width: 100%;
       }
-
-      .userSelected {
+      .userSelectedName {
         width: 100%;
         height: 10%;
         display: flex;
         align-items: center;
         justify-content: center;
         border-bottom: 1px solid gainsboro;
-
-
-
-        .name2 {
+        .name {
           @include text($mainTextStyle, 16px, 1.2);
           color: black;
           font-weight: 600;
@@ -261,7 +119,7 @@
         }
       }
 
-      .chat {
+      .fieldChat {
         width: 100%;
         height: 90%;
         display: flex;
@@ -269,100 +127,7 @@
         justify-content: flex-end;
         align-items: center;
 
-        .chatField {
-          padding: 10px;
-          height: 85%;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          border-bottom: 1px solid gainsboro;
-          overflow-y: scroll;
 
-          &::-webkit-scrollbar {
-            width: 10px;
-            background-color: #f9f9fd;
-          }
-
-          &::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background-color: #18aaaa;
-          }
-
-          &::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            background-color: #f9f9fd;
-          }
-
-          .field {
-            margin: 1px;
-
-            .my {
-              margin-left: 20%;
-              display: flex;
-              justify-content: flex-end;
-
-              .sms {
-                padding: 5px;
-                min-width: 50px;
-                height: 40px;
-                background-color: gainsboro;
-                border-radius: 10px;
-              }
-
-            }
-
-            .friend {
-              margin-right: 20%;
-              display: flex;
-              justify-content: flex-start;
-
-              .sms {
-                border: 2px solid gainsboro;
-                padding: 5px;
-                min-width: 50px;
-                min-height: 40px;
-                border-radius: 10px;
-              }
-
-            }
-          }
-        }
-
-
-        .sendField {
-          width: 300px;
-          height: 15%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          .printMess {
-            padding: 5px;
-            width: 250px;
-            height: 50px;
-            border-radius: 10px;
-            outline:none;
-
-          }
-
-          .sendMess {
-            margin-left: 10px;
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            border: none;
-            background-color: $primaryColor;
-            min-width: 50px;
-            min-height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-
-          }
-        }
       }
     }
 

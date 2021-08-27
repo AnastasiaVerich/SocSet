@@ -1,7 +1,6 @@
 import React from "react";
 import {Profile} from "./profile";
 import {connect} from "react-redux";
-
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {StoreStateType} from "../../BLL/store";

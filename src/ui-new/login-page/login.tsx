@@ -2,7 +2,6 @@ import React from 'react'
 import s from "./login.module.scss"
 import {Redirect} from "react-router-dom";
 import {LoginReduxForm} from "./login-form";
-import {reset} from "redux-form";
 import {AiOutlineShopping, CgWorkAlt, MdComputer} from "react-icons/all";
 
 export const Login = (props:any) => {
@@ -14,8 +13,6 @@ export const Login = (props:any) => {
         // dispatch(reset("profileAddPostForm")) для очистки полей в форме, в кавычках имя формы
     }
     if (props.isAuth) return <Redirect to={"/profile"}/>
-
-    const on= false;
 
     return (
         <div className={s.block}>

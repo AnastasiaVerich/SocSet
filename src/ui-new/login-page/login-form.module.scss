@@ -26,7 +26,6 @@
     align-items: center;
     @include text($secondTextStyle, 14px, 26px);
     color: #797575;
-
     .checkbox {
       margin-right: 5px;
     }
@@ -39,6 +38,9 @@
     margin: 10px;
   }
 
+  .formSunnierError{
+
+  }
 
   .button {
     @include text($secondTextStyle, 14px, 26px);

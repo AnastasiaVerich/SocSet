@@ -19,7 +19,6 @@ import {
     getUsersCreateSelector
 } from "../../BLL/users-selectors";
 import {Users} from "./users";
-import {Preloader} from "../Common/pr/Preloader";
 
 
 export type MapStateToPropsType = {
@@ -70,18 +69,13 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
             this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow,this.props.search)
     }
 
-
     onPageChanget = (pageNumber: number) => {
         this.props.getUsersThunk(pageNumber, this.props.pagesize,  this.props.isFollow,this.props.search)
-
         this.props.SetCurrentPage(pageNumber);
-
     }
 
     render() {
-        /*if (this.props.isFetching ) {
-            return <Preloader/>
-        } else */
+
             return <>
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}

@@ -1,15 +1,9 @@
 import React, {useState} from 'react'
 import s from "./setting.module.scss"
 import {Preloader} from "../Common/pr/Preloader";
-import style from "../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
-import no_image from "../../UI/assets/img/no_image.png";
-import {NavLink} from "react-router-dom";
-import c from "../../UI/component/Nav/Nav.module.css";
-import {createFormField, Textarea} from "../../UI/component/Common/FormsControl/FormsControl";
-import {Button, Input} from "@material-ui/core";
-import {reduxForm} from "redux-form";
-import {ContactsEditForm} from "./contacts-edit-form/contacts-edit-form";
+import no_image from "../assets/img/no_image.png";
 import {AboutMeEditForm} from "./aboutMe-edit-form/aboutMe-edit-form";
+import {MainEdit} from "./contacts-edit-form/contacts-edit-form";
 
 export const Setting = (props: any) => {
     let [x, setX] = useState(true)
@@ -36,19 +30,12 @@ export const Setting = (props: any) => {
     return <div className={s.block}>
         <div className={s.container}>
             <div className={s.editContainer}>
-                {x && <div className={s.mainInfo}>
-                    <div className={s.photoChangeBlock}>
-                        {props.profile.photos.large === null
-                            ? <img className={s.photo} src={no_image}/>
-                            : <img className={s.photo} src={props.profile.photos.large}/>}
-                        <label htmlFor="file-upload" className={s.customfileupload} onChange={updatePhoto}>
-                            <input className={s.inputFile} id="file-upload" type="file"/>
-                            Upgrade photo
-                        </label>
-                    </div>
-                    <ContactsEditForm onSubmit={onSubmit} initialValues={props.profile}
-                                      profile={props.profile}/>
-                </div>}
+
+                {x && <MainEdit profile={props.profile}
+                                updateInfoProfile={props.updateInfoProfile}
+                                updatePhoto={props.updatePhoto} />
+
+                }
                 {y &&<div className={s.aboutMeBlock}>
 
                     <AboutMeEditForm onSubmit={onSubmit} initialValues={props.profile}
@@ -64,12 +51,8 @@ export const Setting = (props: any) => {
                     setX(false);
                     setY(true);
                 }}>2</div>
-
             </div>
-
-
         </div>
-
     </div>
 
 }

@@ -2,6 +2,40 @@ import s from "./contacts-edit-form.module.scss";
 import {reduxForm} from "redux-form";
 import React from "react";
 import {createFormField, Input} from "../../Common/FormsControl/FormsControl";
+import no_image from "../../assets/img/no_image.png";
+
+ export const MainEdit=(props: any)=>{
+     const updatePhoto = (e: any/*: ChangeEvent<HTMLInputElement>*/) => {
+         if (e.target.files.length) {
+             props.updatePhoto(e.target.files[0])
+         }
+     }
+//отправка данных с формы на сервер через санку. когда данные отправились, то меняемм  режим редактирования
+     const onSubmit = (formData: any) => {
+         props.updateInfoProfile(formData)
+             /*.then(() => {
+                 setEditMode(false);
+             })*/
+     }
+     return(
+         <div className={s.mainInfo}>
+             <div className={s.photoChangeBlock}>
+                 {props.profile.photos.large === null
+                     ? <img className={s.photo} src={no_image}/>
+                     : <img className={s.photo} src={props.profile.photos.large}/>}
+                 <label htmlFor="file-upload" className={s.customfileupload} onChange={updatePhoto}>
+                     <input className={s.inputFile} id="file-upload" type="file"/>
+                     Upgrade photo
+                 </label>
+             </div>
+             <ContactsEditForm onSubmit={onSubmit} initialValues={props.profile}
+                               profile={props.profile}/>
+         </div>
+     )
+
+ }
+
+
 
 const ContactsEdit = ({handleSubmit, profile, error}: any) => {
     return (
@@ -30,4 +64,4 @@ const ContactsEdit = ({handleSubmit, profile, error}: any) => {
         </form>
     )
 }
-export const ContactsEditForm: any = reduxForm({form: 'editProfileContacts'})(ContactsEdit)
+ const ContactsEditForm: any = reduxForm({form: 'editProfileContacts'})(ContactsEdit)

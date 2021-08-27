@@ -22,7 +22,7 @@ export const Users = (props:any) => {
                     <input className={s.inp}
                            placeholder={"Search Members"} value={props.search} onChange={(event)=>{props.searchAC(event.currentTarget.value)}}></input>
                 </div>
-                <div className={s.viewFriends}>
+                <div className={s.userBlock}>
                     {props.users.map((user: OneUsersType) =>
                         <OneUser user={user}
                                  unfollow={props.unfollow}

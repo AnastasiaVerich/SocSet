@@ -1,18 +1,15 @@
 import React, {useState} from 'react'
 import s from "./profile.module.scss"
 import {NavLink} from "react-router-dom";
-import no_image from "../../UI/assets/img/no_image.png";
+import no_image from "../assets/img/no_image.png";
 import {Preloader} from "../Common/pr/Preloader";
 import {ViewProfile} from "./menu-items/view-profile/view-profile";
-import {ViewFrinds} from "./menu-items/view-friends/view-friends";
 import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
 import {AboutMe} from "./menu-items/about-me/about-me";
 import {ViewFriendsContainer} from "./menu-items/view-friends/view-friends-container";
-import c from "../../UI/component/Nav/Nav.module.css";
-import style from "../../UI/component/Profile/ProfileInfo/ProfileInfo.module.css";
 import {AiOutlineMail} from "react-icons/ai";
 import {AiOutlineUser} from "react-icons/ai";
-import {FaUserFriends, GrContactInfo, SiAboutDotMe, SiMailDotRu} from "react-icons/all";
+import {FaUserFriends, SiAboutDotMe, SiMailDotRu} from "react-icons/all";
 
 export const Profile = (props: any) => {
     let [x, setX] = useState(true)
@@ -24,20 +21,17 @@ export const Profile = (props: any) => {
         return <Preloader/>
     } else {
         return <div className={s.block}>
-
-            <div className={s.backgroundImage}>
-                <div className={s.topPart}>
-                    <div className={s.avaName}>
-                        <div className={s.avatarContainer}>
+            <div className={s.topBlock}>
+                <div className={s.topContainer}>
+                    <div className={s.photoName}>
+                        <div className={s.photoContainer}>
                             {props.profile.photos.large === null
-                                ? <img className={s.avatar} src={no_image}/>
-                                : <img className={s.avatar} src={props.profile.photos.large}/>}
+                                ? <img className={s.photo} src={no_image}/>
+                                : <img className={s.photo} src={props.profile.photos.large}/>}
                         </div>
-                        <div className={s.name}> {props.profile.fullName}
+                        <div className={s.name}>
+                            {props.profile.fullName}
                         </div>
-
-
-
                     </div>
 
                     <div className={s.buttons}>
@@ -54,8 +48,8 @@ export const Profile = (props: any) => {
                 </div>
             </div>
             <div className={s.mainBlock}>
-                <div className={s.middlePart}>
-                    <div className={s.menu}>
+                <div className={s.menuBlock}>
+                    <div className={s.menuContainer}>
                         <div className={s.menuItem} onClick={() => {
                             setX(true);
                             setY(false);
@@ -88,8 +82,8 @@ export const Profile = (props: any) => {
                         </div>}
                     </div>
                 </div>
-                <div className={s.bottomPart}>
-                    <div className={s.menuSelection}>
+                <div className={s.profileSelectedBlock}>
+                    <div className={s.profileSelectedContainer}>
                         {/* посмотреть профиль*/}
                         {x && <ViewProfile profile={props.profile}/>}
                         {/*посмотреть друзей*/}

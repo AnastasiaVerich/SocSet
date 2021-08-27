@@ -1,5 +1,4 @@
 import React from "react";
-import {Profile} from "../../UI/component/Profile/Profile";
 import {StoreStateType} from "../../BLL/store";
 import {
     getOneProfileTC,

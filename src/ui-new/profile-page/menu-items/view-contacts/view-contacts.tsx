@@ -3,9 +3,9 @@ import React from "react";
 
 export const ViewContacts = (props: any) => {
     return (
-        <div className={s.viewProfile}>
+        <div className={s.contactsBlock}>
             <div className={s.titleMenu}> My contacts</div>
-            <div className={s.selectionMainContainer}>
+            <div className={s.container}>
                 {Object.keys(props.profile.contacts).map(key => {
                     return <Contact key={key} contactTitle={key}
                                     contactValue={props.profile.contacts[key]}/>
@@ -17,10 +17,10 @@ export const ViewContacts = (props: any) => {
 const Contact = (props: any) => {
     return (
         <div className={s.oneContact}>
-            <div className={s.titleColumn}>
+            <div className={s.columnTitles}>
                 <div className={s.item}>{props.contactTitle}</div>
             </div>
-            <div className={s.descriptionColumn}>
+            <div className={s.columnDescriptions}>
                 <div className={s.item}>{props.contactValue}</div>
             </div>
         </div>

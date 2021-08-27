@@ -1,13 +1,11 @@
-
 import React from "react";
 import {StoreStateType} from "../../BLL/store";
-import {DispatchTypeDialog, StateTypeDialog} from "../../UI/component/Dialog/Dialog";
 import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../BLL/Reducers/dialogs-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {WithAuthRedirect} from "../../UI/HOC/WithAuthRedirect";
 import {Messages} from "./messages";
 import {getOneProfileTC} from "../../BLL/Reducers/profile-reducer";
+import {WithAuthRedirect} from "../HOC/WithAuthRedirect";
 
 let mapStateToProps = (state: StoreStateType) => {
     return {

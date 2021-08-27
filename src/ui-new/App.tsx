@@ -1,29 +1,26 @@
 import React from 'react';
 import s from "./app.module.scss"
-import {Redirect, Route, Switch, useLocation, withRouter} from "react-router-dom";
-
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Nav} from "./nav/nav";
 import {LoginContainer} from "./login-page/login-container";
 import {UsersContainer} from "./users-page/users-container";
 import {Preloader} from "./Common/pr/Preloader";
-import {WithSuspenseHOC} from "../UI/HOC/WithSuspense";
 import {StoreStateType} from "../BLL/store";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {initializeTC} from "../BLL/Reducers/app-reducer";
-import {HeaderConteiner} from "./header/header-container";
-import {Setting} from "./setting/setting";
+import {HeaderContainer} from "./header/header-container";
 import SettingContainer from "./setting/setting-container";
+import {WithSuspenseHOC} from "./HOC/WithSuspense";
 
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
 const MessagesContainer = React.lazy(() => import('./messages-page/messages-container'));
-
 const ProfileContainerConnect = React.lazy(() => import('./profile-page/profile-container'));
 
 
 class App extends React.Component<any, any> {
-// componentDidMount срабатывает один раз, когда К. вмонтируется
+// componentDidMount срабатывает один раз, когда компанента  вмонтируется
     catchAllUnhandleError = (promiseRejectEvent: PromiseRejectionEvent) => {
         alert(promiseRejectEvent)
     }
@@ -43,14 +40,14 @@ class App extends React.Component<any, any> {
         if (!this.props.initialized) {
             return <Preloader/>
         }
-// задача К. вернуть jsx(tsx) в зависимости от пропсов либо личного локального стейта
+        // задача компаненты вернуть jsx(tsx) в зависимости от пропсов либо личного локального стейта
         // exact требует полное совпадение урла. Можно добавить <Switch>..роутер..</Switch> и тогда при первом совпадении будет отрисовка.
         // в этом случает лучше точные урлы ставить выше, а общие ниже
         return (<div className={s.block}>
                 {window.location.pathname === '/'
                 || window.location.pathname === '/login'
                     ? null
-                    : <HeaderConteiner/>}
+                    : <HeaderContainer/>}
 
                 <div className={s.container}>
                     {window.location.pathname === '/'

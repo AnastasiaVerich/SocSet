@@ -9,21 +9,21 @@
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 992px) {
-    display: none;  }
-
+    display: none;
+  }
 
   .icon {
     width: 60px;
     height: 60px;
-    background-image: linear-gradient( 135deg, #4f5261 0%, #383a45 50%);
+    background-image: linear-gradient(135deg, #4f5261 0%, #383a45 50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    .iconNetwork{
+
+    .iconNetwork {
       width: 60px;
       height: 60px;
       filter: hue-rotate(277deg);
-
     }
   }
 
@@ -33,28 +33,20 @@
     align-items: center;
     margin-right: 10px;
 
-
     .info {
       display: flex;
       align-items: center;
       padding-right: 10px;
       border-right: 1px solid gainsboro;
 
-
-      .ava {
-        width: 44px;
-        height: 44px;
-        border-radius: 22px;
-        background-color: black;
-        margin-right: 10px;
-      }
-
       .name {
+
       }
     }
 
     .unLog {
       padding-left: 10px;
+
       .btn {
         @include text($mainTextStyle, 1rem, 1.2);
         color: $primaryColor;

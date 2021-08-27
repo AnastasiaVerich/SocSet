@@ -1,33 +1,33 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
-import {maxLength, requiredField} from "../../UI/utils/validators/validators";
 import s from "./login-form.module.scss";
 import {createFormField, Input} from "../Common/FormsControl/FormsControl";
+import {maxLength, requiredField} from "../utils/validators/validators";
 
 const maxLengthValidator = maxLength(50)
 
 const LoginForm = ({handleSubmit, error, x}: any) => {
     return (
-/*        В пропсах теперь нам очень много всего приходит после оборачивания компоненты с формой в HOC.
-        В т.ч. метод handleSubmit, который позволяет не перезагружать страницу при отправке.*/
+        /*        В пропсах теперь нам очень много всего приходит после оборачивания компоненты с формой в HOC.
+                В т.ч. метод handleSubmit, который позволяет не перезагружать страницу при отправке.*/
         <form onSubmit={handleSubmit} className={s.loginForm}>
-                <Field placeholder={"Email"}
-                       component={Input}
-                       name={"email"}
-                       validate={[requiredField, maxLengthValidator]}
-                       props={{ className: s.input }}/>
-{/*Все поля в форме меняем на компоненты Field, которые пришли к нам из библиотеки, с указанием component аналогично пропсам*/}
-                <Field placeholder={"Password"}
-                       component={Input}
-                       name={"password"}
-                       validate={[requiredField, maxLengthValidator]}
-                       props={{ className: s.input }}/>
+            <Field placeholder={"Email"}
+                   component={Input}
+                   name={"email"}
+                   validate={[requiredField, maxLengthValidator]}
+                   props={{className: s.input}}/>
+            {/*Все поля в форме меняем на компоненты Field, которые пришли к нам из библиотеки, с указанием component аналогично пропсам*/}
+            <Field placeholder={"Password"}
+                   component={Input}
+                   name={"password"}
+                   validate={[requiredField, maxLengthValidator]}
+                   props={{className: s.input}}/>
             <div className={s.rememberMe}>
                 <Field type={"checkbox"}
                        component={Input}
                        name={"rememberMe"}
                        validate={[maxLengthValidator]}
-                       props={{ className: s.checkbox }}/> Remember
+                       props={{className: s.checkbox}}/> Remember
             </div>
             {x && <img className={s.captcha} src={x}/>}
 
@@ -37,14 +37,14 @@ const LoginForm = ({handleSubmit, error, x}: any) => {
                 {error}
             </div>}
 
-                <button className={s.button} type='submit' >Login</button>
+            <button className={s.button} type='submit'>Login</button>
 
         </form>
 
     )
 }
 //присвоили уникальное имя нашей новой форме в параметре – {form: 'login'}
- export const LoginReduxForm: any = reduxForm({
+export const LoginReduxForm: any = reduxForm({
     form: 'Login'
 })(LoginForm)
 

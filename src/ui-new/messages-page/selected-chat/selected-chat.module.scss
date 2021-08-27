@@ -1,0 +1,62 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+
+
+.chatContainer {
+  padding: 10px;
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: 1px solid gainsboro;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f9f9fd;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #18aaaa;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+  }
+
+  .chat {
+    margin: 1px;
+
+    .my {
+      margin-left: 20%;
+      display: flex;
+      justify-content: flex-end;
+      .sms {
+        padding: 5px;
+        min-width: 50px;
+        height: 40px;
+        background-color: gainsboro;
+        border-radius: 10px;
+      }
+    }
+
+    .friend {
+      margin-right: 20%;
+      display: flex;
+      justify-content: flex-start;
+
+      .sms {
+        border: 2px solid gainsboro;
+        padding: 5px;
+        min-width: 50px;
+        min-height: 40px;
+        border-radius: 10px;
+      }
+
+    }
+  }
+}

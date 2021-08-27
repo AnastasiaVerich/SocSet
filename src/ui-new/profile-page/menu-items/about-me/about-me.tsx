@@ -3,9 +3,9 @@ import React from "react";
 
 export const AboutMe = (props: any) => {
     return (
-        <div className={s.viewProfile}>
+        <div className={s.aboutMeBlock}>
             <div className={s.titleMenu}> about me</div>
-            <div className={s.selectionMainContainer}>
+            <div className={s.container}>
                 <div className={s.aboutMeField}>
                     {props.profile.aboutMe}
                 </div>

@@ -10,7 +10,6 @@ class HeaderContainerConnect extends React.Component<any, any> {
     }
     componentDidMount() {
 
-
     }
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
         if(this.props.isAuthorization !==prevProps.isAuthorization )
@@ -34,4 +33,4 @@ let mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-export const HeaderConteiner = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerConnect)
+export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerConnect)

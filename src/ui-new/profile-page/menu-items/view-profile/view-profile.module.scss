@@ -17,13 +17,13 @@
     font-weight: 700;
   }
 
-  .selectionMainContainer {
+  .container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     @include text($secondTextStyle, 14px, 26px);
     color: black;
-      .titleColumn {
+      .columnTitles {
         width: 40%;
         display: flex;
         flex-direction: column;
@@ -34,7 +34,7 @@
           padding: 10px;
         }
       }
-      .descriptionColumn {
+      .columnDescriptions {
         width: 60%;
         display: flex;
         flex-direction: column;

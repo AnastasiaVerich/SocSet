@@ -5,14 +5,13 @@
   width: 100%;
   height: 100vh;
   background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
 
-  .backgroundImage {
+  .topBlock {
     width: 100%;
     height: 20%;
     display: flex;
@@ -21,9 +20,7 @@
     @media screen and (max-width: 992px) {
       height: 35%;
     }
-
-
-    .topPart {
+    .topContainer {
       width: 70%;
       height: 90%;
       display: flex;
@@ -31,16 +28,12 @@
       @media screen and (max-width: 992px) {
         justify-content: center;
       }
-
-
-      .avaName {
+      .photoName {
         width: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-
-        .avatarContainer {
+        .photoContainer {
           z-index: 10;
           width: 100%;
           display: flex;
@@ -48,8 +41,7 @@
           @media screen and (max-width: 992px) {
             width: auto;
           }
-
-          .avatar {
+          .photo {
             width: 100%;
             border-radius: 50%;
             @media screen and (max-width: 992px) {
@@ -57,10 +49,8 @@
               height: 160px;
               margin: 0;
             }
-
           }
         }
-
         .name {
           z-index: 2;
           width: 100%;
@@ -72,14 +62,12 @@
           @media screen and (max-width: 992px) {
             margin: 0
           }
-
         }
       }
 
 
       .buttons {
         height: 100%;
-
         display: flex;
         align-items: flex-end;
         @media screen and (max-width: 992px) {
@@ -121,7 +109,7 @@
       min-height: 65%;
     }
 
-    .middlePart {
+    .menuBlock {
       width: 100%;
       height: 20%;
       display: flex;
@@ -129,7 +117,7 @@
       justify-content: flex-end;
       align-items: center;
 
-      .menu {
+      .menuContainer {
         width: 70%;
         display: flex;
         @media screen and (max-width: 992px) {
@@ -151,12 +139,12 @@
       }
     }
 
-    .bottomPart {
+    .profileSelectedBlock {
       width: 100%;
       height: 80%;
       display: flex;
 
-      .menuSelection {
+      .profileSelectedContainer {
         width: 100%;
         height: 100%;
         padding: 20px;

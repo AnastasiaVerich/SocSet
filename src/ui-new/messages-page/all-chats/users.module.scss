@@ -1,0 +1,77 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+
+.item {
+  text-decoration: none;
+  border-bottom: 1px solid gainsboro;
+  width: 90%;
+  height: 70px;
+  display: flex;
+
+  .avatar {
+    padding: 5px;
+    width: 70px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .ava {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: black;
+    }
+  }
+
+  .main {
+    padding: 5px;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .name {
+      @include text($mainTextStyle, 16px, 1.2);
+      color: black;
+      font-weight: 600;
+      height: 49%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lastMessages {
+      @include text($secondTextStyle, 16px, 26px);
+      color: $primaryColor;
+      height: 49%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 600;
+    }
+  }
+  .info {
+    padding: 5px;
+    width: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .time {
+      height: 49%;
+      width: max-content;
+      @include text($secondTextStyle, 10px, 26px);
+      color: #bbb4b4;
+    }
+
+    .countUnread {
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      background-color: #cecece;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include text($secondTextStyle, 14px, 26px);
+      color: #5b9d95;
+      font-weight: 700;
+
+    }
+  }
+}
