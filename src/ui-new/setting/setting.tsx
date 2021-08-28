@@ -36,11 +36,11 @@ export const Setting = (props: any) => {
                                 updatePhoto={props.updatePhoto} />
 
                 }
-                {y &&<div className={s.aboutMeBlock}>
+                {y &&
 
                     <AboutMeEditForm onSubmit={onSubmit} initialValues={props.profile}
                                      profile={props.profile}/>
-                </div>}
+                }
             </div>
             <div className={s.nav}>
                 <div className={s.item} onClick={() => {
