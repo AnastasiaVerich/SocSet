@@ -51,7 +51,9 @@ export const Messages = (props: any) => {
                         <div className={s.userSelectedName}>
                             <div className={s.name}>{props.profile.fullName}</div>
                         </div>
-                        : <></>
+                        :  <div className={s.userSelectedName}>
+                            <div className={s.name}>1</div>
+                        </div>
                     }
                     <div className={s.fieldChat}>
                         {recipientId !== undefined
@@ -61,8 +63,8 @@ export const Messages = (props: any) => {
                                                 recipientId={recipientId}
                                                 selectedDialogMessages={props.selectedDialogMessages}
                                                 totalCount={props.totalCount}/>
-                                : <Preloader/>
-                            : <div>Выбери диалог</div>}
+                                :<div className={s.field}><Preloader/></div>
+                            : <div className={s.field}>Выбери диалог</div>}
                         <SendMessageReduxForm onSubmit={sendMessage}/>
                     </div>
                 </div>
