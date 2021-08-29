@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import {AppContainer} from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./BLL/store";
 import {Provider} from "react-redux";
 import {BrowserRouter, HashRouter} from "react-router-dom";
-import {Login} from "./ui-new/login-page/login";
-import {Profile} from "./ui-new/profile-page/profile";
 import {AppContainer} from "./ui-new/App";
 import {Users} from "./ui-new/users-page/users";
 import {Messages} from "./ui-new/messages-page/messages";
@@ -16,7 +13,7 @@ import {Messages} from "./ui-new/messages-page/messages";
 // Provider добовляет store в контекст, из которого все компаненты могут брать данные ( наприер стор, тема темная/светлая, язык)
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
 {/*
             <AppContainer/>
 */}
@@ -25,7 +22,7 @@ ReactDOM.render(
             <AppContainer/>
 
 
-        </BrowserRouter>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );
