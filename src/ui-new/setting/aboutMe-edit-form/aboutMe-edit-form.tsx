@@ -1,7 +1,7 @@
 import s from "./aboutMe-edit-form.module.scss"
 import {reduxForm} from "redux-form";
 import React from "react";
-import {createFormField, Input, Textarea} from "../../Common/FormsControl/FormsControl";
+import {createFormField, Input, Textarea} from "../../Common/forms-control/FormsControl";
 
 
 const AboutMeEdit = ({handleSubmit, profile, error}: any) => {

@@ -10,23 +10,8 @@
   flex-direction: column;
   justify-content: flex-start;
   border-bottom: 1px solid gainsboro;
-  overflow-y: scroll;
+  @include scroll();
 
-  &::-webkit-scrollbar {
-    width: 10px;
-    background-color: #f9f9fd;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #18aaaa;
-  }
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    background-color: #f9f9fd;
-  }
 
   .chat {
     margin: 1px;

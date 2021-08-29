@@ -31,13 +31,11 @@
     }
 
     .customfileupload {
-      background-color: $primaryColor;
+      @include button(auto, auto);
+
       margin-left: 20px;
-      border: 1px solid #ccc;
       display: inline-block;
       padding: 6px 12px;
-      cursor: pointer;
-      color: #000000;
 
       .inputFile {
         display: none;
@@ -143,11 +141,11 @@
     }
 
     .btn {
+      @include button(auto, fit-content);
+      padding: 6px 12px;
+
       margin-top: 10px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      width: fit-content;
-      background-color: $primaryColor;
+
     }
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import s from "./login-form.module.scss";
-import {createFormField, Input} from "../Common/FormsControl/FormsControl";
 import {maxLength, requiredField} from "../utils/validators/validators";
+import {createFormField, Input} from "../Common/forms-control/FormsControl";
 
 const maxLengthValidator = maxLength(50)
 

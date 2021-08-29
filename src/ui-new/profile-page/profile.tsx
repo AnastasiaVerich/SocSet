@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import s from "./profile.module.scss"
 import {NavLink} from "react-router-dom";
 import no_image from "../assets/img/no_image.png";
-import {Preloader} from "../Common/pr/Preloader";
 import {ViewProfile} from "./menu-items/view-profile/view-profile";
 import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
 import {AboutMe} from "./menu-items/about-me/about-me";
@@ -10,6 +9,7 @@ import {ViewFriendsContainer} from "./menu-items/view-friends/view-friends-conta
 import {AiOutlineMail} from "react-icons/ai";
 import {AiOutlineUser} from "react-icons/ai";
 import {FaUserFriends, SiAboutDotMe, SiMailDotRu} from "react-icons/all";
+import {Preloader} from "../Common/preloader/Preloader";
 
 export const Profile = (props: any) => {
     let [x, setX] = useState(true)

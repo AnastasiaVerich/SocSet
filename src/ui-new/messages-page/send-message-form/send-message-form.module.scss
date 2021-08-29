@@ -23,18 +23,9 @@ height: 50px;
 
 
   .sendMess {
+    @include button(50px, 50px);
     margin-left: 10px;
-    width: 50px;
-    height: 50px;
     border-radius: 25px;
     border: none;
-    background-color: $primaryColor;
-    min-width: 50px;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
   }
 }

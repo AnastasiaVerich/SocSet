@@ -1,7 +1,6 @@
 import {authorizationAPI, securityAPI} from "../../DAL/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
-import {Redirect} from "react-router-dom";
 
 const SET_USER_DATA = "SET_USER_DATA"
 const GET_CAPTCHA = "CAPTCHA"

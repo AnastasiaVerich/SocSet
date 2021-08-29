@@ -4,14 +4,14 @@ import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Nav} from "./nav/nav";
 import {LoginContainer} from "./login-page/login-container";
 import {UsersContainer} from "./users-page/users-container";
-import {Preloader} from "./Common/pr/Preloader";
 import {StoreStateType} from "../BLL/store";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {initializeTC} from "../BLL/Reducers/app-reducer";
 import {HeaderContainer} from "./header/header-container";
 import SettingContainer from "./setting/setting-container";
-import {WithSuspenseHOC} from "./HOC/WithSuspense";
+import {WithSuspenseHOC} from "./HOC/with-suspense";
+import {Preloader} from "./Common/preloader/Preloader";
 
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера

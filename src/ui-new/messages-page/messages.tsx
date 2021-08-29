@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import s from "./messages.module.scss"
-import {Preloader} from "../Common/pr/Preloader";
 import {NavLink} from "react-router-dom";
 import {AiOutlineMenu, FiRefreshCcw} from "react-icons/all";
 import {SendMessageReduxForm} from "./send-message-form/send-message-form";
 import {SelectedChat} from "./selected-chat/selectedChat";
 import {Users} from "./all-chats/users";
+import {Preloader} from "../Common/preloader/Preloader";
 
 export const Messages = (props: any) => {
     // от куда берется match???

@@ -2,9 +2,9 @@ import
 {maxLength, requiredField} from "../../utils/validators/validators";
 import s from "./send-message-form.module.scss";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../Common/FormsControl/FormsControl";
 import {FiSend} from "react-icons/all";
 import React from "react";
+import {Textarea} from "../../Common/forms-control/FormsControl";
 
 const maxLengthCreator = maxLength(10)
 const SendMessageForm = (props: any) => {

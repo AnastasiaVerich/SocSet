@@ -6,23 +6,16 @@ import {store} from "./BLL/store";
 import {Provider} from "react-redux";
 import {BrowserRouter, HashRouter} from "react-router-dom";
 import {AppContainer} from "./ui-new/App";
-import {Users} from "./ui-new/users-page/users";
-import {Messages} from "./ui-new/messages-page/messages";
 
 // BrowserRouter добовляет
 // Provider добовляет store в контекст, из которого все компаненты могут брать данные ( наприер стор, тема темная/светлая, язык)
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter>
-{/*
-            <AppContainer/>
-*/}
-
+        <BrowserRouter>
 
             <AppContainer/>
 
-
-        </HashRouter>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

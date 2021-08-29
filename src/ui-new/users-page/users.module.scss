@@ -47,22 +47,8 @@
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      overflow-y: scroll;
-      &::-webkit-scrollbar {
-        width: 10px;
-        background-color: #f9f9fd;
-      }
+      @include scroll();
 
-      &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background-color: #18aaaa;
-      }
-
-      &::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-        border-radius: 10px;
-        background-color: #f9f9fd;
-      }
 
 
     }

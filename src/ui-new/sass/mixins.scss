@@ -1,21 +1,23 @@
 @import "./variables";
 
-@mixin  text ($fF, $fS, $lH){
+@mixin text($fF, $fS, $lH) {
   font-family: $fF;
   color: $textColor;
   line-height: $lH;
   font-size: $fS;
   font-weight: 400;
 }
-@mixin  block ($bC){
+
+@mixin block($bC) {
   background-color: $bC;
   display: flex;
   align-items: center;
 }
-@mixin  context ($jC){
+
+@mixin context($jC) {
   //border: 3px solid #0c357d;
   height: 100%;
-  width:70%;
+  width: 70%;
   margin: 100px auto;
   display: flex;
   align-items: center;
@@ -25,27 +27,52 @@
     width: 95%;
   }
 
-  }
+}
 
-@mixin itemsContainer(){
+@mixin itemsContainer() {
   margin-top: 35px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
+@mixin button($H, $W) {
+  @include text($secondTextStyle, 14px, 26px);
+  height: $H;
+  width: $W;
+  border: 1px solid transparent;
+  border-radius: 1.25rem;
+  background-color: $primaryColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
-//@import "../Common/Styles/sass/variables";
-//@import "../Common/Styles/sass/mixins";
-//
-//
-//.block {
-//    width: 100%;
-//    height: 80px;
-//    justify-content: flex-end;
-//    @include block($promeryColor);
-//    position: sticky;
-//    top: 0;
-//    z-index: 100;
-//
-//}
+}
+
+@mixin scroll() {
+  padding-right: 10px;
+  overflow-y: hidden;
+
+  &:hover {
+    padding-right: 0;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: #f9f9fd;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #18aaaa;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      background-color: #f9f9fd;
+    }
+  }
+}
+

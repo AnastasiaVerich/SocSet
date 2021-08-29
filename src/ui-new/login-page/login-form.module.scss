@@ -43,16 +43,9 @@
   }
 
   .button {
-    @include text($secondTextStyle, 14px, 26px);
-    height: 40px;
-    border: 1px solid transparent;
-    border-radius: 1.25rem;
-    width: 100%;
-    background-color: $primaryColor;
+    @include button(40px, 100%);
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
   }
 }
 

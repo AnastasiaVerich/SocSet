@@ -5,7 +5,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {Messages} from "./messages";
 import {getOneProfileTC} from "../../BLL/Reducers/profile-reducer";
-import {WithAuthRedirect} from "../HOC/WithAuthRedirect";
+import {WithAuthRedirect} from "../HOC/with-auth-redirect";
 
 let mapStateToProps = (state: StoreStateType) => {
     return {

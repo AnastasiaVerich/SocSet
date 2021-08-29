@@ -14,11 +14,10 @@ import {
     getUsersCreateSelector
 } from "../../../../BLL/users-selectors";
 import React from "react";
-import {Preloader} from "../../../Common/pr/Preloader";
-import {Users} from "../../../users-page/users";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {ViewFrinds} from "./view-friends";
+import {Preloader} from "../../../Common/preloader/Preloader";
 
 export type MapStateToPropsType = {
     users: OneUsersType[]

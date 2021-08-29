@@ -1,8 +1,8 @@
 import s from "./contacts-edit-form.module.scss";
 import {reduxForm} from "redux-form";
 import React from "react";
-import {createFormField, Input} from "../../Common/FormsControl/FormsControl";
 import no_image from "../../assets/img/no_image.png";
+import {createFormField, Input} from "../../Common/forms-control/FormsControl";
 
  export const MainEdit=(props: any)=>{
      const updatePhoto = (e: any/*: ChangeEvent<HTMLInputElement>*/) => {

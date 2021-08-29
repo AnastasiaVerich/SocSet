@@ -51,7 +51,9 @@
   }
 
   .btn {
-    height: 10%;
-    width: 10%;
+    @include button(auto, fit-content);
+    padding: 6px 12px;
+
+    margin-top: 10px;
   }
 }

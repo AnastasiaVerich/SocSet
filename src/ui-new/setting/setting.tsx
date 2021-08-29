@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import s from "./setting.module.scss"
-import {Preloader} from "../Common/pr/Preloader";
-import no_image from "../assets/img/no_image.png";
 import {AboutMeEditForm} from "./aboutMe-edit-form/aboutMe-edit-form";
 import {MainEdit} from "./contacts-edit-form/contacts-edit-form";
+import {Preloader} from "../Common/preloader/Preloader";
 
 export const Setting = (props: any) => {
     let [x, setX] = useState(true)
