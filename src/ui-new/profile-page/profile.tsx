@@ -21,34 +21,36 @@ export const Profile = (props: any) => {
         return <Preloader/>
     } else {
         return <div className={s.block}>
-                <div className={s.topContainer}>
-                    <div className={s.infoContainer}>
-                            {props.profile.photos.large === null
-                                ? <img className={s.photo} src={no_image}/>
-                                : <img className={s.photo} src={props.profile.photos.large}/>}
-                        <div className={s.name}>
-                            {props.profile.fullName}
-                        </div>
-                    </div>
-
-                    <div className={s.buttons}>
-                        {/*{ <div className={s.buttonItem}*/}
-                        {/*        onClick={() => {*/}
-                        {/*            props.follower(props.profile.userId)*/}
-                        {/*        }*/}
-                        {/*        }>Follow</div>}*/}
-                        {!props.ownerId && <NavLink to={'/messages/' + props.profile.userId} className={s.buttonItem}>
-                            <AiOutlineMail/>
-                        </NavLink>}
-
+            <div className={s.topContainer}>
+                {/*показываетс в мобильной версии*/}
+                <div className={s.infoContainer}>
+                    {props.profile.photos.large === null
+                        ? <img className={s.photo} src={no_image} alt={""}/>
+                        : <img className={s.photo} src={props.profile.photos.large} alt={""}/>}
+                    <div className={s.name}>
+                        {props.profile.fullName}
                     </div>
                 </div>
+
+                <div className={s.buttons}>
+                    {/*{ <div className={s.buttonItem}*/}
+                    {/*        onClick={() => {*/}
+                    {/*            props.follower(props.profile.userId)*/}
+                    {/*        }*/}
+                    {/*        }>Follow</div>}*/}
+                    {!props.ownerId && <NavLink to={'/messages/' + props.profile.userId} className={s.buttonItem}>
+                        <AiOutlineMail/>
+                    </NavLink>}
+
+                </div>
+            </div>
             <div className={s.bottomContainer}>
                 <div className={s.menuBlock}>
+                    {/*показывается в комп версии*/}
                     <div className={s.infoContainer}>
                         {props.profile.photos.large === null
-                            ? <img className={s.photo} src={no_image}/>
-                            : <img className={s.photo} src={props.profile.photos.large}/>}
+                            ? <img className={s.photo} src={no_image} alt={""}/>
+                            : <img className={s.photo} src={props.profile.photos.large} alt={""}/>}
                         <div className={s.name}>
                             {props.profile.fullName}
                         </div>
@@ -76,7 +78,6 @@ export const Profile = (props: any) => {
 
                         }}><SiAboutDotMe/>
                         </div>
-
                         {props.ownerId && <div className={s.menuItem} onClick={() => {
                             setX(false);
                             setY(false);

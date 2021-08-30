@@ -20,7 +20,9 @@ export const Users = (props:any) => {
 
                 <div className={s.search}>
                     <input className={s.inp}
-                           placeholder={"Search Members"} value={props.search} onChange={(event)=>{props.searchAC(event.currentTarget.value)}}></input>
+    placeholder={"Search Members"} value={props.search} onChange={(event) => {
+    props.searchAC(event.currentTarget.value)
+}}/>
                 </div>
                 <div className={s.userBlock}>
                     {props.users.map((user: OneUsersType) =>

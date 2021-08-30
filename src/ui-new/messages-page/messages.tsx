@@ -4,8 +4,8 @@ import {NavLink} from "react-router-dom";
 import {AiOutlineMenu, FiRefreshCcw} from "react-icons/all";
 import {SendMessageReduxForm} from "./send-message-form/send-message-form";
 import {SelectedChat} from "./selected-chat/selectedChat";
-import {Users} from "./all-chats/users";
 import {Preloader} from "../Common/preloader/Preloader";
+import {ChatList} from "./chat-list/chat-list";
 
 export const Messages = (props: any) => {
     // от куда берется match???
@@ -41,7 +41,7 @@ export const Messages = (props: any) => {
 
                     <div className={s.fieldUsers}>
                         {props.users != null
-                            ? <Users users={props.users}/>
+                            ? <ChatList users={props.users}/>
                             : <div>нет диалогов</div>}
                     </div>
                 </div>

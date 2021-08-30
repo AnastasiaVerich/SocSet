@@ -1,9 +1,9 @@
 import {NavLink} from "react-router-dom";
-import s from "./users.module.scss";
+import s from "./chat-list.module.scss";
 import no_image from "../../assets/img/no_image.png";
 import React from "react";
 
-export const Users = (props: any) => {
+export const ChatList = (props: any) => {
     let time = (t: any) => {
         let date = new Date()
         if (date.getMonth() == Number(t.substr(5, 2) - 1)
@@ -20,7 +20,7 @@ export const Users = (props: any) => {
                         <img className={s.ava}
                              src={element.photos.small != null
                                  ? element.photos.small
-                                 : no_image}/>
+                                 : no_image} alt={"avatar"}/>
                     </div>
                     <div className={s.main}>
                         <div className={s.name}>{element.userName}</div>
