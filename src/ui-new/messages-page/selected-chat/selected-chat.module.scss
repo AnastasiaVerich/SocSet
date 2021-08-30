@@ -11,6 +11,11 @@
   justify-content: flex-start;
   border-bottom: 1px solid gainsboro;
   @include scroll();
+  .btn{
+    align-self: center;
+
+    @include button(20px, fit-content)
+  }
 
 
   .chat {

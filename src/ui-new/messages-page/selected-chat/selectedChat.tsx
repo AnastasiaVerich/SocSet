@@ -1,21 +1,25 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./selected-chat.module.scss";
 
 export const SelectedChat = (props: any) => {
-
-    var messageBody = document.querySelector('#messageBody');
+useEffect(()=>{
+    let messageBody = document.querySelector('#messageBody');
     if (messageBody !== null) {
         messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
     }
+    setPage(2)
+},[props.recipientId])
+
 
     let [page, setPage] = useState(2)
 
+
     return (<div className={s.chatContainer} id="messageBody">
             {props.totalCount > props.messages.length
-                ? <button onClick={() => {
+                ? <button  className={s.btn} onClick={() => {
                     props.selectedDialogMessages(props.recipientId, page, 20);
                     setPage(++page)
-                }}>++</button>
+                }}>Загрузить еще</button>
                 : <></>}
 
             {props.messages.map((element: any) =>
