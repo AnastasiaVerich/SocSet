@@ -21,14 +21,11 @@ export const Profile = (props: any) => {
         return <Preloader/>
     } else {
         return <div className={s.block}>
-            <div className={s.topBlock}>
                 <div className={s.topContainer}>
-                    <div className={s.photoName}>
-                        <div className={s.photoContainer}>
+                    <div className={s.infoContainer}>
                             {props.profile.photos.large === null
                                 ? <img className={s.photo} src={no_image}/>
                                 : <img className={s.photo} src={props.profile.photos.large}/>}
-                        </div>
                         <div className={s.name}>
                             {props.profile.fullName}
                         </div>
@@ -46,9 +43,16 @@ export const Profile = (props: any) => {
 
                     </div>
                 </div>
-            </div>
-            <div className={s.mainBlock}>
+            <div className={s.bottomContainer}>
                 <div className={s.menuBlock}>
+                    <div className={s.infoContainer}>
+                        {props.profile.photos.large === null
+                            ? <img className={s.photo} src={no_image}/>
+                            : <img className={s.photo} src={props.profile.photos.large}/>}
+                        <div className={s.name}>
+                            {props.profile.fullName}
+                        </div>
+                    </div>
                     <div className={s.menuContainer}>
                         <div className={s.menuItem} onClick={() => {
                             setX(true);

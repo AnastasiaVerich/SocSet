@@ -8,33 +8,25 @@
   font-weight: 400;
 }
 
-@mixin block($bC) {
-  background-color: $bC;
+@mixin block() {
+  width: 100%;
+  height: 100vh;
+  background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-@mixin context($jC) {
-  //border: 3px solid #0c357d;
-  height: 100%;
+
+@mixin container() {
+  box-shadow: 0 0 50px rgba(0, 0, 0 , 0.6);
+  background-color: #ffffff;
   width: 70%;
-  margin: 100px auto;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: $jC;
-  @media screen and (max-width: 710px) {
-    width: 95%;
+  height: 80%;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    height: 100%;
   }
-
-}
-
-@mixin itemsContainer() {
-  margin-top: 35px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 @mixin button($H, $W) {
   @include text($secondTextStyle, 14px, 26px);

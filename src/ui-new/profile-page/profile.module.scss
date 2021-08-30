@@ -2,60 +2,117 @@
 @import "../sass/mixins";
 
 .block {
-  width: 100%;
-  height: 100vh;
-  background: url("https://oir.mobi/uploads/posts/2021-03/1616578387_45-p-svetlii-fon-dlya-saita-48.jpg");
-  display: flex;
+  @include block();
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-
-  .topBlock {
-    width: 100%;
+  .topContainer {
+    padding: 10px;
+    width: 70%;
     height: 20%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     @media screen and (max-width: 992px) {
+      justify-content: center;
+      width: 100%;
       height: 35%;
     }
-    .topContainer {
-      width: 70%;
-      height: 90%;
-      display: flex;
-      justify-content: space-between;
+    .infoContainer {
+      display: none;
       @media screen and (max-width: 992px) {
-        justify-content: center;
-        width: 100%;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .photo {
+          z-index: 10;
+          border-radius: 50%;
+          width: 160px;
+          height: 160px;
+        }
+        .name {
+          z-index: 2;
+          width: 100%;
+          text-align: center;
+          @include text($mainTextStyle, 1rem, 1.2);
+          font-weight: 600;
+          margin-top: 10px;
+          color: black;
+        }
       }
-      .photoName {
+    }
+
+    .buttons {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      @media screen and (max-width: 992px) {
+        width: 0%;
+        justify-content: center;
+      }
+      @media screen and (max-width: 540px) {
+        flex-direction: column;
+      }
+
+      .buttonItem {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid transparent;
+        color: #000000;
+        height: 40px;
+        line-height: 2.5rem;
+        width: 40px;
+        padding: 0;
+        margin: 2px;
+        border-radius: 25px;
+        text-align: center;
+        @media screen and (max-width: 992px) {
+          color: black;
+          height: auto;
+        }
+      }
+    }
+  }
+
+
+  .bottomContainer {
+    @include container();
+    height: 80%;
+
+
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 992px) {
+      min-height: 65%;
+    }
+
+    .menuBlock {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      border-bottom: 2px solid gainsboro;
+      justify-content: flex-start;
+
+
+      .infoContainer {
         width: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        transform: translate(0, -140px);
         @media screen and (max-width: 992px) {
-          width: 100%;        }
+          display: none
+        }
 
-
-        .photoContainer {
+        .photo {
           z-index: 10;
           width: 100%;
-          display: flex;
-          justify-content: center;
+          border-radius: 50%;
           @media screen and (max-width: 992px) {
-            width: auto;
-          }
-          .photo {
-            width: 100%;
-            border-radius: 50%;
-            @media screen and (max-width: 992px) {
-              width: 160px;
-              height: 160px;
-              margin: 0;
-            }
+            width: 160px;
+            height: 160px;
+            margin: 0;
+
           }
         }
+
         .name {
           z-index: 2;
           width: 100%;
@@ -71,59 +128,10 @@
       }
 
 
-      .buttons {
-        height: 100%;
-        display: flex;
-        align-items: flex-end;
-        @media screen and (max-width: 992px) {
-          justify-content: center;
-        }
-        @media screen and (max-width: 540px) {
-          flex-direction: column;
-        }
-
-        .buttonItem {
-          background: rgba(255, 255, 255, 0.2);
-          border: 1px solid transparent;
-          color: #000000;
-          height: 40px;
-          line-height: 2.5rem;
-          width: 40px;
-          padding: 0;
-          margin: 2px;
-          border-radius: 25px;
-          text-align: center;
-          @media screen and (max-width: 992px) {
-            color: black;
-            height: auto;
-          }
-        }
-      }
-    }
-  }
-
-  .mainBlock {
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
-    background-color: white;
-    width: 70%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    @media screen and (max-width: 992px) {
-      width: 100%;
-      min-height: 65%;
-    }
-
-    .menuBlock {
-      width: 100%;
-      height: 20%;
-      display: flex;
-      border-bottom: 2px solid gainsboro;
-      justify-content: flex-end;
-      align-items: center;
-
       .menuContainer {
         width: 70%;
+        height: 100%;
+        align-items: center;
         display: flex;
         @media screen and (max-width: 992px) {
           width: 100%;
