@@ -30,6 +30,7 @@ export const Users = (props:any) => {
                                  unfollow={props.unfollow}
                                  IsFollowingProgress={props.IsFollowingProgress}
                                  follower={props.follower}
+                                 key={user.id}
                         />
                     )
                     }

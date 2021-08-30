@@ -48,7 +48,7 @@ export const Login = (props:any) => {
                 </div>
                 <div className={s.leftPart}>
                     <div className={s.pathContainer}>
-                        <img  className={s.iconNetwork} src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"}/>
+                        <img  className={s.iconNetwork} src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"} alt={""}/>
                         <div className={s.welcome}>Welcome</div>
                         <LoginReduxForm onSubmit={onSubmit} x={props.captcha}/>
                     </div>

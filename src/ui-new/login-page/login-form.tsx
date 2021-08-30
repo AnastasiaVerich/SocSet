@@ -29,7 +29,7 @@ const LoginForm = ({handleSubmit, error, x}: any) => {
                        validate={[maxLengthValidator]}
                        props={{className: s.checkbox}}/> Remember
             </div>
-            {x && <img className={s.captcha} src={x}/>}
+            {x && <img className={s.captcha} src={x} alt={""}/>}
 
             {x && createFormField("captcha URl", "captcha", [], Input, {className: s.input})}
 

@@ -1,4 +1,3 @@
-import React from "react";
 import {StoreStateType} from "../../BLL/store";
 import {loginTC} from "../../BLL/Reducers/authorization-reducer";
 import {connect} from "react-redux";

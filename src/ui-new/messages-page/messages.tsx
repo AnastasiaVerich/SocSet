@@ -16,9 +16,12 @@ export const Messages = (props: any) => {
             props.selectedDialogMessages(recipientId, 1, 20)
             props.getOneProfile(recipientId)
         }
+        // eslint-disable-next-line
     }, [recipientId])
+
     useEffect(() => {
         props.usersTalkedWith()
+        // eslint-disable-next-line
     }, [])
 
     let sendMessage = (values: any) => {

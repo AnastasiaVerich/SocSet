@@ -21,8 +21,8 @@ import {createFormField, Input} from "../../Common/forms-control/FormsControl";
          <div className={s.mainInfo}>
              <div className={s.photoChangeBlock}>
                  {props.profile.photos.large === null
-                     ? <img className={s.photo} src={no_image}/>
-                     : <img className={s.photo} src={props.profile.photos.large}/>}
+                     ? <img className={s.photo} src={no_image} alt={""}/>
+                     : <img className={s.photo} src={props.profile.photos.large} alt={""}/>}
                  <label htmlFor="file-upload" className={s.customfileupload} onChange={updatePhoto}>
                      <input className={s.inputFile} id="file-upload" type="file"/>
                      Upgrade photo

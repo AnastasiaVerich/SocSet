@@ -7,23 +7,18 @@ import {Preloader} from "../Common/preloader/Preloader";
 export const Setting = (props: any) => {
     let [x, setX] = useState(true)
     let [y, setY] = useState(false)
-    let [editMode, setEditMode] = useState(false)
 // пока профайл не пришел с сервера, показываем загрузку страницы
     if (!props.profile) {
         return <Preloader/>
     }
 
-    const updatePhoto = (e: any/*: ChangeEvent<HTMLInputElement>*/) => {
-        if (e.target.files.length) {
-            props.updatePhoto(e.target.files[0])
-        }
-    }
+
 //отправка данных с формы на сервер через санку. когда данные отправились, то меняемм  режим редактирования
     const onSubmit = (formData: any) => {
         props.updateInfoProfile(formData)
-            .then(() => {
-                setEditMode(false);
-            })
+            // .then(() => {
+            //     setEditMode(false);
+            // })
     }
 
     return <div className={s.block}>

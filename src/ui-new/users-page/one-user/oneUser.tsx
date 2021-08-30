@@ -10,7 +10,7 @@ export const OneUser = (props: any) => {
     return (
         <div className={s.oneFriendContainer}>
             <img className={s.photo}
-                 src={user.photos.small != null ? user.photos.small : no_image}/>
+                 src={user.photos.small != null ? user.photos.small : no_image} alt={""}/>
 
             <div className={s.name}>{user.name}</div>
             <div className={s.btn}>

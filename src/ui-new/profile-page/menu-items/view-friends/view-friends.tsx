@@ -11,9 +11,9 @@ export const ViewFrinds = (props: any) => {
         <div className={s.viewFriendsBlock}>
 
             {props.users.map((user: OneUsersType) =>
-                <div className={s.oneFriendContainer}>
+                <div key={user.id} className={s.oneFriendContainer}>
                     <img className={s.photo}
-                         src={user.photos.small != null ? user.photos.small : no_image}/>
+                         src={user.photos.small != null ? user.photos.small : no_image} alt={""}/>
                     <div className={s.name}>{user.name}</div>
                     <div className={s.btn}>
                         {user.followed

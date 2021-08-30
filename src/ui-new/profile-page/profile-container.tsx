@@ -25,9 +25,8 @@ class ProfileConteiner extends React.Component<any, any>{
             if(!ownerId){
                 this.props.history.push("/login")
             }
-        }
+        }if(ownerId)
         this.props.getOneProfile(ownerId)
-        this.props.getStatus(ownerId)
     }
 
     componentDidMount() {
@@ -77,20 +76,16 @@ let mapDispatchToProps = (dispatch: any)  => {
         },
         updateInfoProfile: (profile: any) => {
             dispatch(updateInfoProfileTC(profile))
+        },
+        follower:(id: any)=>{
+            dispatch(followTC(id))
         }
     }
 }
 
 
 const ProfileContainerConnect:any= compose(
-    connect (mapStateToprops,{
-        follower:followTC,
-        getOneProfile:getOneProfileTC,
-        getStatus:getStatusTC,
-        updateStatus: updateStatusTC,
-        updatePhoto: updatePhotoTC,
-        updateInfoProfile: updateInfoProfileTC
-    })
+    connect (mapStateToprops,mapDispatchToProps)
     ,withRouter
 )(ProfileConteiner)
 export default ProfileContainerConnect

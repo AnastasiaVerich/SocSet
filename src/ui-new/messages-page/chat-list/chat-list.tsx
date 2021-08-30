@@ -6,9 +6,9 @@ import React from "react";
 export const ChatList = (props: any) => {
     let time = (t: any) => {
         let date = new Date()
-        if (date.getMonth() == Number(t.substr(5, 2) - 1)
-            && date.getDate() == t.substr(8, 2)
-            && date.getFullYear() == t.substr(0, 4))
+        if (date.getMonth() === Number(t.substr(5, 2) - 1)
+            && date.getDate() === t.substr(8, 2)
+            && date.getFullYear() === t.substr(0, 4))
             return t.substr(11, 5);
         else return t.substr(5, 5)
     }

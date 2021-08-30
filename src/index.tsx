@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./BLL/store";
 import {Provider} from "react-redux";
-import {BrowserRouter, HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {AppContainer} from "./ui-new/App";
 
 // BrowserRouter добовляет

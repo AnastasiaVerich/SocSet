@@ -2,10 +2,8 @@ import React from "react";
 import {StoreStateType} from "../../BLL/store";
 import {
     getOneProfileTC,
-    getStatusTC,
     updateInfoProfileTC,
     updatePhotoTC,
-    updateStatusTC
 } from "../../BLL/Reducers/profile-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
@@ -62,11 +60,7 @@ let mapDispatchToProps = (dispatch: any)  => {
         getOneProfile: (id: number) => {
             dispatch(getOneProfileTC(id))
         },
-        getStatus: (id: number) => {
-            dispatch(getStatusTC(id))
-        },updateStatus: (status: string) => {
-            dispatch(updateStatusTC(status))
-        },updatePhoto: (file: any) => {
+        updatePhoto: (file: any) => {
             dispatch(updatePhotoTC(file))
         },
         updateInfoProfile: (profile: any) => {
@@ -77,11 +71,7 @@ let mapDispatchToProps = (dispatch: any)  => {
 
 
 const SettingContainer:any= compose(
-    connect (mapStateToprops,{
-        getOneProfile:getOneProfileTC,
-        updatePhoto: updatePhotoTC,
-        updateInfoProfile: updateInfoProfileTC
-    })
+    connect (mapStateToprops,mapDispatchToProps)
     ,withRouter
 )(ProfileConteiner)
 export default SettingContainer

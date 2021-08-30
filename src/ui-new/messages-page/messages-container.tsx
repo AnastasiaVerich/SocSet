@@ -1,4 +1,3 @@
-import React from "react";
 import {StoreStateType} from "../../BLL/store";
 import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../BLL/Reducers/dialogs-reducer";
 import {compose} from "redux";

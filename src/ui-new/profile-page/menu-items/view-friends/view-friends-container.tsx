@@ -15,7 +15,9 @@ import {
 } from "../../../../BLL/users-selectors";
 import React from "react";
 import {compose} from "redux";
-import {connect} from "react-redux";
+
+ import {connect} from "react-redux";
+
 import {ViewFrinds} from "./view-friends";
 import {Preloader} from "../../../Common/preloader/Preloader";
 

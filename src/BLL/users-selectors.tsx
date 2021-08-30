@@ -1,4 +1,3 @@
-import React from 'react';
 import { createSelector } from 'reselect';
 
 export const getUsers=(state: any)=>{

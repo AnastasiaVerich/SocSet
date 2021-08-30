@@ -7,7 +7,7 @@ export const Header = (props: any) => {
         <div className={s.block}>
             <div className={s.icon}>
                 <img className={s.iconNetwork}
-                     src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"}/>
+                     src={"https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg"} alt={""}/>
             </div>
             <div className={s.container}>
                 {props.isAuthorization
