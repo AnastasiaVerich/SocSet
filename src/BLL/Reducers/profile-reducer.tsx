@@ -1,5 +1,6 @@
 import {profileAPI, usersAPI} from "../../DAL/api";
 import {stopSubmit} from "redux-form";
+import {toggleIsFetchingAC} from "./users-reducer";
 
 const ADD_POST = "ADD_POST"
 const DELETE_POST = "DELETE_POST"
@@ -94,20 +95,30 @@ export const ProfileReducer = (state: StateType = initialState, action: ActionTy
 // с сервера берет всю инфу о профайле выбранного пользователя
 export const getOneProfileTC = (id: any) => {
     return async (dispatch: any) => {
+        dispatch(toggleIsFetchingAC(true))
+
         let response = await usersAPI.getProfile(id)
         dispatch(setOneProfileAC(response.data))
+        dispatch(toggleIsFetchingAC(false))
+
     }
 }
 // с сервера достает статус выбранного пользователя
 export const getStatusTC = (id: any) => {
     return async (dispatch: any) => {
+        dispatch(toggleIsFetchingAC(true))
+
         let response = await profileAPI.getStatus(id)
         dispatch(updateStatusAC(response.data))
+        dispatch(toggleIsFetchingAC(false))
+
     }
 }
 // обновляет статус на сервере
 export const updateStatusTC = (status: string) => {
     return async (dispatch: any) => {
+        dispatch(toggleIsFetchingAC(true))
+
         try {
             let response = await profileAPI.updateStatus(status)
             if (response.data.resultCode === 0) {
@@ -117,19 +128,27 @@ export const updateStatusTC = (status: string) => {
             console.log("я перехватил ошибку ")
             console.log(error)
         }
+        dispatch(toggleIsFetchingAC(false))
+
     }
 }
 // обновляет фото на сервере
 export const updatePhotoTC = (file: any) => {
     return async (dispatch: any) => {
+        dispatch(toggleIsFetchingAC(true))
+
         let response = await profileAPI.updatePhoto(file)
         if (response.data.resultCode === 0) {
             dispatch(updatePhotoAC(response.data.data.photos))
         }
+        dispatch(toggleIsFetchingAC(false))
+
     }
 }
 // обновляет информацию о профиле на сервере
 export const updateInfoProfileTC = (profile: any) => async (dispatch: any, getState: any) => {
+    dispatch(toggleIsFetchingAC(true))
+
     const userId = getState().auth.userId
     let response = await profileAPI.updateInfoProfile(profile)
     if (response.data.resultCode === 0) {
@@ -138,6 +157,8 @@ export const updateInfoProfileTC = (profile: any) => async (dispatch: any, getSt
         dispatch(stopSubmit("editProfile", {_error: response.data.messages[0]}))
         return Promise.reject()
     }
+    dispatch(toggleIsFetchingAC(false))
+
 }
 
 //Action Creator

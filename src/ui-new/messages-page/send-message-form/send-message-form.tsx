@@ -6,7 +6,7 @@ import {FiSend} from "react-icons/all";
 import React from "react";
 import {Textarea} from "../../Common/forms-control/FormsControl";
 
-const maxLengthCreator = maxLength(10)
+const maxLengthCreator = maxLength(1000)
 const SendMessageForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.sendField}>

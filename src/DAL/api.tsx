@@ -12,9 +12,9 @@ const instanse = axios.create({
 
 
 export const usersAPI = {
-    getUsers(currentPages: any, pagesize: any, term: any) {
+    getUsers(currentPages: any, pagesize: any,friend: any, term: any) {
         return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}&term=${term}`, {})
+            instanse.get(`users?page=${currentPages}&count=${pagesize}&friend=${friend}&term=${term}`, {})
                 .then(response => response.data)
         )
     },
@@ -31,12 +31,6 @@ export const usersAPI = {
     unFollow(id: any) {
         return (
             instanse.delete(`follow/${id}`, {})
-                .then(response => response.data)
-        )
-    },
-    getFriendsUsers(currentPages: any, pagesize: any) {
-        return (
-            instanse.get(`users?page=${currentPages}&count=${pagesize}&friend=true`, {})
                 .then(response => response.data)
         )
     }

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Messages} from "./messages";
 import {getOneProfileTC} from "../../BLL/Reducers/profile-reducer";
 import {WithAuthRedirect} from "../HOC/with-auth-redirect";
+import {getIsFetching} from "../../BLL/users-selectors";
 
 let mapStateToProps = (state: StoreStateType) => {
     return {
@@ -12,7 +13,8 @@ let mapStateToProps = (state: StoreStateType) => {
         authorizationUserId: state.auth.userId,
         users: state.dialog.users,
         profile: state.profile.profile,
-        totalCount: state.dialog.totalCount
+        totalCount: state.dialog.totalCount,
+        isFetching: getIsFetching(state)
 
 
     }

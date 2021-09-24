@@ -12,6 +12,8 @@ import {
     updateStatusTC
 } from "../../BLL/Reducers/profile-reducer";
 import {followTC} from "../../BLL/Reducers/users-reducer";
+import {getIsFetching} from "../../BLL/users-selectors";
+import {Preloader} from "../Common/preloader/Preloader";
 
 
 class ProfileConteiner extends React.Component<any, any>{
@@ -39,6 +41,9 @@ class ProfileConteiner extends React.Component<any, any>{
     }
 
     render(){
+/*
+        if(this.props.isFetching){return <Preloader/>}
+*/
         return(
             <Profile profile={this.props.profile}
                      ownerId={!this.props.match.params.userID}
@@ -46,7 +51,8 @@ class ProfileConteiner extends React.Component<any, any>{
                      updateStatus={this.props.updateStatus}
                      updatePhoto={this.props.updatePhoto}
                      updateInfoProfile={this.props.updateInfoProfile}
-                     follower={this.props.follower}/>
+                     follower={this.props.follower}
+                     isFetching={this.props.isFetching}/>
         )
     }
 }
@@ -58,7 +64,9 @@ let mapStateToprops=(state:StoreStateType):any=>{
         profile: state.profile.profile,
         status: state.profile.status,
         authorizationUserId: state.auth.userId,
-        isAuthorization: state.auth.isAuthorization
+        isAuthorization: state.auth.isAuthorization,
+        isFetching: getIsFetching(state),
+
 
     }
 }

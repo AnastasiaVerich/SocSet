@@ -5,7 +5,6 @@ import no_image from "../assets/img/no_image.png";
 import {ViewProfile} from "./menu-items/view-profile/view-profile";
 import {ViewContacts} from "./menu-items/view-contacts/view-contacts";
 import {AboutMe} from "./menu-items/about-me/about-me";
-import {ViewFriendsContainer} from "./menu-items/view-friends/view-friends-container";
 import {AiOutlineMail} from "react-icons/ai";
 import {AiOutlineUser} from "react-icons/ai";
 import {FaUserFriends, SiAboutDotMe, SiMailDotRu} from "react-icons/all";
@@ -17,7 +16,7 @@ export const Profile = (props: any) => {
     let [z, setZ] = useState(false)
     let [w, setW] = useState(false)
 
-    if (!props.profile) {
+    if (!props.profile || props.isFetching) {
         return <Preloader/>
     } else {
         return <div className={s.block}>
@@ -78,21 +77,14 @@ export const Profile = (props: any) => {
 
                         }}><SiAboutDotMe/>
                         </div>
-                        {props.ownerId && <div className={s.menuItem} onClick={() => {
-                            setX(false);
-                            setY(false);
-                            setZ(false);
-                            setW(true)
-                        }}><FaUserFriends/>
-                        </div>}
+
                     </div>
                 </div>
                 <div className={s.profileSelectedBlock}>
                     <div className={s.profileSelectedContainer}>
                         {/* посмотреть профиль*/}
                         {x && <ViewProfile profile={props.profile}/>}
-                        {/*посмотреть друзей*/}
-                        {w && <ViewFriendsContainer/>}
+
                         {/*мои соц сети*/}
                         {y && <ViewContacts profile={props.profile}/>}
                         {/*обо мне*/}

@@ -1,5 +1,6 @@
 import {messagesAPI} from "../../DAL/api";
 import {Dispatch} from "redux";
+import {toggleIsFetchingAC} from "./users-reducer";
 
 const GET_SELECTED_DIALOG = "GET_SELECTED_DIALOG"
 const GET_SELECTED_DIALOG_MORE = "GET_SELECTED_DIALOG_MORE"
@@ -77,24 +78,36 @@ export const dialogReducer = (state: StateType = initialState, action: ActionTyp
 //Thunk Creator
 // получить с сервера список сообщений с выбранным пользователем
 export const getSelectedDialogTC = (id: any, currentPages: any, pagesize: any) => async (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+
     let response = await messagesAPI.getSelectedDialog(id, currentPages, pagesize)
     if (currentPages === 1) {
         dispatch(getSelectedDialogAC(response));
     } else {
         dispatch(getSelectedDialogMoreAC(response));
     }
+    dispatch(toggleIsFetchingAC(false))
+
 }
 // отправить сообщение на сервер
 export const senMessageTC = (userId: any, body: string) => async (dispatch: any) => {
+    dispatch(toggleIsFetchingAC(true))
+
     let response = await messagesAPI.sendMessage(userId, body)
     if (response.data.resultCode === 0) {
         dispatch(getSelectedDialogTC(userId, 1, 20))
     }
+    dispatch(toggleIsFetchingAC(false))
+
 }
 // получить список пользователей с кем общался
 export const getUsersTalkedWithTC = () => async (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+
     let response = await messagesAPI.getUsersTalkedWith()
     dispatch(getUsersTalkedWithAC(response));
+    dispatch(toggleIsFetchingAC(false))
+
 
 }
 

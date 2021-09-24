@@ -19,6 +19,7 @@ import {
     getUsersCreateSelector
 } from "../../BLL/users-selectors";
 import {Users} from "./users";
+import {Preloader} from "../Common/preloader/Preloader";
 
 
 export type MapStateToPropsType = {
@@ -44,29 +45,18 @@ export type MapDispatchTopropsType = {
     searchAC:any
 }
 
-let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
 
-    return {
-        users: getUsersCreateSelector(state),
-        pagesize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
-        currentPages: getCurrentPages(state),
-        isFetching: getIsFetching(state),
-        IsFollowingProgress: getIsFollowingProgress(state),
-        isFollow: state.usersPage.isFollow,
-        search: state.usersPage.search
-    }
-}
 
 class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsType, any> {
     componentDidMount() {
 
-        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, false, this.props.search)
+        this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow, this.props.search)
 
     }
     componentDidUpdate(prevProps: Readonly<MapDispatchTopropsType & MapStateToPropsType>, prevState: Readonly<any>, snapshot?: any) {
-        if(this.props.search!==prevProps.search)
+        if(this.props.search!==prevProps.search || this.props.isFollow!== prevProps.isFollow)
             this.props.getUsersThunk(this.props.currentPages, this.props.pagesize, this.props.isFollow,this.props.search)
+
     }
 
     onPageChanget = (pageNumber: number) => {
@@ -75,8 +65,9 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
     }
 
     render() {
-
-            return <>
+        /*if(this.props.isFetching){
+          return  <Preloader/>
+        }else */ return <>
             <Users users={this.props.users}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPages={this.props.currentPages}
@@ -92,6 +83,20 @@ class UsersAPI extends React.Component<MapDispatchTopropsType & MapStateToPropsT
                    searchAC={this.props.searchAC}
             />
         </>
+    }
+}
+
+let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
+
+    return {
+        users: getUsersCreateSelector(state),
+        pagesize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPages: getCurrentPages(state),
+        isFetching: getIsFetching(state),
+        IsFollowingProgress: getIsFollowingProgress(state),
+        isFollow: state.usersPage.isFollow,
+        search: state.usersPage.search
     }
 }
 

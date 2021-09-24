@@ -12,6 +12,7 @@ import {HeaderContainer} from "./header/header-container";
 import SettingContainer from "./setting/setting-container";
 import {WithSuspenseHOC} from "./HOC/with-suspense";
 import {Preloader} from "./Common/preloader/Preloader";
+import {ChatPage} from "./messages-page/chat-page/chat";
 
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
@@ -57,11 +58,13 @@ class App extends React.Component<any, any> {
 
 
                     <Switch>
-
+                        <Route path='/messages/chat'
+                               render={()=><ChatPage/>}/>
                         <Route path='/profile/:userID?'
                                render={WithSuspenseHOC(ProfileContainerConnect)}/>
                         <Route path='/messages/:userID?'
                                render={WithSuspenseHOC(MessagesContainer)}/>
+
                         <Route path='/users'
                                render={() => <UsersContainer/>}/>
                         <Route path='/login'

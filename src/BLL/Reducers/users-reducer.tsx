@@ -151,12 +151,9 @@ export const getUsersTC = (currentPages: number, pagesize: number, follow: boole
     return async (dispatch: any) => {
         dispatch(toggleIsFetchingAC(true))
         let response;
-        // если ищем друзей, то выполняем один запрос на серве
-        if (follow) {
-            response = await usersAPI.getFriendsUsers(currentPages, pagesize)
-        } else {
-            response = await usersAPI.getUsers(currentPages, pagesize, term)
-        }
+
+            response = await usersAPI.getUsers(currentPages, pagesize,follow, term)
+
         dispatch(toggleIsFetchingAC(false))
         dispatch(setUsersAC(response.items))
         dispatch(setTotalUsersCountAC(response.totalCount))

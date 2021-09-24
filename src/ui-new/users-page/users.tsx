@@ -23,6 +23,8 @@ export const Users = (props:any) => {
     placeholder={"Search Members"} value={props.search} onChange={(event) => {
     props.searchAC(event.currentTarget.value)
 }}/>
+                    <button onClick={()=>{props.FiendsAC(true)}}>show frind</button>
+                    <button onClick={()=>{props.FiendsAC(false)}}>show all user</button>
                 </div>
                 <div className={s.userBlock}>
                     {props.users.map((user: OneUsersType) =>
