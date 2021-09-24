@@ -3,9 +3,10 @@ import {ProfileReducer} from "./Reducers/profile-reducer";
 import {UsersReducer} from "./Reducers/users-reducer";
 import {AuthorizationReducer} from "./Reducers/authorization-reducer";
 import thunkMiddlewere from "redux-thunk";//thunk as thunkMiddleWere
-import  {reducer as formReducer} from 'redux-form'
+import {reducer as formReducer} from 'redux-form'
 import {AppReducer} from "./Reducers/app-reducer";
 import {dialogReducer} from "./Reducers/dialogs-reducer";
+import {ChatReducer} from "./Reducers/chat-reducer";
 
 
 export const reducers = combineReducers(
@@ -15,7 +16,8 @@ export const reducers = combineReducers(
         usersPage: UsersReducer,
         auth: AuthorizationReducer,
         form: formReducer,
-        app: AppReducer
+        app: AppReducer,
+        chat: ChatReducer
     }
 )
 
