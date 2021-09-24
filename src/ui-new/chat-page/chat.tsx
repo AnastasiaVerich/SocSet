@@ -39,7 +39,15 @@ const Messages = () => {
     return (
 
         <div className={s.chat}>
-            {messages.map((m) => <div className={s.my}><p className={s.sms}>{m.message}</p></div>)}
+            {messages.map((m) =>
+                <div className={s.my}>
+                    <img src={m.photo} width={"50px"} height={"50px"}/>
+                    <div className={s.sms}>
+                        <b>{m.userName}</b>
+                        <p className={s.sms}>{m.message}</p>
+                    </div>
+
+                </div>)}
         </div>
 
     )
