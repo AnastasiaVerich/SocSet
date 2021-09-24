@@ -26,7 +26,6 @@ export const ChatReducer = (state = initialState, action: ActionType): StateType
 
     switch (action.type) {
         case SN_CHAT_MESSAGES_RECEVIED:
-            debugger
             return {
                 ...state,
                 messages: [...state.messages, ...action.payload.messages]

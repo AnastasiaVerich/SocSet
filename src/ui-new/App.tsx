@@ -12,7 +12,7 @@ import {HeaderContainer} from "./header/header-container";
 import SettingContainer from "./setting/setting-container";
 import {WithSuspenseHOC} from "./HOC/with-suspense";
 import {Preloader} from "./Common/preloader/Preloader";
-import {ChatPage} from "./messages-page/chat-page/chat";
+import {ChatPage} from "./chat-page/chat";
 
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера

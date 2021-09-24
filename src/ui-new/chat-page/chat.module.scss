@@ -1,0 +1,42 @@
+@import "../sass/variables";
+@import "../sass/mixins";
+
+.block {
+  @include block();
+
+  .container {
+    @include container();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .chat {
+      width: 100%;
+      height: 85%;
+      @include scroll();
+
+    }
+
+    .sendMesBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 15%;
+
+      textarea {
+        width: 250px;
+        height: 50px;
+        border-radius: 10px;
+        outline: none;
+        padding: 5px;
+      }
+      .sendMess {
+        @include button(50px, 50px);
+        margin-left: 10px;
+        border-radius: 25px;
+        border: none;
+      }
+    }
+  }
+}

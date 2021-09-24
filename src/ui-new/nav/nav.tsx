@@ -3,7 +3,7 @@ import s from "./nav.module.scss"
 import {NavLink} from "react-router-dom";
 import {logoutTC} from "../../BLL/Reducers/authorization-reducer";
 import {useDispatch} from "react-redux";
-import {AiOutlineUser} from "react-icons/ai";
+import {AiOutlineUser, AiOutlineWechat} from "react-icons/ai";
 import {AiOutlineMessage} from "react-icons/ai";
 import {AiOutlineTeam} from "react-icons/ai";
 import {AiOutlineSetting} from "react-icons/ai";
@@ -44,6 +44,11 @@ export const Nav = () => {
                     <div className={s.item}>
                         <NavLink to="/setting" className={s.buttonItem}>
                             <AiOutlineSetting/>
+                        </NavLink>
+                    </div>
+                    <div className={s.item}>
+                        <NavLink to="/messages/chat" className={s.buttonItem}>
+                            <AiOutlineWechat/>
                         </NavLink>
                     </div>
 

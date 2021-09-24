@@ -6,7 +6,6 @@ import {SendMessageReduxForm} from "./send-message-form/send-message-form";
 import {SelectedChat} from "./selected-chat/selectedChat";
 import {Preloader} from "../Common/preloader/Preloader";
 import {ChatList} from "./chat-list/chat-list";
-import {AiOutlineSetting} from "react-icons/ai";
 
 export const Messages = (props: any) => {
     // от куда берется match???
@@ -44,9 +43,7 @@ export const Messages = (props: any) => {
                     </div>
 
                     <div className={s.fieldUsers}>
-                        <NavLink to="/messages/chat" className={s.buttonItem}>
-                            <div>webSocet</div>
-                        </NavLink>
+
                         {props.users != null
                             ? <ChatList users={props.users}/>
                             : <div>нет диалогов</div>}
