@@ -36,7 +36,7 @@ export const ChatReducer = (state = initialState, action: ActionType): StateType
         case SN_CHAT_MESSAGES_RECEVIED:
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages]
+                messages: [...state.messages, ...action.payload.messages].filter((m, index, arr)=>arr.length-30<=index)
             }
         case SN_CHAT_STATUS_CHANGED:
             return {

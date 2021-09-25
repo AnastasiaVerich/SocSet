@@ -36,7 +36,8 @@ type wsChanaleType = {
     wsChanale: WebSocket | null
 }
 
-const Messages = () => {
+const Messages = React.memo(() => {
+    console.log("render mes")
     const messages = useSelector((state: StoreStateType) => state.chat.messages)
     const [ scrol, setScrol]=useState(true)
     const mesAchorRef=useRef<HTMLDivElement>(null);
@@ -59,8 +60,8 @@ const Messages = () => {
     return (
 
         <div className={s.chat}  onScroll={scrollHandler}>
-            {messages.map((m) =><>
-                <div className={s.my}>
+            {messages.map((m, index) =><>
+                <div   className={s.my}>
                     <img src={m.photo} width={"50px"} height={"50px"}/>
                     <div className={s.sms}>
                         <b>{m.userName}</b>
@@ -75,7 +76,7 @@ const Messages = () => {
 
     )
 
-}
+})
 const AddItemForm = () => {
     const [mes, setMes] = useState("")
     const status = useSelector((state: StoreStateType) => state.chat.status)
