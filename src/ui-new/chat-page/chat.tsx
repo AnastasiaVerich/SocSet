@@ -38,12 +38,6 @@ type wsChanaleType = {
 
 const Messages = () => {
     const messages = useSelector((state: StoreStateType) => state.chat.messages)
-    /*useEffect(()=>{
-        let messageBody = document.querySelector('#messageBody');
-        if (messageBody !== null) {
-            messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-        }
-    },[messages])*/
     const [ scrol, setScrol]=useState(true)
     const mesAchorRef=useRef<HTMLDivElement>(null);
     const scrollHandler=(e: React.UIEvent<HTMLDivElement, UIEvent>)=>{
@@ -64,7 +58,7 @@ const Messages = () => {
 
     return (
 
-        <div className={s.chat} id="messageBody" onScroll={scrollHandler}>
+        <div className={s.chat}  onScroll={scrollHandler}>
             {messages.map((m) =><>
                 <div className={s.my}>
                     <img src={m.photo} width={"50px"} height={"50px"}/>
