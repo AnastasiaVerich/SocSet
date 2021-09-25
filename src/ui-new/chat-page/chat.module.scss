@@ -57,6 +57,10 @@
         margin-left: 10px;
         border-radius: 25px;
         border: none;
+        &:disabled{
+          background: black;
+
+        }
       }
     }
   }
