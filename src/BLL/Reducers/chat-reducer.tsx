@@ -1,4 +1,3 @@
-import {getAuthorizationDataTC} from "./authorization-reducer";
 import {chatAPI, MessagesType, StatusType} from "../../DAL/chat-api";
 import {Dispatch} from "redux";
 

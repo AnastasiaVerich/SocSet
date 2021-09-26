@@ -1,7 +1,7 @@
 import {StoreStateType} from "../../BLL/store";
-import {loginTC} from "../../BLL/Reducers/authorization-reducer";
 import {connect} from "react-redux";
 import {Login} from "./login";
+import {login} from "../../BLL/Reducers/auth-watcher";
 
 const mapStateToProps = (state: StoreStateType) => ({
     isAuth: state.auth.isAuthorization,
@@ -11,7 +11,7 @@ const mapStateToProps = (state: StoreStateType) => ({
 const mapDispatchToProps = (dispatch: any) => {
     return {
         login: (email: string, password: string, rememberMe: boolean, captcha: any) => {
-            dispatch(loginTC(email, password, rememberMe, captcha))
+            dispatch(login(email, password, rememberMe, captcha))
         }
     }
 }

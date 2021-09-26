@@ -1,5 +1,3 @@
-import {getAuthorizationDataTC} from "./authorization-reducer";
-
 const SET_INITIALIZED = "SET_INITIALIZED"
 
 //type for Reduces
@@ -32,14 +30,6 @@ export const AppReducer = (state: StateType = initialState, action: ActionType):
         }
     }
     else return state
-}
-
-//Thunk Creator
-export const initializeTC = () => (dispath: any) => {
-   let promise= dispath(getAuthorizationDataTC());
-    Promise.all([promise]).then(()=>{
-        dispath(initializedSuccessAC());
-    })
 }
 
 // Action Creator

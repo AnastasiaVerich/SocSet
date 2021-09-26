@@ -68,9 +68,8 @@ export const profileAPI = {
 }
 export const authorizationAPI = {
     me() {
-        return (
-            instanse.get(`auth/me`, {})
-        )
+        const promise=instanse.get(`auth/me`, {})
+        return promise
     },
     login(email: string, password: string, rememberMe: boolean = false, captcha: any) {
         return (

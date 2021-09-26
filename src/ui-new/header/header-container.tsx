@@ -1,8 +1,8 @@
 import React from "react";
 import {StoreStateType} from "../../BLL/store";
-import {logoutTC} from "../../BLL/Reducers/authorization-reducer";
 import {connect} from "react-redux";
 import {Header} from "./header";
+import {logout} from "../../BLL/Reducers/auth-watcher";
 
 class HeaderContainerConnect extends React.Component<any, any> {
     refreshHeader(){
@@ -29,7 +29,7 @@ const mapStateToProps = (state: StoreStateType) => ({
 let mapDispatchToProps = (dispatch: any) => {
     return {
         logOut: () => {
-            dispatch(logoutTC())
+            dispatch(logout())
         }
     }
 }

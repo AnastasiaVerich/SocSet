@@ -7,12 +7,12 @@ import {UsersContainer} from "./users-page/users-container";
 import {StoreStateType} from "../BLL/store";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {initializeTC} from "../BLL/Reducers/app-reducer";
 import {HeaderContainer} from "./header/header-container";
 import SettingContainer from "./setting/setting-container";
 import {WithSuspenseHOC} from "./HOC/with-suspense";
 import {Preloader} from "./Common/preloader/Preloader";
 import {ChatPage} from "./chat-page/chat";
+import {initialize} from "../BLL/Reducers/app-saga";
 
 
 // лейзи говорит, что он компаненту не импортирую. когда ее надо будет отрисоввать, он запросится с сервера
@@ -95,6 +95,6 @@ const mapStateToProps = (state: StoreStateType) => ({
 // withRouter дает компоненте данные из url
 export const AppContainer: any = compose(
     withRouter,
-    connect(mapStateToProps, {initializeApp: initializeTC}))(App)
+    connect(mapStateToProps, {initializeApp: initialize}))(App)
 
 

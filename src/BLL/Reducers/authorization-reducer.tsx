@@ -1,7 +1,3 @@
-import {authorizationAPI, securityAPI} from "../../DAL/api";
-import {stopSubmit} from "redux-form";
-import {Dispatch} from "redux";
-
 const SET_USER_DATA = "SET_USER_DATA"
 const GET_CAPTCHA = "CAPTCHA"
 
@@ -59,47 +55,6 @@ export const AuthorizationReducer = (state: AuthorizationStateType = initialStat
                 return state;
         }
     } else return state
-}
-//Thunk Creator
-// авторизируемся
-export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: any) => async (dispath: any) => {
-    let response = await authorizationAPI.login(email, password, rememberMe, captcha)
-    // если авт прошла успешно, то выполняем это
-    if (response.data.resultCode === 0) {
-        dispath(getAuthorizationDataTC())
-    }
-    else {
-        if (response.data.resultCode === 10){
-            dispath(getCaptchaTC())
-        }
-        let errorMessages = response.data.messages.length > 0
-            ? response.data.messages[0]
-            : "some error"
-        dispath(stopSubmit("Login", {_error: errorMessages}))
-    }
-}
-//получаем данные о пользователе, который авторизировался
-export const getAuthorizationDataTC = () => async (dispath: Dispatch) => {
-    // т к авт прошла успешно, то делаем запрос, от куда берем даные текущего пользователя
-    let response = await authorizationAPI.me()
-    if (response.data.resultCode === 0) {
-        let {id, email, login} = response.data.data
-        dispath(setAuthorizationDataAC(id, email, login, true))
-    }
-}
-//делаем запрос на сервер, удаляем свои данные для автаризации
-export const logoutTC = () => async (dispath: Dispatch) => {
-    let response = await authorizationAPI.logout()
-    if (response.data.resultCode === 0) {
-        dispath(setAuthorizationDataAC(null, null, null, false));
-    }
-}
-// делаем запрос на сервер, получаем картинку антибот
-export const getCaptchaTC = () => async (dispath: Dispatch) => {
-    let response = await securityAPI.getCaptchaUrl()
-    let captchaUrl = response.data.url
-    debugger
-    dispath(setCaptchaAC(captchaUrl))
 }
 
 //ACTION CREATOR

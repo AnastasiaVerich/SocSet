@@ -1,19 +1,19 @@
 import React from 'react';
 import s from "./nav.module.scss"
 import {NavLink} from "react-router-dom";
-import {logoutTC} from "../../BLL/Reducers/authorization-reducer";
 import {useDispatch} from "react-redux";
 import {AiOutlineUser, AiOutlineWechat} from "react-icons/ai";
 import {AiOutlineMessage} from "react-icons/ai";
 import {AiOutlineTeam} from "react-icons/ai";
 import {AiOutlineSetting} from "react-icons/ai";
 import {FiMenu} from "react-icons/all";
+import {logout} from "../../BLL/Reducers/auth-watcher";
 
 
 export const Nav = () => {
     const dispatch = useDispatch()
     const logOut = () => {
-        dispatch(logoutTC())
+        dispatch(logout())
     }
 
 
