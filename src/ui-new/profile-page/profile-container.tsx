@@ -4,16 +4,16 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {StoreStateType} from "../../BLL/store";
-import {
-    getOneProfileTC,
-    getStatusTC,
-    updateInfoProfileTC,
-    updatePhotoTC,
-    updateStatusTC
-} from "../../BLL/Reducers/profile-reducer";
-import {followTC} from "../../BLL/Reducers/users-reducer";
 import {getIsFetching} from "../../BLL/users-selectors";
 import {Preloader} from "../Common/preloader/Preloader";
+import {
+    getOneProfile,
+    getStatus,
+    updateInfoProfile,
+    updatePhotoTC,
+    updateStatus
+} from "../../BLL/Reducers/profile-saga";
+import {follow} from "../../BLL/Reducers/users-saga";
 
 
 class ProfileConteiner extends React.Component<any, any>{
@@ -73,20 +73,20 @@ let mapStateToprops=(state:StoreStateType):any=>{
 let mapDispatchToProps = (dispatch: any)  => {
     return {
         getOneProfile: (id: number) => {
-            dispatch(getOneProfileTC(id))
+            dispatch(getOneProfile(id))
         },
         getStatus: (id: number) => {
-            dispatch(getStatusTC(id))
+            dispatch(getStatus(id))
         },updateStatus: (status: string) => {
-            dispatch(updateStatusTC(status))
+            dispatch(updateStatus(status))
         },updatePhoto: (file: any) => {
             dispatch(updatePhotoTC(file))
         },
         updateInfoProfile: (profile: any) => {
-            dispatch(updateInfoProfileTC(profile))
+            dispatch(updateInfoProfile(profile))
         },
         follower:(id: any)=>{
-            dispatch(followTC(id))
+            dispatch(follow(id))
         }
     }
 }

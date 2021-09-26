@@ -1,14 +1,10 @@
 import React from "react";
 import {StoreStateType} from "../../BLL/store";
-import {
-    getOneProfileTC,
-    updateInfoProfileTC,
-    updatePhotoTC,
-} from "../../BLL/Reducers/profile-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Setting} from "./setting";
+import {getOneProfile, updateInfoProfile, updatePhotoTC} from "../../BLL/Reducers/profile-saga";
 
 
 class ProfileConteiner extends React.Component<any, any>{
@@ -58,13 +54,13 @@ let mapStateToprops=(state:StoreStateType):any=>{
 let mapDispatchToProps = (dispatch: any)  => {
     return {
         getOneProfile: (id: number) => {
-            dispatch(getOneProfileTC(id))
+            dispatch(getOneProfile(id))
         },
         updatePhoto: (file: any) => {
             dispatch(updatePhotoTC(file))
         },
         updateInfoProfile: (profile: any) => {
-            dispatch(updateInfoProfileTC(profile))
+            dispatch(updateInfoProfile(profile))
         }
     }
 }

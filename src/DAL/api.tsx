@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 
 const instanse = axios.create({
@@ -68,8 +68,7 @@ export const profileAPI = {
 }
 export const authorizationAPI = {
     me() {
-        const promise=instanse.get(`auth/me`, {})
-        return promise
+        return instanse.get(`auth/me`, {})
     },
     login(email: string, password: string, rememberMe: boolean = false, captcha: any) {
         return (

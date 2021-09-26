@@ -1,11 +1,11 @@
 import {StoreStateType} from "../../BLL/store";
-import {getSelectedDialogTC, getUsersTalkedWithTC, senMessageTC} from "../../BLL/Reducers/dialogs-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {Messages} from "./messages";
-import {getOneProfileTC} from "../../BLL/Reducers/profile-reducer";
 import {WithAuthRedirect} from "../HOC/with-auth-redirect";
 import {getIsFetching} from "../../BLL/users-selectors";
+import {getSelectedDialog, getUsersTalkedWith, senMessage} from "../../BLL/Reducers/dialogs-saga";
+import {getOneProfile} from "../../BLL/Reducers/profile-saga";
 
 let mapStateToProps = (state: StoreStateType) => {
     return {
@@ -22,15 +22,15 @@ let mapStateToProps = (state: StoreStateType) => {
 let mapDispatchToProps = (dispatch: any)  => {
     return {
         selectedDialogMessages: (id: number, currentPages: any, pagesize: any) => {
-            dispatch(getSelectedDialogTC(id, currentPages,pagesize))
+            dispatch(getSelectedDialog(id, currentPages,pagesize))
         },
         sendMessage: (id: number, text: string) => {
-            dispatch(senMessageTC(id, text))
+            dispatch(senMessage(id, text))
         },
         usersTalkedWith: () => {
-            dispatch(getUsersTalkedWithTC())
+            dispatch(getUsersTalkedWith())
         }, getOneProfile: (id: number) => {
-            dispatch(getOneProfileTC(id))
+            dispatch(getOneProfile(id))
         },
     }
 }

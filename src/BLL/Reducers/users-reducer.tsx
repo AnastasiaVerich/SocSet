@@ -1,5 +1,3 @@
-import {usersAPI} from "../../DAL/api";
-
 const FOLLOW = "FOLLOW"
 const UN_FOLLOW = "UN_FOLLOW"
 const SET_USERS = "SET_USERS"
@@ -143,44 +141,6 @@ export const UsersReducer = (state: UsersType = initialState, action: ActionType
                 return state;
         }
     } else return state
-}
-
-//Thunk Creator
-// делает запрос на сервер, возвращет всех пользователей
-export const getUsersTC = (currentPages: number, pagesize: number, follow: boolean, term: any) => {
-    return async (dispatch: any) => {
-        dispatch(toggleIsFetchingAC(true))
-        let response;
-
-            response = await usersAPI.getUsers(currentPages, pagesize,follow, term)
-
-        dispatch(toggleIsFetchingAC(false))
-        dispatch(setUsersAC(response.items))
-        dispatch(setTotalUsersCountAC(response.totalCount))
-    }
-}
-
-// делает запрос на сервер, меняет на сервере свойство фоллоу на true
-export const followTC = (id: any) => {
-    return async (dispatch: any) => {
-        dispatch(setUserIdForDisabledAC(true, id))
-        let response = await usersAPI.follow(id)
-        if (response.resultCode === 0) {
-            dispatch(followAC(id))
-        }
-        dispatch(setUserIdForDisabledAC(false, id))
-    }
-}
-// делает запрос на сервер, удаляет на сервере свойство фоллоу(ставит по умолчанию false)
-export const unFollowTC = (id: any) => {
-    return async (dispatch: any) => {
-        dispatch(setUserIdForDisabledAC(true, id))
-        let response = await usersAPI.unFollow(id)
-        if (response.resultCode === 0) {
-            dispatch(unFollowAC(id))
-        }
-        dispatch(setUserIdForDisabledAC(false, id))
-    }
 }
 
 //ActionCreator

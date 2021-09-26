@@ -39,17 +39,18 @@ export function* loginWorkerSaga (action: ReturnType<typeof login >) {
     }
 }
 //получаем данные о пользователе, который авторизировался
-export function* getAuthorizationDataWorkerSaga() {
+export function* getAuthorizationDataWorkerSaga():any {
     // т к авт прошла успешно, то делаем запрос,
     // от куда берем даные текущего пользователя
-    // @ts-ignore
-    let response = yield call(authorizationAPI.me)
+
+    let response =  yield call(authorizationAPI.me)
     if (response.data.resultCode === 0) {
         let {id, email, login} = response.data.data
         yield put(setAuthorizationDataAC(id, email, login, true))
     }
 }
 export function* logoutWorkerSaga() {
+
     // @ts-ignore
     let response = yield call(authorizationAPI.logout)
     if (response.data.resultCode === 0) {
@@ -79,7 +80,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 
 
 
-export function* authWatcher() {
+export function* authSaga() {
     yield takeEvery("AUTH/GET_AUTH_DATA", getAuthorizationDataWorkerSaga)
     yield takeEvery("AUTH/LOGOUT", logoutWorkerSaga)
     yield takeEvery("AUTH/GET_CAPTCHA", getCaptchaWorkerSaga)

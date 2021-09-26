@@ -7,12 +7,13 @@ import {AiOutlineMessage} from "react-icons/ai";
 import {AiOutlineTeam} from "react-icons/ai";
 import {AiOutlineSetting} from "react-icons/ai";
 import {FiMenu} from "react-icons/all";
-import {logout} from "../../BLL/Reducers/auth-watcher";
+import {logout} from "../../BLL/Reducers/auth-saga";
 
 
 export const Nav = () => {
     const dispatch = useDispatch()
     const logOut = () => {
+
         dispatch(logout())
     }
 

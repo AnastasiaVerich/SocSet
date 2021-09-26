@@ -32,6 +32,7 @@ export const AppReducer = (state: StateType = initialState, action: ActionType):
     else return state
 }
 
+
 // Action Creator
 export const initializedSuccessAC = (): InitializedType => ({type: SET_INITIALIZED})
 

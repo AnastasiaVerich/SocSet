@@ -2,7 +2,7 @@ import React from "react";
 import {StoreStateType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {Header} from "./header";
-import {logout} from "../../BLL/Reducers/auth-watcher";
+import {logout} from "../../BLL/Reducers/auth-saga";
 
 class HeaderContainerConnect extends React.Component<any, any> {
     refreshHeader(){

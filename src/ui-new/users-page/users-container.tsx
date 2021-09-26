@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followTC, getUsersTC, toggleFollowAC,
+    toggleFollowAC,
     setCurrentPageAC, toggleIsFetchingAC, setUserIdForDisabledAC,
     setTotalUsersCountAC,
     setUsersAC,
-    unFollowTC,
     OneUsersType, searchAC
 } from "../../BLL/Reducers/users-reducer";
 import {StoreStateType} from "../../BLL/store";
@@ -19,7 +18,7 @@ import {
     getUsersCreateSelector
 } from "../../BLL/users-selectors";
 import {Users} from "./users";
-import {Preloader} from "../Common/preloader/Preloader";
+import {follow, getUsers, unFollow} from "../../BLL/Reducers/users-saga";
 
 
 export type MapStateToPropsType = {
@@ -102,14 +101,14 @@ let mapStateToProps = (state: StoreStateType): MapStateToPropsType => {
 
 export const UsersContainer:any = compose(/*WithAuthRedirect,*/connect(mapStateToProps, {
 
-    follower:followTC,
-    unfollow: unFollowTC,
+    follower:follow,
+    unfollow: unFollow,
     setUsers:setUsersAC,
     SetCurrentPage:setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     setIsFollowingProgress: setUserIdForDisabledAC,
     toogleIsFetching:toggleIsFetchingAC,
-    getUsersThunk: getUsersTC,
+    getUsersThunk: getUsers,
     FiendsAC: toggleFollowAC,
     searchAC: searchAC
     //getUsersThunk: getFriendsThunkCreater

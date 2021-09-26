@@ -1,7 +1,7 @@
 import {StoreStateType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {Login} from "./login";
-import {login} from "../../BLL/Reducers/auth-watcher";
+import {login} from "../../BLL/Reducers/auth-saga";
 
 const mapStateToProps = (state: StoreStateType) => ({
     isAuth: state.auth.isAuthorization,

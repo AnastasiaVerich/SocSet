@@ -10,9 +10,12 @@ import {AppReducer} from "./Reducers/app-reducer";
 import {dialogReducer} from "./Reducers/dialogs-reducer";
 import {ChatReducer} from "./Reducers/chat-reducer";
 import createSagaMiddleware from "redux-saga";
-import { takeEvery } from "redux-saga/effects";
-import {authWatcher, getAuthorizationDataWorkerSaga, logoutWorkerSaga} from "./Reducers/auth-watcher";
-import {AppWorkers} from "./Reducers/app-saga";
+import {all, takeEvery } from "redux-saga/effects";
+import {authSaga, getAuthorizationDataWorkerSaga, logoutWorkerSaga} from "./Reducers/auth-saga";
+import {appWorkers, initializeWorkerSaga} from "./Reducers/app-saga";
+import {dialogSaga} from "./Reducers/dialogs-saga";
+import {profileSaga} from "./Reducers/profile-saga";
+import {usersSaga} from "./Reducers/users-saga";
 
 
 export const reducers = combineReducers(
@@ -34,8 +37,8 @@ export const store = createStore(reducers, composeEnhancers(applyMiddleware(thun
 
 sagaMiddleware.run(rootWatcher)
 function* rootWatcher() {
-        yield authWatcher()
-        yield AppWorkers()
+
+        yield all([appWorkers(), authSaga(), dialogSaga(), profileSaga(), usersSaga()])
 
 }
 
